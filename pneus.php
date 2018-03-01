@@ -23,10 +23,15 @@
     
     public function menu_html()
     {
-        echo '<h1>'.get_admin_page_title().'</h1>';
-        echo '<p>Bienvenue sur la page d\'accueil du plugin</p>';
+        ?>
+        <h1><?php echo get_admin_page_title(); ?></h1>
+        <p>Bienvenue sur la page d'accueil du plugin</p>
+        <br />
+        <p>Ce plugin ajoute une table "inventaire".<br />
+        Elle y ajoute ensuite les champs "marque" et "modele".<br />
+        Par la suite, il vous sera possible d'ajouter des données à cette table, pour permettre ensuite une recherche.</p>
+        <?php
     }
-
 
  }
  new Pneus_Plugin();

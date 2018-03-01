@@ -3,7 +3,6 @@ include_once plugin_dir_path( __FILE__ ).'/inventairewidget.php';
 
 class Inventaire{
     public function __construct(){
-        
         add_action("wp_footer", array($this, 'inventaire_results_before_content'));
         add_action('widgets_init', function(){register_widget('Inventaire_Widget');});
         add_action('admin_menu', array($this, 'add_admin_menu'), 20);
@@ -32,8 +31,8 @@ class Inventaire{
     
     public function menu_html()
     {
-        echo '<h1>'.get_admin_page_title().'</h1>';
         ?>
+        <h1><?php echo get_admin_page_title(); ?></h1>
         <form action="" method="post">
             <p>
                 <label for="marque">Marque :</label>
@@ -41,16 +40,16 @@ class Inventaire{
                 <label for="modele">Modèle :</label>
                 <input id="pneus_modele" name="pneus_modele" type="text"/>
             </p>
-            <?php submit_button(); ?>
+            <input type="submit" value="Enregistrer" style="background-color: lightblue;" />
         </form>
+        <br /><br />
         <?php
     }
 
     public function process_action()
     {
-        if (isset($_POST['send_infos'])) {
+        if (isset($_POST['send_infos']))
             $this->send_infos();
-        }
     }
 
     public function save_infos()
@@ -61,9 +60,8 @@ class Inventaire{
             $modele = $_POST['pneus_modele'];
 
             $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}inventaire WHERE marque = '$marque' && modele = '$modele'");
-            if (is_null($row)) {
+            if (is_null($row))
                 $wpdb->insert("{$wpdb->prefix}inventaire", array('marque' => $marque, 'modele' => $modele));
-            }
         }
     }
     
@@ -76,16 +74,16 @@ class Inventaire{
     
         if ((isset($_POST['marque']))&&($_POST['marque'] != "")){
             $marque = $_POST['marque'];
-            $allItems = $wpdb->get_results("SELECT * FROM wp_inventaire WHERE marque = '$marque'");
+            $allItems = $wpdb->get_results("SELECT * FROM wp_inventaire WHERE marque = '$marque' ORDER BY marque,modele");
             
             // Ecriture du résultat trouvé
             foreach ($allItems as $singleItem) {
                 $result++;
-                $list .= '<article style="float: left;margin: 0 20px 20px 0;width: 100%;">'.$singleItem->marque.' '.$singleItem->modele.'</article>';
+                $list .= '<article style="float: left;margin: 0 20px 20px 0; width: 100%;">'.$singleItem->marque.' '.$singleItem->modele.'</article>';
             }
 
 			if ($result == 0){
-				$list .= "Aucun résultat pour cette recherche.";
+				$list .= "Aucun résultat pour cette recherche (<b>".$marque."</b>).";
 			}
             
             $list .= '<br style="clear:both;"></div>';
