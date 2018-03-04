@@ -13,7 +13,7 @@ class Inventaire{
     {
         global $wpdb;
         
-        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inventaire (id INT AUTO_INCREMENT PRIMARY KEY, marque VARCHAR(255), modele VARCHAR(255) );");
+        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inventaire (id INT AUTO_INCREMENT PRIMARY KEY, marque VARCHAR(255), modele VARCHAR(255), largeur INT(11), hauteur INT(11), diametre INT(11) );");
     }
 
     public static function uninstall()
@@ -35,14 +35,34 @@ class Inventaire{
         <h1><?php echo get_admin_page_title(); ?></h1>
         <form action="" method="post">
             <p>
-                <label for="marque">Marque :</label>
+                <label style="display:inline-block; width:65px;" for="marque">Marque :</label>
                 <input id="pneus_marque" name="pneus_marque" type="text"/>
-                <label for="modele">Modèle :</label>
+            </p>
+            <p>
+                <label style="display:inline-block; width:65px;" for="modele">Modèle :</label>
                 <input id="pneus_modele" name="pneus_modele" type="text"/>
             </p>
+            <p>
+                <label style="display:inline-block; width:65px;" for="annee">Année :</label>
+                <input id="annee" name="annee" type="text"/>
+            </p>
+            <p>
+                <label style="display:inline-block; width:65px;" for="largeur">Largeur :</label>
+                <input id="largeur" name="largeur" type="text"/>
+            </p>
+            <p>
+                <label style="display:inline-block; width:65px;" for="hauteur">Hauteur :</label>
+                <input id="hauteur" name="hauteur" type="text"/>
+            </p>
+            <p>
+                <label style="display:inline-block; width:65px;" for="diametre">Diamètre :</label>
+                <input id="diametre" name="diametre" type="text"/>
+            </p>
+
             <input type="submit" value="Enregistrer" style="background-color: lightblue;" />
         </form>
         <br /><br />
+        
         <?php
     }
 
@@ -58,10 +78,14 @@ class Inventaire{
             global $wpdb;
             $marque = $_POST['pneus_marque'];
             $modele = $_POST['pneus_modele'];
+            $annee = $_POST['annee'];
+            $largeur = $_POST['largeur'];
+            $hauteur = $_POST['hauteur'];
+            $diametre = $_POST['diametre'];
 
             $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}inventaire WHERE marque = '$marque' && modele = '$modele'");
             if (is_null($row))
-                $wpdb->insert("{$wpdb->prefix}inventaire", array('marque' => $marque, 'modele' => $modele));
+                $wpdb->insert("{$wpdb->prefix}inventaire", array('marque' => $marque, 'modele' => $modele, 'annee' => $annee, 'largeur' => $largeur, 'hauteur' => $hauteur, 'diametre' => $diametre));
         }
     }
     
@@ -75,11 +99,13 @@ class Inventaire{
         if ((isset($_POST['marque']))&&($_POST['marque'] != "")){
             $marque = $_POST['marque'];
             $allItems = $wpdb->get_results("SELECT * FROM wp_inventaire WHERE marque = '$marque' ORDER BY marque,modele");
-            
+
             // Ecriture du résultat trouvé
+            if (count($allItems) > 0)
+                $list .= '<span style="display:inline-block; width:65px; margin-bottom: 10px; font-weight: bold;">Marque</span><span style="display:inline-block; width:175px; font-weight: bold;">Modèle</span><span style="display:inline-block; width:65px; font-weight: bold;">Année</span><span style="display:inline-block; width:65px; font-weight: bold;">Largeur</span><span style="display:inline-block; width:65px; font-weight: bold;">Hauteur</span><span style="display:inline-block; width:65px; font-weight: bold;">Diamètre</span><br />';
             foreach ($allItems as $singleItem) {
                 $result++;
-                $list .= '<article style="float: left;margin: 0 20px 20px 0; width: 100%;">'.$singleItem->marque.' '.$singleItem->modele.'</article>';
+                $list .= '<article style="float: left; margin: 0 20px 5px 0; width: 100%;"><span style="display:inline-block; width:65px;">'.$singleItem->marque.'</span><span style="display:inline-block; width:175px;">'.$singleItem->modele.'</span><span style="display:inline-block; width:65px;">'.$singleItem->annee.'</span><span style="display:inline-block; width:65px;">'.$singleItem->hauteur.'</span><span style="display:inline-block; width:65px;">'.$singleItem->largeur.'</span><span style="display:inline-block; width:65px;">'.$singleItem->diametre.'</span></article>';
             }
 
 			if ($result == 0){

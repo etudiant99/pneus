@@ -17,7 +17,6 @@ class Inventaire_Widget extends WP_Widget
         
         //Pour le débogage: var_dump($resultats);
         $resultats = $wpdb->get_results($wpdb->prepare("SELECT  DISTINCT marque FROM {$wpdb->prefix}inventaire ORDER BY marque", ‘foo’ )) ;
-        //var_dump($doublons);
         ?>
         <form method="post">
             <p>
@@ -35,7 +34,7 @@ class Inventaire_Widget extends WP_Widget
               </select>
             </p>
             <div>
-                <input type="submit" value="Lancer la recherche" />
+                <input type="submit" value="Recherche" />
             </div>
         </form>
         <?php
