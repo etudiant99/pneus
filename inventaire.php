@@ -13,7 +13,7 @@ class Inventaire{
     {
         global $wpdb;
         
-        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inventaire (id INT AUTO_INCREMENT PRIMARY KEY, marque VARCHAR(255), modele VARCHAR(255), largeur INT(11), hauteur INT(11), diametre INT(11) );");
+        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inventaire (id INT AUTO_INCREMENT PRIMARY KEY, marque VARCHAR(255), modele VARCHAR(255), annee INT, largeur INT, hauteur INT, diametre INT );");
     }
 
     public static function uninstall()
@@ -25,7 +25,7 @@ class Inventaire{
 
     public function add_admin_menu()
     {
-        $hook = add_submenu_page('pneus', 'Inventaire', 'Inventaire', 'manage_options', 'zero_newsletter', array($this, 'menu_html'));
+        $hook = add_submenu_page('pneus', 'Inventaire', 'Inventaire', 'manage_options', 'newsletter', array($this, 'menu_html'));
         add_action('load-'.$hook, array($this, 'process_action'));
     }
     
@@ -83,7 +83,7 @@ class Inventaire{
             $hauteur = $_POST['hauteur'];
             $diametre = $_POST['diametre'];
 
-            $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}inventaire WHERE marque = '$marque' && modele = '$modele'");
+            $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}inventaire WHERE marque = '$marque' && modele = '$modele'");        
             if (is_null($row))
                 $wpdb->insert("{$wpdb->prefix}inventaire", array('marque' => $marque, 'modele' => $modele, 'annee' => $annee, 'largeur' => $largeur, 'hauteur' => $hauteur, 'diametre' => $diametre));
         }
