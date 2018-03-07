@@ -1,0 +1,68 @@
+.exemple {
+    display: inline-block;
+    width: 65px;
+}
+.latable {
+    margin: 20px 0 20px 0;
+    padding: 10px;
+}
+article {
+    float: left;
+    margin: 0 20px 5px 0;
+    width: 100%;
+}
+#titre_marque {
+    display: inline-block;
+    width: 65px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+#marque {
+    display: inline-block;
+    width: 65px;
+}
+#titre_modele {
+    display: inline-block;
+    width: 175px;
+    font-weight: bold;
+}
+#modele {
+    display: inline-block;
+    width: 175px;
+}
+#titre_annee {
+    display: inline-block;
+    width: 65px;
+    font-weight: bold;
+}
+#annee {
+    display: inline-block;
+    width: 65px;
+}
+#titre_hauteur {
+    display: inline-block;
+    width: 65px;
+    font-weight: bold;
+}
+#hauteur {
+    display: inline-block;
+    width: 65px;
+}
+#titre_largeur {
+    display: inline-block;
+    width: 65px;
+    font-weight: bold;
+}
+#largeur {
+    display: inline-block;
+    width: 65px;
+}
+#titre_diametre {
+    display: inline-block;
+    width: 65px;
+    font-weight: bold;
+}
+#diametre {
+    display: inline-block;
+    width: 65px;
+}

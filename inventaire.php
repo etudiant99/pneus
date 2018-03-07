@@ -2,7 +2,9 @@
 include_once plugin_dir_path( __FILE__ ).'/inventairewidget.php';
 
 class Inventaire{
+    const CSS = 'mon.css';
     public function __construct(){
+        wp_enqueue_style( 'pneus', plugins_url(self::CSS, __FILE__) );
         add_action("wp_footer", array($this, 'inventaire_results_before_content'));
         add_action('widgets_init', function(){register_widget('Inventaire_Widget');});
         add_action('admin_menu', array($this, 'add_admin_menu'), 20);
@@ -25,7 +27,7 @@ class Inventaire{
 
     public function add_admin_menu()
     {
-        $hook = add_submenu_page('pneus', 'Inventaire', 'Inventaire', 'manage_options', 'newsletter', array($this, 'menu_html'));
+        $hook = add_submenu_page('pneus', 'Inventaire', 'Inventaire', 'manage_options', 'inventaire', array($this, 'menu_html'));
         add_action('load-'.$hook, array($this, 'process_action'));
     }
     
@@ -35,27 +37,27 @@ class Inventaire{
         <h1><?php echo get_admin_page_title(); ?></h1>
         <form action="" method="post">
             <p>
-                <label style="display:inline-block; width:65px;" for="marque">Marque :</label>
+                <label class="exemple" for="marque">Marque :</label>
                 <input id="pneus_marque" name="pneus_marque" type="text"/>
             </p>
             <p>
-                <label style="display:inline-block; width:65px;" for="modele">Modèle :</label>
+                <label class="exemple" for="modele">Modèle :</label>
                 <input id="pneus_modele" name="pneus_modele" type="text"/>
             </p>
             <p>
-                <label style="display:inline-block; width:65px;" for="annee">Année :</label>
+                <label class="exemple" for="annee">Année :</label>
                 <input id="annee" name="annee" type="text"/>
             </p>
             <p>
-                <label style="display:inline-block; width:65px;" for="largeur">Largeur :</label>
+                <label class="exemple" for="largeur">Largeur :</label>
                 <input id="largeur" name="largeur" type="text"/>
             </p>
             <p>
-                <label style="display:inline-block; width:65px;" for="hauteur">Hauteur :</label>
+                <label class="exemple" for="hauteur">Hauteur :</label>
                 <input id="hauteur" name="hauteur" type="text"/>
             </p>
             <p>
-                <label style="display:inline-block; width:65px;" for="diametre">Diamètre :</label>
+                <label class="exemple" for="diametre">Diamètre :</label>
                 <input id="diametre" name="diametre" type="text"/>
             </p>
 
@@ -94,7 +96,7 @@ class Inventaire{
         global $wpdb;
         $result = 0;
         
-        $list = $debug.'<div style="margin: 20px 0 20px 0; padding:10px; "><div class="content-headline"><h1 class="entry-headline"><span class="entry-headline-text">Résultat de la recherche</span></h1></div><hr />';
+        $list = $debug.'<div class="latable"><div class="content-headline"><h1 class="entry-headline"><span class="entry-headline-text">Résultat de la recherche</span></h1></div><hr />';
     
         if ((isset($_POST['marque']))&&($_POST['marque'] != "")){
             $marque = $_POST['marque'];
@@ -102,10 +104,10 @@ class Inventaire{
 
             // Ecriture du résultat trouvé
             if (count($allItems) > 0)
-                $list .= '<span style="display:inline-block; width:65px; margin-bottom: 10px; font-weight: bold;">Marque</span><span style="display:inline-block; width:175px; font-weight: bold;">Modèle</span><span style="display:inline-block; width:65px; font-weight: bold;">Année</span><span style="display:inline-block; width:65px; font-weight: bold;">Largeur</span><span style="display:inline-block; width:65px; font-weight: bold;">Hauteur</span><span style="display:inline-block; width:65px; font-weight: bold;">Diamètre</span><br />';
+                $list .= '<span id="titre_marque">Marque</span><span id="titre_modele">Modèle</span><span id="titre_annee">Année</span><span id="titre_largeur">Largeur</span><span id="titre_hauteur">Hauteur</span><span id="titre_diametre">Diamètre</span><br />';
             foreach ($allItems as $singleItem) {
                 $result++;
-                $list .= '<article style="float: left; margin: 0 20px 5px 0; width: 100%;"><span style="display:inline-block; width:65px;">'.$singleItem->marque.'</span><span style="display:inline-block; width:175px;">'.$singleItem->modele.'</span><span style="display:inline-block; width:65px;">'.$singleItem->annee.'</span><span style="display:inline-block; width:65px;">'.$singleItem->hauteur.'</span><span style="display:inline-block; width:65px;">'.$singleItem->largeur.'</span><span style="display:inline-block; width:65px;">'.$singleItem->diametre.'</span></article>';
+                $list .= '<article><span id="marque">'.$singleItem->marque.'</span><span id="modele">'.$singleItem->modele.'</span><span id="annee">'.$singleItem->annee.'</span><span id="hauteur">'.$singleItem->hauteur.'</span><span id="largeur">'.$singleItem->largeur.'</span><span id="diametre">'.$singleItem->diametre.'</span></article>';
             }
 
 			if ($result == 0){
