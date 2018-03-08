@@ -4,7 +4,13 @@ include_once plugin_dir_path( __FILE__ ).'/inventairewidget.php';
 class Inventaire{
     const CSS = 'mon.css';
     public function __construct(){
-        wp_enqueue_style( 'pneus', plugins_url(self::CSS, __FILE__) );
+        $ok = wp_register_style('pneus', plugins_url(self::CSS, __FILE__));
+        wp_enqueue_style('pneus');
+        $ok = wp_register_style('pneus2', plugins_url('jquery.superbox.css', __FILE__));
+        wp_enqueue_style( 'pneus2');
+        
+        $ok = wp_register_script('pneus', get_template_directory_uri().'/jquery.superbox-min.js', array('jquery'));
+        wp_enqueue_script('pneus');
         add_action("wp_footer", array($this, 'inventaire_results_before_content'));
         add_action('widgets_init', function(){register_widget('Inventaire_Widget');});
         add_action('admin_menu', array($this, 'add_admin_menu'), 20);
@@ -95,35 +101,44 @@ class Inventaire{
     {
         global $wpdb;
         $result = 0;
-        
-        $list = $debug.'<div class="latable"><div class="content-headline"><h1 class="entry-headline"><span class="entry-headline-text">Résultat de la recherche</span></h1></div><hr />';
     
         if ((isset($_POST['marque']))&&($_POST['marque'] != "")){
             $marque = $_POST['marque'];
             $allItems = $wpdb->get_results("SELECT * FROM wp_inventaire WHERE marque = '$marque' ORDER BY marque,modele");
 
-            // Ecriture du résultat trouvé
-            if (count($allItems) > 0)
-                $list .= '<span id="titre_marque">Marque</span><span id="titre_modele">Modèle</span><span id="titre_annee">Année</span><span id="titre_largeur">Largeur</span><span id="titre_hauteur">Hauteur</span><span id="titre_diametre">Diamètre</span><br />';
-            foreach ($allItems as $singleItem) {
-                $result++;
-                $list .= '<article><span id="marque">'.$singleItem->marque.'</span><span id="modele">'.$singleItem->modele.'</span><span id="annee">'.$singleItem->annee.'</span><span id="hauteur">'.$singleItem->hauteur.'</span><span id="largeur">'.$singleItem->largeur.'</span><span id="diametre">'.$singleItem->diametre.'</span></article>';
-            }
-
-			if ($result == 0){
-				$list .= "Aucun résultat pour cette recherche (<b>".$marque."</b>).";
-			}
-            
-            $list .= '<br style="clear:both;"></div>';
-            ?>
-            <script>
-                var div = document.createElement('div');
-                div.innerHTML = '<?php echo $list; ?>';
-        
-                var child = document.getElementById('main');
-                child.parentNode.insertBefore(div, child);
-            </script>
-        <?php
+            ?><div id="box-container">
+                <h1 style="padding-left: 10px;">Résultat de la recherche</h1>
+                <?php
+                if ((isset($_POST['marque']))&&($_POST['marque'] != "")){
+                    $marque = $_POST['marque'];
+                    $allItems = $wpdb->get_results("SELECT * FROM wp_inventaire WHERE marque = '$marque' ORDER BY marque,modele");
+                    
+                    // Ecriture du résultat trouvé
+                    if (count($allItems) > 0)?>
+                        <div id="resultat">
+                            <span id="titre_marque">Marque</span>
+                            <span id="titre_modele">Modèle</span>
+                            <span id="titre_annee">Année</span>
+                            <span id="titre_largeur">Largeur</span>
+                            <span id="titre_hauteur">Hauteur</span>
+                            <span id="titre_diametre">Diamètre</span><br /><?php
+                            foreach ($allItems as $singleItem){
+                                $result++; ?>
+                                <article>
+                                    <span id="marque"><?php echo $singleItem->marque ?></span>
+                                    <span id="modele"><?php echo $singleItem->modele ?></span>
+                                    <span id="annee"><?php echo $singleItem->annee ?></span>
+                                    <span id="largeur"><?php echo $singleItem->largeur ?></span>
+                                    <span id="hauteur"><?php echo $singleItem->hauteur ?></span>
+                                    <span id="diametre"><?php echo $singleItem->diametre ?></span>
+                                </article><?php
+                            }?>
+                         </div>
+                    <?php }
+         			if ($result == 0)
+         			    echo "Aucun résultat pour cette recherche (<b>".$marque."</b>).";
+                    ?>
+                    </div><?php
         }
     }
 }

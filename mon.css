@@ -66,3 +66,22 @@ article {
     display: inline-block;
     width: 65px;
 }
+#titre_widget {
+    width: 100%;
+}
+.wf-active .widget-title {
+    width: 100%;
+    text-transform: none!important;
+}
+#box-container {
+    position: fixed;
+    top: 230px;
+    left: 310px;
+    width: 600px;
+    background-color: white;
+    padding-bottom: 30px;
+    border: 3px solid black;
+}
+#resultat {
+    margin-left: 10px;
+}
