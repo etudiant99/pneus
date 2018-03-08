@@ -81,7 +81,10 @@ article {
     background-color: white;
     padding-bottom: 30px;
     border: 3px solid black;
+    max-height: 270px;
+    overflow: auto;
 }
 #resultat {
     margin-left: 10px;
+    font-size:13px;
 }
