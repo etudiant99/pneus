@@ -26,6 +26,11 @@ article {
     width: 175px;
     font-weight: bold;
 }
+#titre_modele2 {
+    display: inline-block;
+    width: 160px;
+    font-weight: bold;
+}
 #modele {
     display: inline-block;
     width: 175px;
@@ -87,4 +92,10 @@ article {
 #resultat {
     margin-left: 10px;
     font-size:13px;
+}
+#listecomplete {
+    padding-left: 15px;
+    padding-bottom: 15px;
+    background-color: white;
+    width: 600px;
 }

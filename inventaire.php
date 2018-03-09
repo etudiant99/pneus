@@ -3,6 +3,8 @@ include_once plugin_dir_path( __FILE__ ).'/inventairewidget.php';
 
 class Inventaire{
     const CSS = 'mon.css';
+    const LANG = 'some_textdomain';
+    
     public function __construct(){
         $ok = wp_register_style('pneus', plugins_url(self::CSS, __FILE__));
         wp_enqueue_style('pneus');
@@ -33,11 +35,120 @@ class Inventaire{
 
     public function add_admin_menu()
     {
-        $hook = add_submenu_page('pneus', 'Inventaire', 'Inventaire', 'manage_options', 'inventaire', array($this, 'menu_html'));
-        add_action('load-'.$hook, array($this, 'process_action'));
+        add_submenu_page('pneus', 'Automobiles', 'Automobiles', 'manage_options', 'automobiles', array($this, 'menu_automobiles'));
+        add_submenu_page('pneus', 'Ajouter', 'Ajouter', 'manage_options', 'ajouter', array($this, 'menu_ajouter'));
+        add_submenu_page('pneus', 'Modifier', 'Modifier', 'manage_options', 'modifier', array($this, 'menu_modifier'));
+    }
+
+    public function menu_automobiles()
+    {
+        global $wpdb;
+        $sendback = wp_get_referer();
+        $host = $_SERVER['PHP_SELF'];
+        //var_dump($host);
+        
+        $screen = get_current_screen();
+        $page = $screen->id;
+        $resultats = $wpdb->get_results($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inventaire ORDER BY marque,modele", ‘foo’ )) ;
+        //var_dump($page);
+        ?>
+        <h1><?php echo get_admin_page_title(); ?></h1>
+        <div id="listecomplete">
+            <span id="titre_marque">Marque</span>
+            <span id="titre_modele2">Modèle</span>
+            <span id="titre_annee">Année</span>
+            <span id="titre_largeur">Largeur</span>
+            <span id="titre_hauteur">Hauteur</span>
+            <span id="titre_diametre">Diamètre</span><br /><?php
+        foreach ($resultats as &$singleItem) { ?>
+            <a href="?page=modifier&id=<?php echo $singleItem->id; ?>">
+                <span id="marque"><?php echo $singleItem->marque; ?></span>
+                <span id="modele"><?php echo $singleItem->modele; ?></span>
+                <span id="annee"><?php echo $singleItem->annee; ?></span>
+                <span id="largeur"><?php echo $singleItem->largeur; ?></span>
+                <span id="hauteur"><?php echo $singleItem->hauteur; ?></span>
+                <span id="diametre"><?php echo $singleItem->diametre; ?></span><br />
+            </a> <?php
+        }
+    }
+
+    public function render(){
+        global $wpdb;
+        
+        $resultats = $wpdb->get_results($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inventaire ORDER BY marque,modele", ‘foo’ )) ;
+        //var_dump($resultats);
+        ?><div id="resultat">
+            <span id="titre_marque">Marque</span>
+            <span id="titre_modele">Modèle</span>
+            <span id="titre_annee">Année</span>
+            <span id="titre_largeur">Largeur</span>
+            <span id="titre_hauteur">Hauteur</span>
+            <span id="titre_diametre">Diamètre</span><br /><?php
+
+        foreach ($resultats as &$singleItem) {
+            echo '<span id="marque">'.$singleItem->marque.'</span><span id="modele">'.$singleItem->modele.'</span><span id="annee">'.$singleItem->annee.'</span><span id="largeur">'.$singleItem->largeur.'</span><span id="hauteur">'.$singleItem->hauteur.'</span><span id="diametre">'.$singleItem->diametre.'</span><br />';
+        }
+        ?> </div> <?php
+
     }
     
-    public function menu_html()
+    public function menu_modifier(){
+        global $wpdb;
+        
+        echo '<br /><br /><br /><h1>Modifier l’article</h1>';
+        
+          if (isset($_POST['modifier'])){
+            $id = $_GET['id'];
+            $marque = $_POST['marque'];
+            $modele = $_POST['modele'];
+            $annee = $_POST['annee'];
+            $largeur = $_POST['largeur'];
+            $hauteur = $_POST['hauteur'];
+            $diametre = $_POST['diametre'];
+            
+            $ok = $wpdb->update($wpdb->prefix.'inventaire',array('marque' => $marque, 'modele' => $modele, 'annee' => $annee, 'largeur' => $largeur, 'hauteur' => $hauteur, 'diametre' => $diametre),array( 'ID' => $id ),array('%s','%s','%d','%d','%d','%d'),array('%d'));
+            //var_dump($ok);
+            unset($_POST['modifier']);
+          }
+          
+        if (isset($_GET['id'])){
+            $id = $_GET['id'];
+            $row = $wpdb->get_row($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inventaire WHERE id='$id'", ‘foo’ )); ?>
+            
+            <form method="post">
+                <p>
+                    <label class="exemple" for="marque">Marque :</label>
+                    <input id="pneus_marque" name="marque" type="text" value="<?php echo $row->marque ?>"/>
+                </p>
+                <p>
+                    <label class="exemple" for="modele">Modèle :</label>
+                    <input id="pneus_modele" name="modele" type="text" value="<?php echo $row->modele ?>"/>
+                </p>
+                <p>
+                    <label class="exemple" for="annee">Année :</label>
+                    <input id="annee" name="annee" type="text" value="<?php echo $row->annee ?>"/>
+                </p>
+                <p>
+                    <label class="exemple" for="largeur">Largeur :</label>
+                    <input id="largeur" name="largeur" type="text" value="<?php echo $row->largeur ?>"/>
+                </p>
+                <p>
+                    <label class="exemple" for="hauteur">Hauteur :</label>
+                    <input id="hauteur" name="hauteur" type="text" value="<?php echo $row->hauteur ?>"/>
+                </p>
+                <p>
+                    <label class="exemple" for="diametre">Diamètre :</label>
+                    <input id="diametre" name="diametre" type="text" value="<?php echo $row->diametre ?>"/>
+                </p>
+                <input type="submit" name="modifier" value="Modifier" style="background-color: lightblue;" />
+            </form>
+        <?php
+        }
+        else
+            echo '<h2>Note: Pour le moment vous devez utiliser le menu Automobiles</h2>';
+    }
+    
+    public function menu_ajouter()
     {
         ?>
         <h1><?php echo get_admin_page_title(); ?></h1>
@@ -72,12 +183,6 @@ class Inventaire{
         <br /><br />
         
         <?php
-    }
-
-    public function process_action()
-    {
-        if (isset($_POST['send_infos']))
-            $this->send_infos();
     }
 
     public function save_infos()
