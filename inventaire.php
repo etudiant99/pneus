@@ -37,7 +37,6 @@ class Inventaire{
     {
         add_submenu_page('pneus', 'Automobiles', 'Automobiles', 'manage_options', 'automobiles', array($this, 'menu_automobiles'));
         add_submenu_page('pneus', 'Ajouter', 'Ajouter', 'manage_options', 'ajouter', array($this, 'menu_ajouter'));
-        //add_submenu_page('pneus', 'Modifier', 'Modifier', 'manage_options', 'modifier', array($this, 'menu_modifier'));
     }
 
     public function menu_automobiles()
