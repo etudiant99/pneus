@@ -24,7 +24,12 @@ class Inventaire_Widget extends WP_Widget
         echo $after_widget;
         
         //Pour le débogage: var_dump($resultats);
-        $resultats = $wpdb->get_results($wpdb->prepare("SELECT  DISTINCT marque FROM {$wpdb->prefix}inventaire ORDER BY marque", ‘foo’ )) ;
+        $resultats = $wpdb->get_results($wpdb->prepare("SELECT  DISTINCT marque FROM {$wpdb->prefix}inventaire ORDER BY marque,annee,modele", ‘foo’ )) ;
+        
+        if ($resultats == null){
+            echo '<h5>Base de données vide !</h5>';
+        }
+        else{
         ?>
         <form method="post">
             <p>
@@ -46,7 +51,7 @@ class Inventaire_Widget extends WP_Widget
             </div>
         </form>
         <?php
-         
+        }
         echo $args['after_widget'];
     }
 

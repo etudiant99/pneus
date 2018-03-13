@@ -23,7 +23,12 @@ class Inventaire{
     {
         global $wpdb;
         
-        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inventaire (id INT AUTO_INCREMENT PRIMARY KEY, marque VARCHAR(255), modele VARCHAR(255), annee INT, largeur INT, hauteur INT, diametre INT );");
+        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inventaire (id INT AUTO_INCREMENT PRIMARY KEY, marque VARCHAR(255), modele VARCHAR(255), annee INT, pneu VARCHAR(255) );");
+        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_pneus (id INT AUTO_INCREMENT PRIMARY KEY, pneu VARCHAR(255) );");
+        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_marque (id INT AUTO_INCREMENT PRIMARY KEY, marque VARCHAR(255) );");
+        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_annee (id INT AUTO_INCREMENT PRIMARY KEY, annee INT );");
+        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_type (id INT AUTO_INCREMENT PRIMARY KEY, type VARCHAR(255) );");
+        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_options (id INT AUTO_INCREMENT PRIMARY KEY, options VARCHAR(255) );");
     }
 
     public static function uninstall()
@@ -31,6 +36,11 @@ class Inventaire{
         global $wpdb;
 
         $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}inventaire;");
+        $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}inv_pneus;");
+        $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}inv_marque;");
+        $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}inv_annee;");
+        $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}inv_type;");
+        $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}inv_options;");
     }
 
     public function add_admin_menu()
@@ -44,29 +54,30 @@ class Inventaire{
         global $wpdb;
         $sendback = wp_get_referer();
         $host = $_SERVER['PHP_SELF'];
-        //var_dump($host);
         
         $screen = get_current_screen();
         $page = $screen->id;
-        $resultats = $wpdb->get_results($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inventaire ORDER BY marque,modele", ‘foo’ )) ;
-        //var_dump($page);
+        $resultats = $wpdb->get_results($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inventaire ORDER BY annee,marque,modele", ‘foo’ )) ;
+        
         ?>
         <h1><?php echo get_admin_page_title(); ?></h1>
         <div id="listecomplete">
             <span id="titre_marque">Marque</span>
             <span id="titre_modele2">Modèle</span>
             <span id="titre_annee">Année</span>
-            <span id="titre_largeur">Largeur</span>
-            <span id="titre_hauteur">Hauteur</span>
-            <span id="titre_diametre">Diamètre</span><br /><?php
+            <span id="titre_type">Type</span>
+            <span id="titre_options">Options</span>
+            <span id="titre_pneu">Pneu</span><br /><?php
+            
         foreach ($resultats as &$singleItem) { ?>
             <a href="?page=ajouter&id=<?php echo $singleItem->id; ?>">
                 <span id="marque"><?php echo $singleItem->marque; ?></span>
                 <span id="modele"><?php echo $singleItem->modele; ?></span>
                 <span id="annee"><?php echo $singleItem->annee; ?></span>
-                <span id="largeur"><?php echo $singleItem->largeur; ?></span>
-                <span id="hauteur"><?php echo $singleItem->hauteur; ?></span>
-                <span id="diametre"><?php echo $singleItem->diametre; ?></span><br />
+                <span id="type"><?php echo $singleItem->letype; ?></span>
+                <span id="options"><?php echo $singleItem->options; ?></span>
+                <span id="pneu"><?php echo $singleItem->pneu; ?></span>
+                <br />
             </a> <?php
         }
     }
@@ -74,26 +85,31 @@ class Inventaire{
     public function menu_ajouter()
     {
         global $wpdb;
-            $id = '';
+        $lesmarques = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}inv_marque order by marque", ‘foo’ )) ;
+        $lespneus = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}inv_pneus order by pneu", ‘foo’ )) ;
+        $lesannees = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}inv_annee order by annee DESC", ‘foo’ )) ;
+        $lestypes = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}inv_type order by type", ‘foo’ )) ;
+        $lesoptions = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}inv_options order by options", ‘foo’ )) ;
+        
+            $id = '';;
             $marque = '';
             $modele = '';
             $annee = '';
-            $largeur = '';
-            $hauteur = '';
-            $diametre = '';
+            $letype = '';
+            $options = '';
+            $pneu = '';
             $titre_bouton = 'Ajouter';
         
         if (isset($_GET['id'])){
             $id = $_GET['id'];
+            $titre_bouton = 'Modifier';
             $row = $wpdb->get_row($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inventaire WHERE id='$id'", ‘foo’ ));
-
             $marque = $row->marque;
             $modele = $row->modele;
             $annee = $row->annee;
-            $largeur = $row->largeur;
-            $hauteur = $row->hauteur;
-            $diametre = $row->diametre;
-            $titre_bouton = 'Modifier';
+            $letype = $row->letype;
+            $options = $row->options;
+            $pneu = $row->pneu;
         }
         
         ?>
@@ -102,7 +118,15 @@ class Inventaire{
             <input type="hidden" name="id" value="<?php echo $id ?>" />
             <p>
                 <label class="exemple" for="marque">Marque :</label>
-                <input id="pneus_marque" name="pneus_marque" type="text" value="<?php echo $marque ?>"/>
+                <select id="monselect" name="pneus_marque">
+                    <?php
+                    foreach ($lesmarques as $item){
+                        ?>
+                        <option  <?php if($item->marque == $marque){echo 'selected="selected"';} ?> value="<?php echo $item->marque; ?>"><?php echo $item->marque; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
             </p>
             <p>
                 <label class="exemple" for="modele">Modèle :</label>
@@ -110,19 +134,54 @@ class Inventaire{
             </p>
             <p>
                 <label class="exemple" for="annee">Année :</label>
-                <input id="annee" name="annee" type="text" value="<?php echo $annee ?>" />
+                <select id="monselect" name="annee">
+                    <?php
+                    foreach ($lesannees as $item){
+                        ?>
+                        <option  <?php if($item->annee == $annee){echo 'selected="selected"';} ?> value="<?php echo $item->annee; ?>"><?php echo $item->annee; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
             </p>
             <p>
-                <label class="exemple" for="largeur">Largeur :</label>
-                <input id="largeur" name="largeur" type="text" value="<?php echo $largeur ?>" />
+                <label class="exemple" for="type">Type :</label>
+                <select id="monselect" name="letype">
+                    <option value="">Type</option>
+                    <?php
+                    foreach ($lestypes as $item){
+                        ?>
+                        <option  <?php if($item->type == $letype){echo 'selected="selected"';} ?> value="<?php echo $item->type; ?>"><?php echo $item->type; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
             </p>
             <p>
-                <label class="exemple" for="hauteur">Hauteur :</label>
-                <input id="hauteur" name="hauteur" type="text" value="<?php echo $hauteur ?>" />
+                <label class="exemple" for="type">Oprions :</label>
+                <select id="monselect" name="options">
+                    <option value="">Options</option>
+                    <?php
+                    foreach ($lesoptions as $item){
+                        ?>
+                        <option  <?php if($item->options == $options){echo 'selected="selected"';} ?> value="<?php echo $item->options; ?>"><?php echo $item->options; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
             </p>
             <p>
-                <label class="exemple" for="diametre">Diamètre :</label>
-                <input id="diametre" name="diametre" type="text" value="<?php echo $diametre ?>" />
+                <label class="exemple" for="pneu">Pneu :</label>
+                <select id="monselect" name="pneu">
+                    <option value="">Pneu</option>
+                    <?php
+                    foreach ($lespneus as $item){
+                        ?>
+                        <option  <?php if($item->pneu == $pneu){echo 'selected="selected"';} ?> value="<?php echo $item->pneu; ?>"><?php echo $item->pneu; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
             </p>
 
             <input type="submit" name="<?php echo $titre_bouton ?>" value="<?php echo $titre_bouton ?>" style="background-color: lightblue;" />
@@ -134,24 +193,22 @@ class Inventaire{
 
     public function save_infos()
     {
-        if (isset($_POST['pneus_marque']) && !empty($_POST['pneus_marque']) && !empty($_POST['pneus_modele'])) {
+        if (isset($_POST['pneus_marque']) && !empty($_POST['pneus_marque'])) {
             global $wpdb;
             $marque = $_POST['pneus_marque'];
             $modele = $_POST['pneus_modele'];
             $annee = $_POST['annee'];
-            $largeur = $_POST['largeur'];
-            $hauteur = $_POST['hauteur'];
-            $diametre = $_POST['diametre'];
-            
+            $letype = $_POST['letype'];
+            $options = $_POST['options'];
+            $pneu = $_POST['pneu'];
+
             if (isset($_POST['Ajouter'])){
-                
                 $row = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}inventaire WHERE marque = '$marque' && modele = '$modele'");        
-                if (is_null($row))
-                    $ok = $wpdb->insert("{$wpdb->prefix}inventaire", array('marque' => $marque, 'modele' => $modele, 'annee' => $annee, 'largeur' => $largeur, 'hauteur' => $hauteur, 'diametre' => $diametre));
+                $ok = $wpdb->insert("{$wpdb->prefix}inventaire", array('marque' => $marque, 'modele' => $modele, 'annee' => $annee, 'letype' => $letype, 'options' => $options, 'pneu' => $pneu));
             }
             if (isset($_POST['Modifier'])){
                 $id = $_POST['id'];
-                $ok = $wpdb->update($wpdb->prefix.'inventaire',array('marque' => $marque, 'modele' => $modele, 'annee' => $annee, 'largeur' => $largeur, 'hauteur' => $hauteur, 'diametre' => $diametre),array( 'ID' => $id ),array('%s','%s','%d','%d','%d','%d'),array('%d'));
+                $ok = $wpdb->update($wpdb->prefix.'inventaire',array('marque' => $marque, 'modele' => $modele, 'annee' => $annee, 'letype' => $letype, 'options' => $options, 'pneu' => $pneu),array( 'ID' => $id ),array('%s','%s','%d','%s','%s','%s'),array('%d'));
             }
         }
     }
@@ -163,14 +220,14 @@ class Inventaire{
     
         if ((isset($_POST['marque']))&&($_POST['marque'] != "")){
             $marque = $_POST['marque'];
-            $allItems = $wpdb->get_results("SELECT * FROM wp_inventaire WHERE marque = '$marque' ORDER BY marque,modele");
+            $allItems = $wpdb->get_results("SELECT * FROM wp_inventaire WHERE marque = '$marque' ORDER BY marque,annee,modele");
 
             ?><div id="box-container">
                 <h1 style="padding-left: 10px;">Résultat de la recherche</h1>
                 <?php
                 if ((isset($_POST['marque']))&&($_POST['marque'] != "")){
                     $marque = $_POST['marque'];
-                    $allItems = $wpdb->get_results("SELECT * FROM wp_inventaire WHERE marque = '$marque' ORDER BY marque,modele");
+                    $allItems = $wpdb->get_results("SELECT * FROM wp_inventaire WHERE marque = '$marque' ORDER BY marque,annee,modele");
                     
                     // Ecriture du résultat trouvé
                     if (count($allItems) > 0)?>
@@ -178,18 +235,18 @@ class Inventaire{
                             <span id="titre_marque">Marque</span>
                             <span id="titre_modele">Modèle</span>
                             <span id="titre_annee">Année</span>
-                            <span id="titre_largeur">Largeur</span>
-                            <span id="titre_hauteur">Hauteur</span>
-                            <span id="titre_diametre">Diamètre</span><br /><?php
+                            <span id="titre_type">Type</span>
+                            <span id="titre_options">Options</span>
+                            <span id="titre_pneu">Pneu</span><?php
                             foreach ($allItems as $singleItem){
                                 $result++; ?>
                                 <article>
                                     <span id="marque"><?php echo $singleItem->marque ?></span>
                                     <span id="modele"><?php echo $singleItem->modele ?></span>
                                     <span id="annee"><?php echo $singleItem->annee ?></span>
-                                    <span id="largeur"><?php echo $singleItem->largeur ?></span>
-                                    <span id="hauteur"><?php echo $singleItem->hauteur ?></span>
-                                    <span id="diametre"><?php echo $singleItem->diametre ?></span>
+                                    <span id="type"><?php echo $singleItem->letype ?></span>
+                                    <span id="options"><?php echo $singleItem->options ?></span>
+                                    <span id="pneu"><?php echo $singleItem->pneu ?></span>
                                 </article><?php
                             }?>
                          </div>
