@@ -1,5 +1,6 @@
 <?php
 include_once plugin_dir_path( __FILE__ ).'/inventairewidget.php';
+include_once plugin_dir_path( __FILE__ ).'/pneuswidget.php';
 
 class Inventaire{
     const CSS = 'mon.css';
@@ -15,6 +16,7 @@ class Inventaire{
         wp_enqueue_script('pneus');
         add_action("wp_footer", array($this, 'inventaire_results_before_content'));
         add_action('widgets_init', function(){register_widget('Inventaire_Widget');});
+        add_action('widgets_init', function(){register_widget('Pneus_Widget');});
         add_action('admin_menu', array($this, 'add_admin_menu'), 20);
         add_action('wp_loaded', array($this, 'save_infos'));
      }
