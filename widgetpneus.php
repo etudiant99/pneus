@@ -73,7 +73,7 @@ class Pneus_Widget extends WP_Widget
         
         if ((isset($_POST['pneu']))&&($_POST['pneu'] != "")){
             $pneu = $_POST['pneu'];
-            $allItems = $wpdb->get_results("SELECT * FROM wp_inventaire WHERE pneu = '$pneu' order by annee,marque,modele,letype,options");?>
+            $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE pneu = '$pneu' order by annee,marque,modele,letype,options");?>
             
             <div id="box-container">
                 <h1 style="padding-left: 10px;">Résultat de la recherche</h1><?php

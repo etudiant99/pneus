@@ -114,8 +114,8 @@ class Inventaire_Widget extends WP_Widget
             $annee = $_POST['annee'];
             $marque = $_POST['marque'];
             $modele = $_POST['modele'];
-            $row_marque = $wpdb->get_row("SELECT * FROM wp_inv_marque WHERE marque='$marque'");
-            $allItems = $wpdb->get_results("SELECT * FROM wp_inventaire WHERE annee='$annee' and marque='$marque' and modele='$modele' order by modele, letype, options");
+            $row_marque = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}inv_marque WHERE marque='$marque'");
+            $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE annee='$annee' and marque='$marque' and modele='$modele' order by modele, letype, options");
             $erreur = 'Malheureusement, aucun résultat trouvé';
             if ($row_marque == null)
                 $erreur = 'Erreur dans la marque entrée';
