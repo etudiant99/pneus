@@ -52,7 +52,7 @@ article {
 }
 #titre_modele2 {
     display: inline-block;
-    width: 160px;
+    width: 175px;
     font-weight: bold;
 }
 #modele {
@@ -79,12 +79,12 @@ article {
 }
 #titre_options {
     display: inline-block;
-    width: 95px;
+    width: 120px;
     font-weight: bold;
 }
 #options {
     display: inline-block;
-    width: 95px;
+    width: 120px;
 }
 #titre_pneu {
     display: inline-block;
@@ -127,4 +127,7 @@ article {
     width: 700px;
     border: 3px solid black;
     margin: 15px;
+}
+#rien {
+    padding-left: 10px;
 }

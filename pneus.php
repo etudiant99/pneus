@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Pneus
  * Description: Classification de pneus
- * Version: 1.0
+ * Version: 1.1
  * Author: Denis Boucher
  */
  class Pneus_Plugin
@@ -11,9 +11,9 @@
         include_once plugin_dir_path( __FILE__ ).'/inventaire.php';
         new Inventaire();
         
-        register_activation_hook(__FILE__, array('Inventaire', 'install'));
+        register_activation_hook(__FILE__, array($this, 'install'));
+        register_uninstall_hook(__FILE__, array($this, 'uninstall'));
         add_action('admin_menu', array($this, 'add_admin_menu'));
-        register_uninstall_hook(__FILE__, array('Inventaire', 'uninstall'));
     }
     
     public function add_admin_menu()
