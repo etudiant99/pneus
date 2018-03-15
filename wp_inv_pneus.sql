@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 12 Mars 2018 à 23:38
+-- Généré le :  Jeu 15 Mars 2018 à 19:10
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `wordpress`
+-- Base de données :  `tutoriel`
 --
 
 -- --------------------------------------------------------
@@ -29,22 +29,30 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `wp_inv_pneus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pneu` varchar(255) DEFAULT NULL,
+  `largeur` varchar(255) DEFAULT NULL,
+  `rapport_aspect` varchar(255) DEFAULT NULL,
+  `diametre` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Contenu de la table `wp_inv_pneus`
 --
 
-INSERT INTO `wp_inv_pneus` (`id`, `pneu`) VALUES
-(1, '6.00-16'),
-(2, '7.00-16'),
-(3, '8.90-15'),
-(4, '8:00-15'),
-(5, '6.50-15'),
-(6, '8.00-14'),
-(7, '8.50-14'),
-(8, '7.60-15');
+INSERT INTO `wp_inv_pneus` (`id`, `pneu`, `largeur`, `rapport_aspect`, `diametre`) VALUES
+(1, '6.00-16', NULL, NULL, NULL),
+(2, '7.00-16', NULL, NULL, NULL),
+(3, '8.90-15', NULL, NULL, NULL),
+(4, '8.00-15', NULL, NULL, NULL),
+(5, '6.50-15', NULL, NULL, NULL),
+(6, '8.00-14', NULL, NULL, NULL),
+(7, '8.50-14', NULL, NULL, NULL),
+(8, '7.60-15', NULL, NULL, NULL),
+(9, '195/70R14', '195', '70R\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n70R\r\n', 14),
+(10, '195/65R15', NULL, NULL, NULL),
+(11, '205/65R15', NULL, NULL, NULL),
+(12, '195/65R15', NULL, NULL, NULL),
+(14, '205/60R16', NULL, NULL, NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

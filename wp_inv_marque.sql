@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 12 Mars 2018 à 23:37
+-- Généré le :  Jeu 15 Mars 2018 à 19:10
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `wordpress`
+-- Base de données :  `tutoriel`
 --
 
 -- --------------------------------------------------------
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `wp_inv_marque` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `marque` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Contenu de la table `wp_inv_marque`
@@ -51,7 +51,8 @@ INSERT INTO `wp_inv_marque` (`id`, `marque`) VALUES
 (12, 'Mercury'),
 (13, 'Oldsmobile'),
 (14, 'Volkswagen'),
-(15, 'Mercedes-Benz');
+(15, 'Mercedes-Benz'),
+(16, 'Honda');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

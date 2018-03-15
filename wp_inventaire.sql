@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 12 Mars 2018 à 23:36
+-- Généré le :  Jeu 15 Mars 2018 à 19:09
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `wordpress`
+-- Base de données :  `tutoriel`
 --
 
 -- --------------------------------------------------------
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `wp_inventaire` (
   `options` varchar(255) DEFAULT NULL,
   `pneu` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=447 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=459 ;
 
 --
 -- Contenu de la table `wp_inventaire`
@@ -53,7 +53,7 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (10, 'Jeep', 'Willys', 1945, '', NULL, '7.00-16'),
 (11, 'Lincoln', 'Continental', 1945, '2 Dr Convertible', 'Base', '7.00-16'),
 (12, 'Cadillac', 'Commercial Chass', 1946, '2 Dr Hearse', 'Base', '8.90-15'),
-(13, 'Cadillac', 'Series 62', 1946, '2 Dr Hardtop', 'Base', '8:00-15'),
+(13, 'Cadillac', 'Series 62', 1946, '2 Dr Hardtop', 'Base', '8.00-15'),
 (14, 'Cadillac', 'Series 75 Fleetwook', 1946, NULL, NULL, ''),
 (15, 'Chevrolet', 'Truck', 1946, '', NULL, '6.00-16'),
 (16, 'Chrysler', 'New Yorker', 1946, NULL, NULL, ''),
@@ -464,11 +464,10 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (431, 'Volkswagen', 'Karmann Ghia', 1958, NULL, NULL, ''),
 (432, 'Lincoln', 'Continental', 1942, '2 Dr Coupe', 'Base', '7.00-16'),
 (433, 'Lincoln', 'Continental', 1945, '2 Dr Coupe', 'Base', '7.00-16'),
-(434, 'Cadillac', '', 1960, '', NULL, ''),
 (435, 'Cadillac', 'Commercial Chass', 1946, '4 Dr Limousine', 'Base', '8.90-15'),
 (436, 'Cadillac', 'Commercial Chass', 1946, '4 Dr Sedan', 'Base', '8.90-15'),
-(437, 'Cadillac', 'Series 62', 1946, '2 Dr Convertible', 'Base', '8:00-15'),
-(438, 'Cadillac', 'Series 62', 1946, '4 Dr Sedan', 'Base', '8:00-15'),
+(437, 'Cadillac', 'Series 62', 1946, '2 Dr Convertible', 'Base', '8.00-15'),
+(438, 'Cadillac', 'Series 62', 1946, '4 Dr Sedan', 'Base', '8.00-15'),
 (439, 'Studebaker', 'Commander', 1948, '2 Dr Convertible', 'Regal Deluxe', '6.50-15'),
 (440, 'Studebaker', 'Commander', 1948, '2 Dr Coupe', 'Deluxe', '6.50-15'),
 (441, 'Studebaker', 'Commander', 1948, '2 Dr Coupe', 'Regal Deluxe', '6.50-15'),
@@ -476,7 +475,17 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (443, 'Studebaker', 'Commander', 1948, '2 Dr Sedan', 'Regal Deluxe', '6.50-15'),
 (444, 'Buick', 'Commander', 1948, '4 Dr Sedan', '', '6.50-15'),
 (445, 'Buick', 'Commander', 1948, '4 Dr Sedan', 'Land Cruiser', '6.50-15'),
-(446, 'Dodge', 'Custom', 1948, '4 Dr Sedan', 'Base (8.50-14)', '8.50-14');
+(446, 'Dodge', 'Custom', 1948, '4 Dr Sedan', 'Base (8.50-14)', '8.50-14'),
+(447, 'Honda', 'Accord', 2000, '4 Dr Sedan', 'DX 4 cyl.', '195/70R14'),
+(448, 'Honda', 'Accord', 2000, '4 Dr Sedan', 'EX 4 cyl. (195/65R15 89 H 6x15 4x114.3)', '195/65R15'),
+(449, 'Honda', 'Accord', 2000, '4 Dr Sedan', 'LX 4 cyl.', '195/65R15'),
+(451, 'Honda', 'Accord', 2000, '4 Dr Sedan', 'LX V6', '205/65R15'),
+(452, 'Honda', 'Accord', 2000, '4 Dr Sedan', 'SE 4 cyl.', '195/65R15'),
+(454, 'Honda', 'Accord', 2000, '2 Dr Coupe', 'EX 4 cyl.', '195/65R15'),
+(455, 'Honda', 'Accord', 2000, '2 Dr Coupe', 'EX V6', '205/65R15'),
+(456, 'Honda', 'Accord', 2000, '2 Dr Coupe', 'EX V6 16po option', '205/60R16'),
+(457, 'Honda', 'Accord', 2000, '2 Dr Coupe', 'LX 4 cyl. (195/65R15 89 H 6x15 4x114.3)', '195/65R15'),
+(458, 'Honda', 'Accord', 2000, '2 Dr Coupe', 'LX V6 (205/65R15 92V 6.5X15 5X114.3)', '205/65R15');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

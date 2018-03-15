@@ -79,21 +79,21 @@ article {
 }
 #titre_options {
     display: inline-block;
-    width: 120px;
+    width: 260px;
     font-weight: bold;
 }
 #options {
     display: inline-block;
-    width: 120px;
+    width: 260px;
 }
 #titre_pneu {
     display: inline-block;
-    width: 65px;
+    width: 70px;
     font-weight: bold;
 }
 #pneu {
     display: inline-block;
-    width: 65px;
+    width: 70px;
 }
 #titre_widget {
     width: 100%;
@@ -106,8 +106,8 @@ article {
     position: fixed;
     z-index: 222;
     top: 230px;
-    left: 260px;
-    width: 680px;
+    left: 130px;
+    width: 850px;
     background-color: white;
     padding-bottom: 30px;
     border: 3px solid black;
@@ -124,7 +124,7 @@ article {
     position: fixed;
     overflow: auto;
     max-height: 500px;
-    width: 700px;
+    width: 835px;
     border: 3px solid black;
     margin: 15px;
 }
