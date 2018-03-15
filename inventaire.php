@@ -77,7 +77,6 @@ class Inventaire{
         $resultats = $wpdb->get_results($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inventaire ORDER BY annee,marque,modele", ‘foo’ )) ;
         
         ?>
-        <?php echo get_home_url(); ?>
         <h1><?php echo get_admin_page_title(); ?></h1>
         <!-- Affichage des titres avec debut de la boîte -->
         <div id="listecomplete">
