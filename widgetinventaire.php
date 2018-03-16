@@ -39,7 +39,8 @@ class Inventaire_Widget extends WP_Widget
             <form method="post">
                 <p>
                 <label>Année :</label>
-                <select  id="annee" name="annee" ><?php
+                <select  id="annee" name="annee" >
+                    <option value="Toutes">Toutes</option><?php
                     foreach ($resultatsannees as &$value) {
                         if (($_POST['annee']) && $_POST['annee']== $value->annee)
                             $selected = "selected";
@@ -115,7 +116,10 @@ class Inventaire_Widget extends WP_Widget
             $marque = $_POST['marque'];
             $modele = $_POST['modele'];
             $row_marque = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}inv_marque WHERE marque='$marque'");
-            $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE annee='$annee' and marque='$marque' and modele='$modele' order by modele, letype, options");
+            if ($annee == 'Toutes')
+                $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE marque='$marque' and modele='$modele' order by annee,modele, letype, options");
+            else
+                $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE annee='$annee' and marque='$marque' and modele='$modele' order by modele, letype, options");
             $erreur = 'Malheureusement, aucun résultat trouvé';
             if ($row_marque == null)
                 $erreur = 'Erreur dans la marque entrée';

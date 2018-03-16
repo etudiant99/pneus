@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 15 Mars 2018 à 19:10
+-- Généré le :  Jeu 15 Mars 2018 à 22:56
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `wp_inv_options` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `options` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Contenu de la table `wp_inv_options`
@@ -51,7 +51,15 @@ INSERT INTO `wp_inv_options` (`id`, `options`) VALUES
 (12, 'SE 4 cyl.'),
 (13, 'EX 4 cyl.'),
 (14, 'EX V6'),
-(15, 'EX V6 16po option');
+(15, 'EX V6 16po option'),
+(16, 'BASE (155R12)'),
+(17, 'BASE (6.00-12)'),
+(18, 'LX'),
+(19, 'S'),
+(20, 'DX'),
+(21, 'LXi'),
+(22, 'BASE (8.00-15)'),
+(23, 'BASE (8.00-15DS)');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

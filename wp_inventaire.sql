@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 15 Mars 2018 à 19:09
+-- Généré le :  Jeu 15 Mars 2018 à 22:55
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `wp_inventaire` (
   `options` varchar(255) DEFAULT NULL,
   `pneu` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=459 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=487 ;
 
 --
 -- Contenu de la table `wp_inventaire`
@@ -176,7 +176,7 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (133, 'Buick', 'Special', 1953, NULL, NULL, ''),
 (134, 'Cadillac', 'Commercial Chass', 1953, NULL, NULL, ''),
 (135, 'Cadillac', 'DeVille', 1953, NULL, NULL, ''),
-(136, 'Cadillac', 'Eldorado', 1953, NULL, NULL, ''),
+(136, 'Cadillac', 'Eldorado', 1953, '2 Dr Convertible', 'BASE (8.00-15)', '8.00-15'),
 (137, 'Cadillac', 'Series 60 Fleetwood', 1953, NULL, NULL, ''),
 (138, 'Cadillac', 'Series 62', 1953, NULL, NULL, ''),
 (139, 'Cadillac', 'Series 75 Fleetwood', 1953, NULL, NULL, ''),
@@ -212,7 +212,7 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (169, 'Buick', 'Special', 1954, NULL, NULL, ''),
 (170, 'Cadillac', 'Commercial Chass', 1954, NULL, NULL, ''),
 (171, 'Cadillac', 'DeVille', 1954, NULL, NULL, ''),
-(172, 'Cadillac', 'Eldorado', 1954, NULL, NULL, ''),
+(172, 'Cadillac', 'Eldorado', 1954, '2 Dr Convertible', 'BASE (8.00-15)', '8.00-15'),
 (173, 'Cadillac', 'Series 60 Fleetwood', 1954, NULL, NULL, ''),
 (174, 'Cadillac', 'Series 62', 1954, NULL, NULL, ''),
 (175, 'Cadillac', 'Series 75 Fleetwood', 1954, NULL, NULL, ''),
@@ -249,7 +249,7 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (206, 'Buick', 'Special', 1955, NULL, NULL, ''),
 (207, 'Cadillac', 'Commercial Chass', 1955, NULL, NULL, ''),
 (208, 'Cadillac', 'DeVille', 1955, NULL, NULL, ''),
-(209, 'Cadillac', 'Eldorado', 1955, NULL, NULL, ''),
+(209, 'Cadillac', 'Eldorado', 1955, '2 Dr Convertible', 'BASE (8.00-15)', '8.00-15'),
 (210, 'Cadillac', 'Series 60 Fleetwood', 1955, NULL, NULL, ''),
 (211, 'Cadillac', 'Series 62', 1955, NULL, NULL, ''),
 (212, 'Cadillac', 'Series 75 Fleetwood', 1955, NULL, NULL, ''),
@@ -291,7 +291,7 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (248, 'Buick', 'Special', 1956, NULL, NULL, ''),
 (249, 'Cadillac', 'Commercial Chass', 1956, NULL, NULL, ''),
 (250, 'Cadillac', 'Deville', 1956, NULL, NULL, ''),
-(251, 'Cadillac', 'Eldorado', 1956, NULL, NULL, ''),
+(251, 'Cadillac', 'Eldorado', 1956, '2 Dr Convertible', 'BASE (8.00-15)', '8.00-15'),
 (252, 'Cadillac', 'Series 60 Fleetwood', 1956, NULL, NULL, ''),
 (253, 'Cadillac', 'Series 62', 1956, NULL, NULL, ''),
 (254, 'Cadillac', 'Series 75 Fleetwood', 1956, NULL, NULL, ''),
@@ -338,7 +338,7 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (295, 'Buick', 'Special', 1957, '2 Dr Convertible', NULL, ''),
 (296, 'Cadillac', 'Commercial Chass', 1957, NULL, NULL, ''),
 (297, 'Cadillac', 'DeVille', 1957, NULL, NULL, ''),
-(298, 'Cadillac', 'Eldorado', 1957, NULL, NULL, ''),
+(298, 'Cadillac', 'Eldorado', 1957, '2 Dr Convertible', 'BASE (8.00-15DS)', '8.00-15'),
 (299, 'Cadillac', 'Series 60 Fleetwood', 1957, NULL, NULL, ''),
 (300, 'Cadillac', 'Series 62', 1957, NULL, NULL, ''),
 (301, 'Cadillac', 'Series 75 Fleetwood', 1957, NULL, NULL, ''),
@@ -397,7 +397,7 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (354, 'Buick', 'Special', 1958, NULL, NULL, ''),
 (355, 'Cadillac', 'Commercial Chass', 1958, NULL, NULL, ''),
 (356, 'Cadillac', 'Deville', 1958, NULL, NULL, ''),
-(357, 'Cadillac', 'Eldorado', 1958, NULL, NULL, ''),
+(357, 'Cadillac', 'Eldorado', 1958, '2 Dr Convertible', 'BASE (8.00-15DS)', '8.00-15'),
 (358, 'Cadillac', 'Series 60 Fleetwood', 1958, NULL, NULL, ''),
 (359, 'Cadillac', 'Series 62', 1958, NULL, NULL, ''),
 (360, 'Cadillac', 'Series 75 Fleetwood', 1958, NULL, NULL, ''),
@@ -477,7 +477,7 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (445, 'Buick', 'Commander', 1948, '4 Dr Sedan', 'Land Cruiser', '6.50-15'),
 (446, 'Dodge', 'Custom', 1948, '4 Dr Sedan', 'Base (8.50-14)', '8.50-14'),
 (447, 'Honda', 'Accord', 2000, '4 Dr Sedan', 'DX 4 cyl.', '195/70R14'),
-(448, 'Honda', 'Accord', 2000, '4 Dr Sedan', 'EX 4 cyl. (195/65R15 89 H 6x15 4x114.3)', '195/65R15'),
+(448, 'Honda', 'Accord', 2000, '4 Dr Sedan', 'LX 4 cyl. (195/65R15 89 H 6x15 4x114.3)', '195/65R15'),
 (449, 'Honda', 'Accord', 2000, '4 Dr Sedan', 'LX 4 cyl.', '195/65R15'),
 (451, 'Honda', 'Accord', 2000, '4 Dr Sedan', 'LX V6', '205/65R15'),
 (452, 'Honda', 'Accord', 2000, '4 Dr Sedan', 'SE 4 cyl.', '195/65R15'),
@@ -485,7 +485,32 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (455, 'Honda', 'Accord', 2000, '2 Dr Coupe', 'EX V6', '205/65R15'),
 (456, 'Honda', 'Accord', 2000, '2 Dr Coupe', 'EX V6 16po option', '205/60R16'),
 (457, 'Honda', 'Accord', 2000, '2 Dr Coupe', 'LX 4 cyl. (195/65R15 89 H 6x15 4x114.3)', '195/65R15'),
-(458, 'Honda', 'Accord', 2000, '2 Dr Coupe', 'LX V6 (205/65R15 92V 6.5X15 5X114.3)', '205/65R15');
+(458, 'Honda', 'Accord', 2000, '2 Dr Coupe', 'LX V6 (205/65R15 92V 6.5X15 5X114.3)', '205/65R15'),
+(459, 'Honda', 'Civic', 1973, '2 Dr Sedan', 'BASE (155R12)', '155R12'),
+(460, 'Honda', 'Civic', 1973, '2 Dr Sedan', 'BASE (6.00-12)', '6.00-12'),
+(462, 'Honda', 'Accord', 1976, '', '', '155R13'),
+(463, 'Honda', 'Accord', 1977, '', '', '155R13'),
+(465, 'Honda', 'Accord', 1978, '3 Dr. Hatchback', 'Base', '155R13'),
+(466, 'Honda', 'Accord', 1978, '3 Dr. Hatchback', 'LX', '155R13'),
+(467, 'Honda', 'Accord', 1979, '3 Dr. Hatchback', 'Base', '165R13'),
+(468, 'Honda', 'Accord', 1979, '3 Dr. Hatchback', 'LX', '165R13'),
+(469, 'Honda', 'Accord', 1980, '3 Dr. Hatchback', 'Base', '165R13'),
+(470, 'Honda', 'Accord', 1980, '3 Dr. Hatchback', 'LX', '165R13'),
+(471, 'Honda', 'Accord', 1981, '3 Dr. Hatchback', 'Base', '165R13'),
+(472, 'Honda', 'Accord', 1981, '3 Dr. Hatchback', 'LX', '165R13'),
+(473, 'Honda', 'Accord', 1982, '3 Dr. Hatchback', 'Base', '185/70R13'),
+(474, 'Honda', 'Accord', 1982, '3 Dr. Hatchback', 'LX', '185/70R13'),
+(475, 'Honda', 'Accord', 1983, '3 Dr. Hatchback', 'Base', '185/70R13'),
+(476, 'Honda', 'Accord', 1983, '3 Dr. Hatchback', 'LX', '185/70R13'),
+(477, 'Honda', 'Accord', 1984, '3 Dr. Hatchback', 'Base', '185/70R13'),
+(478, 'Honda', 'Accord', 1984, '3 Dr. Hatchback', 'LX', '185/70R13'),
+(479, 'Honda', 'Accord', 1985, '3 Dr. Hatchback', 'LX', '185/70R13'),
+(480, 'Honda', 'Accord', 1985, '3 Dr. Hatchback', 'S', '185/70R13'),
+(481, 'Honda', '', 1986, '3 Dr. Hatchback', 'DX', '185/70R13'),
+(482, 'Honda', 'Accord', 1986, '3 Dr. Hatchback', 'LXi', '195/60R14'),
+(483, 'Honda', 'Accord', 1987, '3 Dr. Hatchback', 'DX', '185/70R13'),
+(484, 'Honda', 'Accord', 1987, '3 Dr. Hatchback', 'LXi', '195/60R14'),
+(486, 'BASE (8.00-15)', NULL, NULL, NULL, NULL, NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
