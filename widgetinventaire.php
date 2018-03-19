@@ -1,4 +1,4 @@
-e<?php
+<?php
 class Inventaire_Widget extends WP_Widget
 {
     public function __construct()
