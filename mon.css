@@ -2,6 +2,10 @@
     display: inline-block;
     width: 65px;
 }
+.span:hover {
+    background-color: lightgrey;
+    color: black;
+}
 .latable {
     margin: 20px 0 20px 0;
     padding: 10px;
@@ -70,12 +74,12 @@ article {
 }
 #titre_type {
     display: inline-block;
-    width: 100px;
+    width: 180px;
     font-weight: bold;
 }
 #type {
     display: inline-block;
-    width: 100px;
+    width: 180px;
 }
 #titre_options {
     display: inline-block;
@@ -102,11 +106,24 @@ article {
     width: 100%;
     text-transform: none!important;
 }
+
+#box-widget-inventaire {
+    position: fixed;
+    z-index: 222;
+    top: 230px;
+    left: 50px;
+    width: 930px;
+    background-color: white;
+    padding-bottom: 30px;
+    border: 3px solid black;
+    max-height: 270px;
+    overflow: auto;
+}
 #box-container {
     position: fixed;
     z-index: 222;
     top: 230px;
-    left: 130px;
+    left: 110px;
     width: 850px;
     background-color: white;
     padding-bottom: 30px;
@@ -118,13 +135,33 @@ article {
     margin-left: 10px;
     font-size:13px;
 }
+#listemodeles {
+    padding: 15px;
+    background-color: white;
+    position: fixed;
+    overflow: auto;
+    max-height: 500px;
+    width: 480px;
+    border: 3px solid black;
+    margin: 15px;
+}
+#listepneus {
+    padding: 15px;
+    background-color: white;
+    position: fixed;
+    overflow: auto;
+    max-height: 500px;
+    width: 908px;
+    border: 3px solid black;
+    margin: 15px;
+}
 #listecomplete {
     padding: 15px;
     background-color: white;
     position: fixed;
     overflow: auto;
     max-height: 500px;
-    width: 835px;
+    width: 910px;
     border: 3px solid black;
     margin: 15px;
 }

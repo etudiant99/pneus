@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Pneus
  * Description: Classification de pneus
- * Version: 1.2
+ * Version: 1.3
  * Author: Denis Boucher
  */
  class Pneus_Plugin

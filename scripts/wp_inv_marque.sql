@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 18 Mars 2018 à 20:50
+-- Généré le :  Lun 19 Mars 2018 à 01:41
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 

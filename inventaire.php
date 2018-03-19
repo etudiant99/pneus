@@ -68,6 +68,8 @@ class Inventaire{
     public function add_admin_menu()
     {
         add_submenu_page('pneus', 'Automobiles', 'Visualisation', 'manage_options', 'automobiles', array($this, 'sousmenu_automobiles'));
+        add_submenu_page('pneus', 'Historique modèles', 'Historique modèles', 'manage_options', 'modeles', array($this, 'sousmenu_modeles'));
+        add_submenu_page('pneus', 'Historique pneus', 'Historique pneus', 'manage_options', 'hist_pneus', array($this, 'sousmenu_pneus'));
         add_submenu_page('pneus', 'Ajouter', 'Ajouts', 'manage_options', 'ajout', array($this, 'sousmenu_ajouter'));
         add_submenu_page('pneus', 'Ajouter', 'Ajouts divers', 'manage_options', 'ajout_divers', array($this, 'sousmenu_ajout_divers'));
     }
@@ -98,19 +100,73 @@ class Inventaire{
         foreach ($resultats as &$singleItem) { ?>
             <!-- Le <a href > si important pour la transmission de l'id -->
             <a href="?page=ajout&id=<?php echo $singleItem->id; ?>">
+            <span  class="span">
                 <span id="marque"><?php echo $singleItem->marque; ?></span>
                 <span id="modele"><?php echo $singleItem->modele; ?></span>
                 <span id="annee"><?php echo $singleItem->annee; ?></span>
                 <span id="type"><?php echo $singleItem->letype; ?></span>
                 <span id="options"><?php echo $singleItem->options; ?></span>
                 <span id="pneu"><?php echo $singleItem->pneu; ?></span>
+            </span>
                 <br />
             </a> <?php
         }
         ?> </div> <?php
         // Fin de la boîte pour le contenu affiché
     }
+
+    public function sousmenu_modeles()
+    {
+        global $wpdb;
+        $voitures = $wpdb->get_results($wpdb->prepare("SELECT marque, modele, annee, pneu FROM wp_inventaire GROUP BY marque, modele", ‘foo’ )) ;
+        
+        ?><h1><?php echo get_admin_page_title(); ?></h1>
+          <div id="listemodeles">
+            <span id="titre_marque">Marque</span>
+            <span id="titre_modele2">Modèle</span>
+            <span id="titre_annee">Année</span>
+            <span id="titre_pneu">Pneu</span><br />
+            <br /><?php
+            foreach ($voitures as $singleItem){?>
+            <span  class="span">
+                <span id="marque"><?php echo $singleItem->marque; ?></span>
+                <span id="modele"><?php echo $singleItem->modele; ?></span>
+                <span id="annee"><?php echo $singleItem->annee; ?></span>
+                <span id="pneu"><?php echo $singleItem->pneu; ?></span>
+            </span><br /><?php
+            }
+          ?></div>
+        <?php
+    }
     
+    public function sousmenu_pneus()
+    {
+        global $wpdb;
+        $pneus = $wpdb->get_results($wpdb->prepare("SELECT * FROM wp_inventaire GROUP BY pneu order by annee,pneu,marque,modele", ‘foo’ )) ;
+        
+        ?><h1><?php echo get_admin_page_title(); ?></h1>
+          <div id="listepneus">
+            <span id="titre_annee">Année</span>
+            <span id="titre_pneu">Pneu</span>
+            <span id="titre_marque">Marque</span>
+            <span id="titre_modele2">Modèle</span>
+            <span id="titre_type">Type</span>
+            <span id="titre_options">Options</span>
+            <br />
+            <br /><?php
+            foreach ($pneus as $singleItem){?>
+            <span  class="span">
+                <span id="annee"><?php echo $singleItem->annee; ?></span>
+                <span id="pneu"><?php echo $singleItem->pneu; ?></span>
+                <span id="marque"><?php echo $singleItem->marque; ?></span>
+                <span id="modele"><?php echo $singleItem->modele; ?></span>
+                <span id="type"><?php echo $singleItem->letype; ?></span>
+                <span id="options"><?php echo $singleItem->options; ?></span>
+            </span><br /><?php
+            }
+          ?></div>
+        <?php
+    }    
     /**
      * La fonction fait en sorte l' Ajout/Modification
      * Elle récupère les valeurs pour les différents <select>

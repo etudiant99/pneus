@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 18 Mars 2018 à 20:51
+-- Généré le :  Lun 19 Mars 2018 à 01:41
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `wp_inv_pneus` (
   `rapport_aspect` varchar(255) DEFAULT NULL,
   `diametre` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
 -- Contenu de la table `wp_inv_pneus`
@@ -60,7 +60,19 @@ INSERT INTO `wp_inv_pneus` (`id`, `pneu`, `largeur`, `rapport_aspect`, `diametre
 (19, '185/70R13', NULL, NULL, NULL),
 (20, '195/60R14', NULL, NULL, NULL),
 (21, '185/65R14', NULL, NULL, NULL),
-(22, '175/65R14', NULL, NULL, NULL);
+(22, '175/65R14', NULL, NULL, NULL),
+(23, '155R15', NULL, NULL, NULL),
+(24, 'L78-15', NULL, NULL, NULL),
+(25, '8.20-15', NULL, NULL, NULL),
+(26, '6.00-13', NULL, NULL, NULL),
+(27, '5.20-13', NULL, NULL, NULL),
+(28, '165/70R365', NULL, NULL, NULL),
+(29, '195/60R15', NULL, NULL, NULL),
+(30, '5.00-16', NULL, NULL, NULL),
+(31, '7.10-15', NULL, NULL, NULL),
+(32, '225/60R16', NULL, NULL, NULL),
+(33, '6.40-13', NULL, NULL, NULL),
+(34, '7.00-14', NULL, NULL, NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

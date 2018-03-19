@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 18 Mars 2018 à 20:51
+-- Généré le :  Lun 19 Mars 2018 à 01:42
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `wp_inv_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Contenu de la table `wp_inv_type`
@@ -44,7 +44,11 @@ INSERT INTO `wp_inv_type` (`id`, `type`) VALUES
 (5, '4 Dr Sedan'),
 (7, '2 Dr Hardtop'),
 (8, '2 Dr Sedan'),
-(9, '3 Dr. Hatchback');
+(9, '3 Dr. Hatchback'),
+(10, 'Base (155-R15)'),
+(11, '4 Dr Hardtop'),
+(12, '4 Dr Wagon'),
+(13, '2 Dr Wagon');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

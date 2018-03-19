@@ -124,8 +124,8 @@ class Inventaire_Widget extends WP_Widget
                     $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE marque LIKE '%$marque%' and modele LIKE '%$modele%' order by annee,modele, letype, options");
             }  
             else
-                if ($modele =='')
-                    $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE annee='$annee' and marque LIKE '%$marque%' and modele order by modele, letype, options");
+                if ($modele == '')
+                    $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE annee='$annee' and marque LIKE '%$marque%' order by modele, letype, options");
                 else
                     $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE annee='$annee' and marque LIKE '%$marque%' and modele LIKE '%$modele%' order by modele, letype, options");
                 
@@ -134,7 +134,7 @@ class Inventaire_Widget extends WP_Widget
                 $erreur = 'Erreur dans la marque entrée';
             $max = sizeof($allItems);?>
             
-            <div id="box-container">
+            <div id="box-widget-inventaire">
                 <h1 style="padding-left: 10px;">Résultat de la recherche</h1><?php                    
                 // Ecriture du résultat trouvé
                 if (sizeof($allItems) > 0){?>
