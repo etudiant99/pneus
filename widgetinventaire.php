@@ -118,13 +118,13 @@ class Inventaire_Widget extends WP_Widget
             $row_marque = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}inv_marque WHERE marque='$marque'");
             if ($annee == 'Toutes')
             {
-                if ($modele = '')
+                if ($modele == '')
                     $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE marque LIKE '%$marque%' order by annee,modele, letype, options");
                 else
                     $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE marque LIKE '%$marque%' and modele LIKE '%$modele%' order by annee,modele, letype, options");
             }  
             else
-                if ($modele = '')
+                if ($modele =='')
                     $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE annee='$annee' and marque LIKE '%$marque%' and modele order by modele, letype, options");
                 else
                     $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE annee='$annee' and marque LIKE '%$marque%' and modele LIKE '%$modele%' order by modele, letype, options");

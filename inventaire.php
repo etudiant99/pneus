@@ -185,11 +185,11 @@ class Inventaire{
                 </p>
                 <p>
                 <label class="exemple" for="annee">Année :</label>
-                <!-- Les options pour le modèle -->
+                <!-- Les options pour l'année -->
                 <select id="monselect" name="annee">
                     <?php
                     foreach ($lesannees as $item){
-                        ?><option  <?php if($item->annee == $modele){echo 'selected="selected"';} ?> value="<?php echo $item->modele; ?>"><?php echo $item->annee; ?></option><?php
+                        ?><option  <?php if($item->annee == $annee){echo 'selected="selected"';} ?> value="<?php echo $item->annee; ?>"><?php echo $item->annee; ?></option><?php
                     }
                     ?>
                 </select>
