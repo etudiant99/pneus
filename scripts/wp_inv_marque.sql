@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 15 Mars 2018 à 22:55
+-- Généré le :  Dim 18 Mars 2018 à 20:50
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -17,59 +17,43 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `tutoriel`
+-- Base de données :  `denis`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `wp_inv_annee`
+-- Structure de la table `wp_inv_marque`
 --
 
-CREATE TABLE IF NOT EXISTS `wp_inv_annee` (
+CREATE TABLE IF NOT EXISTS `wp_inv_marque` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `annee` int(11) DEFAULT NULL,
+  `marque` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
--- Contenu de la table `wp_inv_annee`
+-- Contenu de la table `wp_inv_marque`
 --
 
-INSERT INTO `wp_inv_annee` (`id`, `annee`) VALUES
-(1, 1942),
-(2, 1943),
-(3, 1944),
-(4, 1945),
-(5, 1946),
-(6, 1947),
-(7, 1948),
-(8, 1949),
-(9, 1950),
-(10, 1951),
-(11, 1952),
-(12, 1953),
-(13, 1954),
-(14, 1955),
-(15, 1956),
-(16, 1957),
-(17, 1958),
-(18, 1959),
-(19, 1960),
-(20, 2000),
-(21, 1973),
-(22, 1976),
-(23, 1977),
-(24, 1978),
-(25, 1979),
-(26, 1980),
-(27, 1981),
-(28, 1982),
-(29, 1983),
-(30, 1984),
-(31, 1985),
-(32, 1986),
-(33, 1987);
+INSERT INTO `wp_inv_marque` (`id`, `marque`) VALUES
+(1, 'Buick'),
+(2, 'Cadillac'),
+(3, 'Chevrolet'),
+(4, 'Lincoln'),
+(5, 'Studebaker'),
+(6, 'Jeep'),
+(7, 'Chrysler'),
+(8, 'Dodge'),
+(9, 'Ford'),
+(10, 'Plymouth'),
+(11, 'Pontiac'),
+(12, 'Mercury'),
+(13, 'Oldsmobile'),
+(14, 'Volkswagen'),
+(15, 'Mercedes-Benz'),
+(16, 'Honda'),
+(17, 'Toyota');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

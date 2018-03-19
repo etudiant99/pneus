@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 15 Mars 2018 à 22:55
+-- Généré le :  Dim 18 Mars 2018 à 20:50
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `tutoriel`
+-- Base de données :  `denis`
 --
 
 -- --------------------------------------------------------
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `wp_inventaire` (
   `options` varchar(255) DEFAULT NULL,
   `pneu` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=487 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=491 ;
 
 --
 -- Contenu de la table `wp_inventaire`
@@ -418,7 +418,7 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (376, 'Ford', 'Anglia', 1958, NULL, NULL, ''),
 (377, 'Ford', 'Club', 1958, NULL, NULL, ''),
 (378, 'Ford', 'Consul', 1958, NULL, NULL, ''),
-(379, 'Ford', 'Country ', 1958, NULL, NULL, ''),
+(379, 'Ford', 'Country', 1958, NULL, NULL, ''),
 (380, 'Ford', 'Country Sedan', 1958, NULL, NULL, ''),
 (381, 'Ford', 'Country Squire', 1958, NULL, NULL, ''),
 (382, 'Ford', 'Custom 300', 1958, NULL, NULL, ''),
@@ -437,7 +437,7 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (397, 'Jeep', 'FC150', 1958, NULL, NULL, ''),
 (398, 'Jeep', 'FC170', 1958, NULL, NULL, ''),
 (399, 'Jeep', 'Truck', 1958, NULL, NULL, ''),
-(400, 'Jeep', 'Utility ', 1958, NULL, NULL, ''),
+(400, 'Jeep', 'Utility', 1958, NULL, NULL, ''),
 (401, 'Jeep', 'Utility Wagon', 1958, NULL, NULL, ''),
 (402, 'Jeep', 'Willys', 1958, '', NULL, '7.00-16'),
 (403, 'Lincoln', 'Continental', 1958, NULL, NULL, ''),
@@ -510,7 +510,9 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (482, 'Honda', 'Accord', 1986, '3 Dr. Hatchback', 'LXi', '195/60R14'),
 (483, 'Honda', 'Accord', 1987, '3 Dr. Hatchback', 'DX', '185/70R13'),
 (484, 'Honda', 'Accord', 1987, '3 Dr. Hatchback', 'LXi', '195/60R14'),
-(486, 'BASE (8.00-15)', NULL, NULL, NULL, NULL, NULL);
+(487, 'Honda', 'Accord', 1999, '4 Dr Sedan', 'DX', '195/70R14'),
+(488, 'Honda', 'Civic', 2000, '4 Dr Sedan', 'DX', '185/65R14'),
+(489, 'Toyota', 'Corolla', 2000, '4 Dr Sedan', 'CE(175/65R14 81 S)', '175/65R14');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

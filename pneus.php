@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Pneus
  * Description: Classification de pneus
- * Version: 1.1
+ * Version: 1.2
  * Author: Denis Boucher
  */
  class Pneus_Plugin
@@ -14,10 +14,16 @@
         register_activation_hook(__FILE__, array('Inventaire', 'install'));
         register_uninstall_hook(__FILE__, array('Inventaire', 'uninstall'));
         add_action('admin_menu', array($this, 'add_admin_menu'));
+        
+        wp_register_style( 'pneus', plugins_url( 'pneus/mon.css' ) );
+        wp_register_style('bootstrap', 'http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' );
+        wp_enqueue_style( 'pneus' );
+        //wp_enqueue_style( 'bootstrap' );
     }
     
     public function add_admin_menu()
     {
+        // 'toplevel_page_pneus'
         add_menu_page('Inventaire de pneus', 'Pneu plugin', 'manage_options', 'pneus', array($this, 'menu_html'));
     }
     

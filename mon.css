@@ -131,3 +131,17 @@ article {
 #rien {
     padding-left: 10px;
 }
+.ajouts{
+    padding: 10px;
+    width: 300px;
+    background-color: whitesmoke;
+}
+.monrow {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.moncol-sm-3 {
+    display: inline-block;
+    width: 30%;
+    padding: 10px;
+}

@@ -1,4 +1,4 @@
-<?php
+e<?php
 class Inventaire_Widget extends WP_Widget
 {
     public function __construct()
@@ -64,7 +64,7 @@ class Inventaire_Widget extends WP_Widget
                     $valeurmodele = $_POST['modele'];
                 else
                     $valeurmodele = "";?>
-                <input type="text" required="required" id="modele" name="modele" value="<?php echo $valeurmodele ?>" />
+                <input type="text" id="modele" name="modele" value="<?php echo $valeurmodele ?>" />
                 </p>
                 <div>
                     <input type="submit" name="recherche" value="Recherche" />
@@ -117,9 +117,18 @@ class Inventaire_Widget extends WP_Widget
             $modele = $_POST['modele'];
             $row_marque = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}inv_marque WHERE marque='$marque'");
             if ($annee == 'Toutes')
-                $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE marque='$marque' and modele='$modele' order by annee,modele, letype, options");
+            {
+                if ($modele = '')
+                    $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE marque LIKE '%$marque%' order by annee,modele, letype, options");
+                else
+                    $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE marque LIKE '%$marque%' and modele LIKE '%$modele%' order by annee,modele, letype, options");
+            }  
             else
-                $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE annee='$annee' and marque='$marque' and modele='$modele' order by modele, letype, options");
+                if ($modele = '')
+                    $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE annee='$annee' and marque LIKE '%$marque%' and modele order by modele, letype, options");
+                else
+                    $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE annee='$annee' and marque LIKE '%$marque%' and modele LIKE '%$modele%' order by modele, letype, options");
+                
             $erreur = 'Malheureusement, aucun résultat trouvé';
             if ($row_marque == null)
                 $erreur = 'Erreur dans la marque entrée';
