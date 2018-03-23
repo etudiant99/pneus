@@ -31,6 +31,7 @@ class Inventaire{
     {
         global $wpdb;
         
+        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}marque_modele (id INT AUTO_INCREMENT PRIMARY KEY, marque_id INT, modele_id INT );");
         $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inventaire (id INT AUTO_INCREMENT PRIMARY KEY, marque VARCHAR(255), modele VARCHAR(255), annee INT, letype VARCHAR(255), options VARCHAR(255), pneu VARCHAR(255) );");
         $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_marque (id INT AUTO_INCREMENT PRIMARY KEY, marque VARCHAR(255) );");
         $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_modele (id INT AUTO_INCREMENT PRIMARY KEY, modele VARCHAR(255) );");
@@ -72,6 +73,16 @@ class Inventaire{
         add_submenu_page('pneus', 'Historique pneus', 'Historique pneus', 'manage_options', 'hist_pneus', array($this, 'sousmenu_pneus'));
         add_submenu_page('pneus', 'Ajouter', 'Ajouts', 'manage_options', 'ajout', array($this, 'sousmenu_ajouter'));
         add_submenu_page('pneus', 'Ajouter', 'Ajouts divers', 'manage_options', 'ajout_divers', array($this, 'sousmenu_ajout_divers'));
+        add_submenu_page('pneus', 'Test', 'Test', 'manage_options', 'test', array($this, 'sousmenu_test'));
+    }
+    
+    public function sousmenu_test()
+    {
+        global $wpdb;
+        echo '<h1>'.get_admin_page_title().'</h1>';
+        
+        $resultats = $wpdb->get_results($wpdb->prepare("SELECT medicament.nom FROM medicament_substance where medicament_substance.medicament_id=medicament.id", ‘foo’ )) ;
+        var_dump($resultats);
     }
 
     /**
@@ -84,6 +95,7 @@ class Inventaire{
         global $wpdb;
         
         $resultats = $wpdb->get_results($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inventaire ORDER BY annee,marque,modele", ‘foo’ )) ;
+        //var_dump($resultats);
         
         ?>
         <h1><?php echo get_admin_page_title(); ?></h1>
@@ -118,7 +130,7 @@ class Inventaire{
     public function sousmenu_modeles()
     {
         global $wpdb;
-        $voitures = $wpdb->get_results($wpdb->prepare("SELECT marque, modele, annee, pneu FROM wp_inventaire GROUP BY marque, modele", ‘foo’ )) ;
+        $voitures = $wpdb->get_results($wpdb->prepare("SELECT marque, modele, annee, pneu FROM wp_inventaire GROUP BY marque, modele order by annee, marque,modele", ‘foo’ )) ;
         
         ?><h1><?php echo get_admin_page_title(); ?></h1>
           <div id="listemodeles">
@@ -142,26 +154,28 @@ class Inventaire{
     public function sousmenu_pneus()
     {
         global $wpdb;
-        $pneus = $wpdb->get_results($wpdb->prepare("SELECT * FROM wp_inventaire GROUP BY pneu order by annee,pneu,marque,modele", ‘foo’ )) ;
+        
+        $pneus = $wpdb->get_results($wpdb->prepare("SELECT COUNT(Id) as nb, annee,pneu,marque,modele,letype,options FROM wp_inventaire WHERE pneu != '' GROUP BY pneu order by annee", ‘foo’ )) ;
         
         ?><h1><?php echo get_admin_page_title(); ?></h1>
           <div id="listepneus">
-            <span id="titre_annee">Année</span>
             <span id="titre_pneu">Pneu</span>
+            <span id="titre_annee">Année</span>
             <span id="titre_marque">Marque</span>
             <span id="titre_modele2">Modèle</span>
             <span id="titre_type">Type</span>
             <span id="titre_options">Options</span>
-            <br />
-            <br /><?php
+            <span id="titre_letotal">Total</span>
+            <br /><br /><?php
             foreach ($pneus as $singleItem){?>
-            <span  class="span">
-                <span id="annee"><?php echo $singleItem->annee; ?></span>
+            <span class="span">
                 <span id="pneu"><?php echo $singleItem->pneu; ?></span>
+                <span id="annee"><?php echo $singleItem->annee; ?></span>  
                 <span id="marque"><?php echo $singleItem->marque; ?></span>
                 <span id="modele"><?php echo $singleItem->modele; ?></span>
                 <span id="type"><?php echo $singleItem->letype; ?></span>
                 <span id="options"><?php echo $singleItem->options; ?></span>
+                <span id="letotal"><?php echo $singleItem->nb; ?></span>
             </span><br /><?php
             }
           ?></div>

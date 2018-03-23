@@ -2,10 +2,14 @@
     display: inline-block;
     width: 65px;
 }
+.span {
+    width: 100%;
+}
 .span:hover {
     background-color: lightgrey;
     color: black;
 }
+
 .latable {
     margin: 20px 0 20px 0;
     padding: 10px;
@@ -99,6 +103,16 @@ article {
     display: inline-block;
     width: 70px;
 }
+#titre_letotal {
+    display: inline-block;
+    width: 40px;
+    font-weight: bold;
+}
+#letotal {
+    padding-left: 20px;
+    padding-right: 5px;
+    width: 40px;
+}
 #titre_widget {
     width: 100%;
 }
@@ -136,27 +150,32 @@ article {
     font-size:13px;
 }
 #listemodeles {
-    padding: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     background-color: white;
     position: fixed;
     overflow: auto;
     max-height: 500px;
-    width: 480px;
+    width: 465px;
     border: 3px solid black;
     margin: 15px;
 }
 #listepneus {
-    padding: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     background-color: white;
     position: fixed;
     overflow: auto;
     max-height: 500px;
-    width: 908px;
+    width: 960px;
     border: 3px solid black;
-    margin: 15px;
 }
 #listecomplete {
-    padding: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     background-color: white;
     position: fixed;
     overflow: auto;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 19 Mars 2018 à 01:40
+-- Généré le :  Jeu 22 Mars 2018 à 23:00
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `wp_inv_annee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `annee` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Contenu de la table `wp_inv_annee`
@@ -74,7 +74,10 @@ INSERT INTO `wp_inv_annee` (`id`, `annee`) VALUES
 (35, 1998),
 (36, 1970),
 (37, 1988),
-(38, 1995);
+(38, 1995),
+(39, 1971),
+(40, 1961),
+(41, 1972);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 19 Mars 2018 à 01:41
+-- Généré le :  Jeu 22 Mars 2018 à 23:01
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `wp_inv_modele` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `modele` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=74 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=78 ;
 
 --
 -- Contenu de la table `wp_inv_modele`
@@ -58,7 +58,6 @@ INSERT INTO `wp_inv_modele` (`id`, `modele`) VALUES
 (19, 'Consul'),
 (20, 'Corolla'),
 (21, 'Corvette'),
-(22, 'Country'),
 (23, 'Country Sedan'),
 (24, 'Country Squire'),
 (25, 'Custom'),
@@ -88,7 +87,6 @@ INSERT INTO `wp_inv_modele` (`id`, `modele`) VALUES
 (49, 'Ranchero'),
 (50, 'Savoy'),
 (51, 'Sedan Delivery'),
-(52, 'Serie 62'),
 (53, 'Series 60 Fleetwood'),
 (54, 'Series 62'),
 (55, 'Series 75 Fleetwood'),
@@ -99,17 +97,20 @@ INSERT INTO `wp_inv_modele` (`id`, `modele`) VALUES
 (60, 'Starfire'),
 (61, 'Suburban'),
 (62, 'Sunliner'),
-(63, 'Supe 88'),
+(63, 'Super 88'),
 (64, 'Taxi'),
 (65, 'Thunderbird'),
 (66, 'Town & Country'),
 (67, 'Truck'),
-(68, 'Utility'),
 (69, 'Utility Wagon'),
 (70, 'Victoria'),
 (71, 'Willys'),
 (72, 'Zodiac'),
-(73, 'Corona');
+(73, 'Corona'),
+(74, 'RX-2'),
+(75, 'XKE'),
+(76, 'GL'),
+(77, 'Nomad');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
