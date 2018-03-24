@@ -31,7 +31,7 @@ class Inventaire{
     {
         global $wpdb;
         
-        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}marque_modele (id INT AUTO_INCREMENT PRIMARY KEY, marque_id INT, modele_id INT );");
+        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}marque_modele_pneu (id INT AUTO_INCREMENT PRIMARY KEY, marque_id INT, modele_id INT, pneu_id INT );");
         $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inventaire (id INT AUTO_INCREMENT PRIMARY KEY, marque VARCHAR(255), modele VARCHAR(255), annee INT, letype VARCHAR(255), options VARCHAR(255), pneu VARCHAR(255) );");
         $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_marque (id INT AUTO_INCREMENT PRIMARY KEY, marque VARCHAR(255) );");
         $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_modele (id INT AUTO_INCREMENT PRIMARY KEY, modele VARCHAR(255) );");
@@ -73,19 +73,43 @@ class Inventaire{
         add_submenu_page('pneus', 'Historique pneus', 'Historique pneus', 'manage_options', 'hist_pneus', array($this, 'sousmenu_pneus'));
         add_submenu_page('pneus', 'Ajouter', 'Ajouts', 'manage_options', 'ajout', array($this, 'sousmenu_ajouter'));
         add_submenu_page('pneus', 'Ajouter', 'Ajouts divers', 'manage_options', 'ajout_divers', array($this, 'sousmenu_ajout_divers'));
-        add_submenu_page('pneus', 'Test', 'Test', 'manage_options', 'test', array($this, 'sousmenu_test'));
+        add_submenu_page('pneus', 'Résumé', 'Résumé', 'manage_options', 'resume', array($this, 'sousmenu_resume'));
     }
     
-    public function sousmenu_test()
+    public function sousmenu_resume()
     {
         global $wpdb;
-        echo '<h1>'.get_admin_page_title().'</h1>';
         
-        $resultats = $wpdb->get_results($wpdb->prepare("SELECT medicament.nom FROM medicament_substance where medicament_substance.medicament_id=medicament.id", ‘foo’ )) ;
-        var_dump($resultats);
+        $resultats1 = $wpdb->get_results($wpdb->prepare("SELECT medicament.nom nommedicament, substance.nom nomsubstance FROM medicament, medicament_substance, substance where medicament.id=medicament_substance.medicament_id and medicament_substance.substance_id=substance.id", ‘foo’ )) ;
+        $resultats = $wpdb->get_results($wpdb->prepare("SELECT ma.marque, mo.modele, p.pneu FROM {$wpdb->prefix}inv_marque ma INNER JOIN {$wpdb->prefix}inv_modele mo INNER JOIN {$wpdb->prefix}marque_modele_pneu li INNER JOIN {$wpdb->prefix}inv_pneus p ON (li.marque_id=ma.id and li.modele_id=mo.id and li.pneu_id=p.id) order by marque,modele", ‘foo’ )) ;
+        //var_dump($resultats);
+        
+        ?>
+        <h1><?php echo get_admin_page_title(); ?></h1>
+        <!-- Affichage des titres avec debut de la boîte -->
+        <div id="listecomplete">
+            <span id="titre_marque">Marque</span>
+            <span id="titre_modele2">Modèle</span>
+            <span id="titre_pneu">Pneu</span><br /><?php
+            
+        // Affichage du contenu
+            foreach ($resultats as &$singleItem) {?>
+                <span id="marque"><?php echo $singleItem->marque; ?></span>
+                <span id="modele"><?php echo $singleItem->modele; ?></span>
+                <span id="pneu"><?php echo $singleItem->pneu; ?></span><br /><?php
+            }
+            ?>
+        </div>
+        <?php
+        /*
+        echo '<select>';
+        foreach ($resultats as $singleitem){
+            echo '<option><column>'.$singleitem->marque.'&nbsp&nbsp&nbsp&nbsp&nbsp</column><column>'.$singleitem->modele.'&nbsp&nbsp&nbsp&nbsp&nbsp</column><column>'.$singleitem->pneu.'</column></option><br />'; 
+        }
+        echo '</select>';
+       */
     }
-
-    /**
+    /** 
      * La fonction nous permet d'afficher l'ensemble de ce qui est dans l'inventaire
      * Elle va d'abord chercher l'ensemble du contenu de la table principale, pour ensuite l'afficher
      * Par un <a href >, elle pourra transmettre un id, pour une modification éventuelle
