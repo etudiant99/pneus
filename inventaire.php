@@ -31,14 +31,14 @@ class Inventaire{
     {
         global $wpdb;
         
-        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}marque_modele_pneu (id INT AUTO_INCREMENT PRIMARY KEY, marque_id INT, modele_id INT, pneu_id INT );");
         $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inventaire (id INT AUTO_INCREMENT PRIMARY KEY, marque VARCHAR(255), modele VARCHAR(255), annee INT, letype VARCHAR(255), options VARCHAR(255), pneu VARCHAR(255) );");
         $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_marque (id INT AUTO_INCREMENT PRIMARY KEY, marque VARCHAR(255) );");
         $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_modele (id INT AUTO_INCREMENT PRIMARY KEY, modele VARCHAR(255) );");
         $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_annee (id INT AUTO_INCREMENT PRIMARY KEY, annee INT );");
         $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_type (id INT AUTO_INCREMENT PRIMARY KEY, type VARCHAR(255) );");
         $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_options (id INT AUTO_INCREMENT PRIMARY KEY, options VARCHAR(255) );");
-        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_pneus (id INT AUTO_INCREMENT PRIMARY KEY, pneu VARCHAR(255), largeur VARCHAR(255), rapport_aspect VARCHAR(255), diametre FLOAT );");        
+        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}inv_pneus (id INT AUTO_INCREMENT PRIMARY KEY, pneu VARCHAR(255), largeur VARCHAR(255), rapport_aspect VARCHAR(255), diametre FLOAT );");
+        $wpdb->query("CREATE TABLE IF NOT EXISTS {$wpdb->prefix}marque_modele_pneu (id INT AUTO_INCREMENT PRIMARY KEY, marque_id INT, modele_id INT, pneu_id INT );");    
     }
 
     /**
@@ -59,6 +59,7 @@ class Inventaire{
         $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}inv_type;");
         $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}inv_options;");
         $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}inv_pneus;");
+        $wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}marque_modele_pneu;");
     }
 
     /**
@@ -69,34 +70,35 @@ class Inventaire{
     public function add_admin_menu()
     {
         add_submenu_page('pneus', 'Automobiles', 'Visualisation', 'manage_options', 'automobiles', array($this, 'sousmenu_automobiles'));
+        add_submenu_page('pneus', 'Résumé', 'Résumé', 'manage_options', 'resume', array($this, 'sousmenu_resume'));
         add_submenu_page('pneus', 'Historique modèles', 'Historique modèles', 'manage_options', 'modeles', array($this, 'sousmenu_modeles'));
         add_submenu_page('pneus', 'Historique pneus', 'Historique pneus', 'manage_options', 'hist_pneus', array($this, 'sousmenu_pneus'));
         add_submenu_page('pneus', 'Ajouter', 'Ajouts', 'manage_options', 'ajout', array($this, 'sousmenu_ajouter'));
         add_submenu_page('pneus', 'Ajouter', 'Ajouts divers', 'manage_options', 'ajout_divers', array($this, 'sousmenu_ajout_divers'));
-        add_submenu_page('pneus', 'Résumé', 'Résumé', 'manage_options', 'resume', array($this, 'sousmenu_resume'));
     }
     
     public function sousmenu_resume()
     {
         global $wpdb;
         
-        $resultats1 = $wpdb->get_results($wpdb->prepare("SELECT medicament.nom nommedicament, substance.nom nomsubstance FROM medicament, medicament_substance, substance where medicament.id=medicament_substance.medicament_id and medicament_substance.substance_id=substance.id", ‘foo’ )) ;
-        $resultats = $wpdb->get_results($wpdb->prepare("SELECT ma.marque, mo.modele, p.pneu FROM {$wpdb->prefix}inv_marque ma INNER JOIN {$wpdb->prefix}inv_modele mo INNER JOIN {$wpdb->prefix}marque_modele_pneu li INNER JOIN {$wpdb->prefix}inv_pneus p ON (li.marque_id=ma.id and li.modele_id=mo.id and li.pneu_id=p.id) order by marque,modele", ‘foo’ )) ;
-        //var_dump($resultats);
-        
+        $resultats = $wpdb->get_results($wpdb->prepare("SELECT marque,modele,pneu FROM {$wpdb->prefix}marque_modele_pneu INNER JOIN {$wpdb->prefix}inv_marque ma ON ma.id = marque_id INNER JOIN {$wpdb->prefix}inv_modele mo ON mo.id = modele_id INNER JOIN {$wpdb->prefix}inv_pneus p ON p.id = pneu_id order by marque,modele,pneu", ‘foo’ )) ;
         ?>
         <h1><?php echo get_admin_page_title(); ?></h1>
         <!-- Affichage des titres avec debut de la boîte -->
-        <div id="listecomplete">
+        <div id="titrelisteresume">
             <span id="titre_marque">Marque</span>
             <span id="titre_modele2">Modèle</span>
-            <span id="titre_pneu">Pneu</span><br /><?php
+            <span id="titre_pneu">Pneu</span><br />
+        </div>
             
-        // Affichage du contenu
+        <!-- Affichage du contenu -->
+        <div id="listeresume"><?php
             foreach ($resultats as &$singleItem) {?>
-                <span id="marque"><?php echo $singleItem->marque; ?></span>
-                <span id="modele"><?php echo $singleItem->modele; ?></span>
-                <span id="pneu"><?php echo $singleItem->pneu; ?></span><br /><?php
+                <span class="span">
+                    <span id="marque"><?php echo $singleItem->marque; ?></span>
+                    <span id="modele"><?php echo $singleItem->modele; ?></span>
+                    <span id="pneu"><?php echo $singleItem->pneu; ?></span><br />
+                </span><?php
             }
             ?>
         </div>
@@ -119,18 +121,18 @@ class Inventaire{
         global $wpdb;
         
         $resultats = $wpdb->get_results($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inventaire ORDER BY annee,marque,modele", ‘foo’ )) ;
-        //var_dump($resultats);
-        
         ?>
         <h1><?php echo get_admin_page_title(); ?></h1>
         <!-- Affichage des titres avec debut de la boîte -->
-        <div id="listecomplete">
+        <div id="titrelistecomplete">
             <span id="titre_marque">Marque</span>
             <span id="titre_modele2">Modèle</span>
             <span id="titre_annee">Année</span>
             <span id="titre_type">Type</span>
             <span id="titre_options">Options</span>
-            <span id="titre_pneu">Pneu</span><br /><?php
+            <span id="titre_pneu">Pneu</span><br />
+        </div>
+        <div id="listecomplete"><?php
             
         // Affichage du contenu
         foreach ($resultats as &$singleItem) { ?>
@@ -154,15 +156,16 @@ class Inventaire{
     public function sousmenu_modeles()
     {
         global $wpdb;
-        $voitures = $wpdb->get_results($wpdb->prepare("SELECT marque, modele, annee, pneu FROM wp_inventaire GROUP BY marque, modele order by annee, marque,modele", ‘foo’ )) ;
+        $voitures = $wpdb->get_results($wpdb->prepare("SELECT marque, modele, annee, pneu FROM {$wpdb->prefix}inventaire GROUP BY marque, modele order by annee, marque,modele", ‘foo’ )) ;
         
         ?><h1><?php echo get_admin_page_title(); ?></h1>
-          <div id="listemodeles">
+          <div id="titrelistemodeles">
             <span id="titre_marque">Marque</span>
             <span id="titre_modele2">Modèle</span>
             <span id="titre_annee">Année</span>
-            <span id="titre_pneu">Pneu</span><br />
-            <br /><?php
+            <span id="titre_pneu">Pneu</span>
+          </div>
+          <div id="listemodeles"><?php
             foreach ($voitures as $singleItem){?>
             <span  class="span">
                 <span id="marque"><?php echo $singleItem->marque; ?></span>
@@ -179,10 +182,10 @@ class Inventaire{
     {
         global $wpdb;
         
-        $pneus = $wpdb->get_results($wpdb->prepare("SELECT COUNT(Id) as nb, annee,pneu,marque,modele,letype,options FROM wp_inventaire WHERE pneu != '' GROUP BY pneu order by annee", ‘foo’ )) ;
+        $pneus = $wpdb->get_results($wpdb->prepare("SELECT COUNT(Id) as nb, annee,pneu,marque,modele,letype,options FROM {$wpdb->prefix}inventaire WHERE pneu != '' GROUP BY pneu order by annee", ‘foo’ )) ;
         
         ?><h1><?php echo get_admin_page_title(); ?></h1>
-          <div id="listepneus">
+          <div id="titrelistepneus">
             <span id="titre_pneu">Pneu</span>
             <span id="titre_annee">Année</span>
             <span id="titre_marque">Marque</span>
@@ -190,7 +193,8 @@ class Inventaire{
             <span id="titre_type">Type</span>
             <span id="titre_options">Options</span>
             <span id="titre_letotal">Total</span>
-            <br /><br /><?php
+          </div>
+          <div id="listepneus"><?php
             foreach ($pneus as $singleItem){?>
             <span class="span">
                 <span id="pneu"><?php echo $singleItem->pneu; ?></span>
@@ -467,6 +471,16 @@ class Inventaire{
             $letype = $_POST['letype'];
             $options = $_POST['options'];
             $pneu = $_POST['pneu'];
+            // mise à jour particulier d'un fichier
+            if ($pneu |= ''){
+                $id_marque = $row = $wpdb->get_row($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inv_marque WHERE marque ='$marque'", ‘foo’ ));
+                $id_modele = $wpdb->get_row($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inv_modele WHERE modele ='$modele'", ‘foo’ ));
+                $id_pneu = $wpdb->get_row($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inv_pneus WHERE pneu ='$pneu'", ‘foo’ ));
+                
+                $row = $wpdb->get_row($wpdb->prepare("SELECT ma.marque, mo.modele, p.pneu FROM {$wpdb->prefix}inv_marque ma INNER JOIN {$wpdb->prefix}inv_modele mo INNER JOIN {$wpdb->prefix}marque_modele_pneu li INNER JOIN {$wpdb->prefix}inv_pneus p ON (li.marque_id=ma.id and li.modele_id=mo.id and li.pneu_id=p.id) where li.marque_id=$id_marque->id and li.modele_id=$id_modele->id and li.pneu_id=$id_pneu->id", ‘foo’ )) ;
+                if ($row == null)
+                    $wpdb->insert("{$wpdb->prefix}marque_modele_pneu", array('marque_id' => $id_marque->id, 'modele_id' => $id_modele->id, 'pneu_id' => $id_pneu->id));
+            }
 
             // Si le label du bouton est Ajouter, alors c'est un INSERT
             if (isset($_POST['Ajouter']))

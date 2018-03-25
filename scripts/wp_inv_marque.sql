@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 22 Mars 2018 à 23:01
+-- Généré le :  Sam 24 Mars 2018 à 20:35
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `wp_inv_marque` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `marque` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Contenu de la table `wp_inv_marque`
@@ -56,7 +56,11 @@ INSERT INTO `wp_inv_marque` (`id`, `marque`) VALUES
 (17, 'Toyota'),
 (18, 'Mazda'),
 (19, 'Jaguard'),
-(20, 'Subaru');
+(20, 'Subaru'),
+(21, 'Alpha Roméo'),
+(22, 'American Motors'),
+(23, 'BMW'),
+(24, '1971');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

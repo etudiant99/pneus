@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 22 Mars 2018 à 23:01
+-- Généré le :  Sam 24 Mars 2018 à 20:35
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `wp_inv_modele` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `modele` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=78 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=98 ;
 
 --
 -- Contenu de la table `wp_inv_modele`
@@ -110,7 +110,27 @@ INSERT INTO `wp_inv_modele` (`id`, `modele`) VALUES
 (74, 'RX-2'),
 (75, 'XKE'),
 (76, 'GL'),
-(77, 'Nomad');
+(77, 'Nomad'),
+(78, 'Spider'),
+(79, 'AMX'),
+(80, '1600-2'),
+(81, 'Fastback'),
+(82, 'Squareback'),
+(83, 'Super Beetle'),
+(84, 'Beetle'),
+(85, 'Dasher'),
+(86, 'Rabbit'),
+(87, 'Scirocco'),
+(88, 'Transporter'),
+(89, 'Jetta'),
+(90, 'Vanagon'),
+(91, 'Prelude'),
+(92, 'Celica'),
+(93, 'Cressida'),
+(94, 'Land Cruiser'),
+(95, 'Pickup'),
+(96, 'Starlet'),
+(97, 'Tercel');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 22 Mars 2018 à 23:00
+-- Généré le :  Sam 24 Mars 2018 à 20:35
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -35,20 +35,20 @@ CREATE TABLE IF NOT EXISTS `wp_inventaire` (
   `options` varchar(255) DEFAULT NULL,
   `pneu` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=500 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=521 ;
 
 --
 -- Contenu de la table `wp_inventaire`
 --
 
 INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `options`, `pneu`) VALUES
-(1, 'Chevrolet', 'Truck', 1942, NULL, NULL, '6.00-16'),
+(1, 'Chevrolet', 'Truck', 1942, '', '', '6.00-16'),
 (2, 'Lincoln', 'Continental', 1942, '2 Dr Convertible', 'Base', '7.00-16'),
 (3, 'Studebaker', 'Commander', 1942, '2 Dr Convertible', 'Base', '6.00-16'),
 (5, 'Jeep', 'Willys', 1943, '', NULL, '7.00-16'),
 (6, 'Chevrolet', 'Truck', 1943, '', NULL, '6.00-16'),
 (7, 'Chevrolet', 'Truck', 1944, '', NULL, '6.00-16'),
-(8, 'Jeep', 'Willys', 1944, '', NULL, '7.00-16'),
+(8, 'Jeep', 'Willys', 1944, '', '', '7.00-16'),
 (9, 'Chevrolet', 'Truck', 1945, '', NULL, '6.00-16'),
 (10, 'Jeep', 'Willys', 1945, '', NULL, '7.00-16'),
 (11, 'Lincoln', 'Continental', 1945, '2 Dr Convertible', 'Base', '7.00-16'),
@@ -519,7 +519,28 @@ INSERT INTO `wp_inventaire` (`id`, `marque`, `modele`, `annee`, `letype`, `optio
 (496, 'Ford', 'Thunderbird', 1995, '2 Dr Coupe', 'Super Coupe', '225/60R16'),
 (497, 'Mazda', 'RX-2', 1971, '4 Dr Sedan', 'Base', '165R13'),
 (498, 'Jaguard', 'XKE', 1961, '2 Dr Convertible', 'Base (185R15)', '185R15'),
-(499, 'Subaru', 'GL', 1972, '2 Dr Coupe', 'Base (155R13)', '155R13');
+(499, 'Subaru', 'GL', 1972, '2 Dr Coupe', 'Base (155R13)', '155R13'),
+(500, 'Alpha Roméo', 'Spider', 1970, '2 Dr Convertible', 'Base', '165R14'),
+(501, 'American Motors', 'AMX', 1970, '', '', 'E78-14'),
+(502, 'BMW', '1600-2', 1970, '', '', '185/70R13'),
+(503, 'Volkswagen', 'Fastback', 1970, '', '', '600R15'),
+(504, 'Volkswagen', 'Karmann Ghia', 1970, '2 Dr Convertible', 'Base (155R15 78S)', '155R15'),
+(505, 'Volkswagen', 'Squareback', 1970, '', '', '600R15'),
+(506, 'Volkswagen', 'Super Beetle', 1971, '', '', '6.00-15'),
+(507, 'Volkswagen', 'Beetle', 1977, '2 Dr Sedan', 'Base', '600R15'),
+(508, 'Volkswagen', 'Dasher', 1977, '', '', '155R13'),
+(509, 'Volkswagen', 'Rabbit', 2000, '2 Dr Hatchback', 'Base (155R13 73 S)', '155R13'),
+(510, 'Volkswagen', 'Scirocco', 1977, '', '', '175/70R13'),
+(511, 'Volkswagen', 'Transporter', 1977, '3 Dr Standard Passenger', 'Base', '185R14'),
+(512, 'Volkswagen', 'Jetta', 1981, '4 Dr Sedan', 'Base', '175/70R13'),
+(513, 'Volkswagen', 'Vanagon', 1981, '3 Dr Standard Passenger', 'Base', '185R14C'),
+(514, 'Honda', 'Prelude', 1981, '', '', '175/70R13'),
+(515, 'Toyota', 'Celica', 1981, '2 Dr Coupe', 'GT', '185/70R14'),
+(516, 'Toyota', 'Cressida', 1981, '4 Dr Sedan', 'Luxury', '185/70R14'),
+(517, 'Toyota', 'Land Cruiser', 1981, '4 Dr Sport Utility', 'BJ60', 'R78-15'),
+(518, 'Toyota', 'Pickup', 1981, '2 Dr Cab & Chassis', 'Base', '7.00R14'),
+(519, 'Toyota', 'Starlet', 1981, '', '', '145R13'),
+(520, 'Toyota', 'Tercel', 1981, '4 Dr Sedan', 'STD(155R13 79S)', '155R13');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
