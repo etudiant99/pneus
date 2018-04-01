@@ -1,12 +1,48 @@
 <?php
 class Inventaire_Widget extends WP_Widget
 {
-    public function __construct()
-    {
-        parent::__construct('inventaire', 'inventaire', array('description' => 'Inventaire des différents pneus.'));
+	public function __construct() {
+		parent::__construct(
+			'Inventaire',
+			__( 'inventaire', 'text_domain' ),
+			array(
+				'customize_selective_refresh' => true,
+                'description' => 'Inventaire des différents pneus.',
+			)
+		);
         add_action("wp_footer", array($this, 'voitures_results'));
-    }
+	}
+    /**
+     * La fonction affiche un formulaire demandant le titre,
+     * lorsque nous sélectionnant le widget pour l'afficher.
+    */
+    public function form($instance)
+    {
+		// Valeurs par défaut
+		$defaults = array(
+			'title'    => 'Automobiles',
+            'select'   => 'annee',
+		);
+        
+        extract( wp_parse_args( ( array ) $instance, $defaults ) ); ?>
+        
+        <p>
+        <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Titre du Widget', 'text_domain' ); ?></label>
+		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+	   </p>
 
+        <?php
+    }
+    /**
+     * la fonction enregistre le titre entré lorsque l'on installe le widget
+     * 
+    */
+    public function update( $new_instance, $old_instance )
+    {
+        $instance = $old_instance;
+        $instance['title']    = isset( $new_instance['title'] ) ? wp_strip_all_tags( $new_instance['title'] ) : '';
+        return $instance;
+    }
     /**
      * la fonction affiche un formulaire
      * qui permet d'entrer l'année, la marque, et le modèle du véhicule
@@ -17,22 +53,23 @@ class Inventaire_Widget extends WP_Widget
     public function widget($args, $instance)
     {
         global $wpdb;
-        
-        // Extraction des paramètres du widget
-        extract( $args );
-        echo $before_widget;
-        
-        // Récupération de chaque paramètre
-        $title = apply_filters('widget_title', $instance['title']);
-        
-        // On affiche un titre si le paramètre est rempli
-        if($title)
-            echo $before_title . $title . $after_title;
-            
-        echo $after_widget;
         $resultats = $wpdb->get_results($wpdb->prepare("SELECT  DISTINCT marque FROM {$wpdb->prefix}inventaire ORDER BY marque,annee,modele", ‘foo’ )) ;
         $resultatsannees = $wpdb->get_results($wpdb->prepare("SELECT  DISTINCT annee FROM {$wpdb->prefix}inventaire ORDER BY annee DESC", ‘foo’ )) ;
         
+        // Extraction des paramètres du widget
+        extract( $args );
+        
+        // Vérifiez les options du widget
+        $title    = isset( $instance['title'] ) ? apply_filters( 'widget_title', $instance['title'] ) : '';
+        
+        // WordPress core before_widget hook (toujours inclure)
+        echo $before_widget;
+        
+        // Afficher le widget
+        // Display widget title if defined
+        if ( $title )
+            echo $before_title . $title . $after_title;
+
         if ($resultats == null)
             echo '<h5>Base de données vide !</h5>';
         else{?>
@@ -41,6 +78,7 @@ class Inventaire_Widget extends WP_Widget
                 <label>Année :</label>
                 <select  id="annee" name="annee" >
                     <option value="Toutes">Toutes</option><?php
+                    // Faites défiler les options et ajoutez-les à la liste déroulante
                     foreach ($resultatsannees as &$value) {
                         if (($_POST['annee']) && $_POST['annee']== $value->annee)
                             $selected = "selected";
@@ -71,34 +109,9 @@ class Inventaire_Widget extends WP_Widget
                 </div>
             </form><?php
         }
-        echo $args['after_widget'];
+        // WordPress core after_widget hook (toujours inclure)
+        echo $after_widget;
     }
-
-    /**
-     * La fonction affiche un formulaire demandant le titre,
-     * lorsque nous sélectionnant le widget pour l'afficher.
-    */
-    public function form($instance)
-    {
-        $title = isset($instance['title']) ? $instance['title'] : '';?>
-        <p>
-            <label id="titre_widget" for="<?php echo $this->get_field_name( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-            <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo  $title; ?>" />
-        </p><?php
-    }
-
-    /**
-     * la fonction enregistre le titre entré lorsque l'on installe le widget
-     * 
-    */
-    public function update( $new_instance, $old_instance )
-    {
-        $instance = array();
-        $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-        
-        return $instance;
-    }
-
     /**
      * La fonction récupère les différents $_POST
      * Elle vérifie si ce qui a été entré pour la marque existe, et ajuste possiblement le message d'erreur
@@ -115,7 +128,7 @@ class Inventaire_Widget extends WP_Widget
             $annee = $_POST['annee'];
             $marque = $_POST['marque'];
             $modele = $_POST['modele'];
-            $row_marque = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}inv_marque WHERE marque='$marque'");
+            $row_marque = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}inv_marque WHERE marque LIKE '%$marque%'");
             if ($annee == 'Toutes')
             {
                 if ($modele == '')
