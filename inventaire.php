@@ -69,6 +69,7 @@ class Inventaire{
     */
     public function add_admin_menu()
     {
+        
         add_submenu_page('pneus', 'Automobiles', 'Visualisation', 'manage_options', 'automobiles', array($this, 'sousmenu_automobiles'));
         add_submenu_page('pneus', 'Résumé', 'Résumé', 'manage_options', 'resume', array($this, 'sousmenu_resume'));
         add_submenu_page('pneus', 'Historique modèles', 'Historique modèles', 'manage_options', 'modeles', array($this, 'sousmenu_modeles'));

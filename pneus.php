@@ -15,6 +15,7 @@
         register_uninstall_hook(__FILE__, array('Inventaire', 'uninstall'));
         add_action( 'init', array($this, 'wpm_custom_post_type'), 0 );
         add_action( 'init', array($this, 'wpm_add_taxonomies'), 0 );
+        add_action('admin_menu', array($this, 'add_admin_menu'));
         
         wp_register_style( 'pneus', plugins_url( 'pneus/mon.css' ) );
         wp_register_style('bootstrap', 'http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' );
@@ -121,13 +122,23 @@
         );
         
         $args_marque = array(
-            // Si 'hierarchical' est défini à false, notre taxonomie se comportera comme une étiquette standard
-            'hierarchical'      => true,
-            'labels'            => $labels_marque,
-            'show_ui'           => true,
-            'show_admin_column' => true,
-            'query_var'         => true,
-            'rewrite'           => array( 'slug' => 'marques' ),
+            'label'               => __( 'Marque'),
+            'description'         => __( 'Marques automobiles'),
+            'labels'              => $labels_marque,
+            'supports'            => array( 'title', 'editor','link', 'author' ),
+            'hierarchical'        => true,
+            'public'              => true,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'show_in_admin_bar'   => true,
+            'show_in_nav_menus'   => true,
+            'show_admin_column'   => true,
+            'can_export'          => true,
+            'has_archive'         => true,
+            'exclude_from_search' => false,
+            'publicly_queryable'  => true,
+            'query_var'           => true,
+            'rewrite'             => array( 'slug' => 'marques' ),
         );
         
         register_taxonomy( 'marques', 'automobiles', $args_marque );
@@ -160,12 +171,23 @@
 	);
 
 	$args_modeles = array(
-		'hierarchical'          => true,
-		'labels'                => $labels_modeles,
-		'show_ui'               => true,
-		'show_admin_column'     => true,
-		'query_var'             => true,
-		'rewrite'               => array( 'slug' => 'modeles' ),
+            'label'               => __( 'Modèles'),
+            'description'         => __( 'Modèles'),
+            'labels'              => $labels_modeles,
+            'supports'            => array( 'title', 'editor','link', 'author' ),
+            'hierarchical'        => true,
+            'public'              => true,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'show_in_admin_bar'   => true,
+            'show_in_nav_menus'   => true,
+            'show_admin_column'   => true,
+            'can_export'          => true,
+            'has_archive'         => true,
+            'exclude_from_search' => false,
+            'publicly_queryable'  => true,
+            'query_var'           => true,
+            'rewrite'             => array( 'slug' => 'modeles' ),
 	);
 
 	register_taxonomy( 'modeles', 'automobiles', $args_modeles );
@@ -199,13 +221,23 @@
 	);
 
 	$args_annees = array(
-	// Si 'hierarchical' est défini à true, notre taxonomie se comportera comme une catégorie standard
-		'hierarchical'          => true,
-		'labels'                => $labels_annees,
-		'show_ui'               => true,
-		'show_admin_column'     => true,
-		'query_var'             => true,
-		'rewrite'               => array( 'slug' => 'annees' ),
+            'label'               => __( 'Années'),
+            'description'         => __( 'Années'),
+            'labels'              => $labels_annees,
+            'supports'            => array( 'title', 'editor','link', 'author' ),
+            'hierarchical'        => true,
+            'public'              => true,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'show_in_admin_bar'   => true,
+            'show_in_nav_menus'   => true,
+            'show_admin_column'   => true,
+            'can_export'          => true,
+            'has_archive'         => true,
+            'exclude_from_search' => false,
+            'publicly_queryable'  => true,
+            'query_var'           => true,
+            'rewrite'             => array( 'slug' => 'annees' ),
 	);
 
 	register_taxonomy( 'annees', 'automobiles', $args_annees );
@@ -239,13 +271,23 @@
 	);
 
 	$args_types = array(
-	// Si 'hierarchical' est défini à true, notre taxonomie se comportera comme une catégorie standard
-		'hierarchical'          => true,
-		'labels'                => $labels_types,
-		'show_ui'               => true,
-		'show_admin_column'     => true,
-		'query_var'             => true,
-		'rewrite'               => array( 'slug' => 'types' )
+            'label'               => __( 'Types'),
+            'description'         => __( 'Types'),
+            'labels'              => $labels_types,
+            'supports'            => array( 'title', 'editor','link', 'author' ),
+            'hierarchical'        => true,
+            'public'              => true,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'show_in_admin_bar'   => true,
+            'show_in_nav_menus'   => true,
+            'show_admin_column'   => true,
+            'can_export'          => true,
+            'has_archive'         => true,
+            'exclude_from_search' => false,
+            'publicly_queryable'  => true,
+            'query_var'           => true,
+            'rewrite'             => array( 'slug' => 'types' ),
 	);
 
 	register_taxonomy( 'types', 'automobiles', $args_types );
@@ -278,13 +320,23 @@
 	);
 
 	$args_options = array(
-	// Si 'hierarchical' est défini à true, notre taxonomie se comportera comme une catégorie standard
-		'hierarchical'          => true,
-		'labels'                => $labels_options,
-		'show_ui'               => true,
-		'show_admin_column'     => true,
-		'query_var'             => true,
-		'rewrite'               => array( 'slug' => 'options' )
+            'label'               => __( 'Options'),
+            'description'         => __( 'Options'),
+            'labels'              => $labels_options,
+            'supports'            => array( 'title', 'editor','link', 'author' ),
+            'hierarchical'        => true,
+            'public'              => true,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'show_in_admin_bar'   => true,
+            'show_in_nav_menus'   => true,
+            'show_admin_column'   => true,
+            'can_export'          => true,
+            'has_archive'         => true,
+            'exclude_from_search' => false,
+            'publicly_queryable'  => true,
+            'query_var'           => true,
+            'rewrite'             => array( 'slug' => 'options' ),
 	);
 
 	register_taxonomy( 'options', 'automobiles', $args_options );
@@ -317,20 +369,81 @@
 	);
 
 	$args_pneus = array(
-	// Si 'hierarchical' est défini à true, notre taxonomie se comportera comme une catégorie standard
-		'hierarchical'          => true,
-		'labels'                => $labels_pneus,
-		'show_ui'               => true,
-		'show_admin_column'     => true,
-		'query_var'             => true,
-		'rewrite'               => array( 'slug' => 'pneus' )
+            'label'               => __( 'Pneus'),
+            'description'         => __( 'Pneus'),
+            'labels'              => $labels_pneus,
+            'supports'            => array( 'title', 'editor','link', 'author' ),
+            'hierarchical'        => true,
+            'public'              => true,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'show_in_admin_bar'   => true,
+            'show_in_nav_menus'   => true,
+            'show_admin_column'   => true,
+            'can_export'          => true,
+            'has_archive'         => true,
+            'exclude_from_search' => false,
+            'publicly_queryable'  => true,
+            'query_var'           => true,
+            'rewrite'             => array( 'slug' => 'pneus' ),
 	);
 
 	register_taxonomy( 'pneus', 'automobiles', $args_pneus );
+    
+    	// Prix
+
+	$labels_p = array(
+		'name'                       => _x( '_price', 'taxonomy general name'),
+		'singular_name'              => _x( 'Prix', 'taxonomy singular name'),
+		'search_items'               => __( 'Rechercher un prix'),
+		'popular_items'              => __( 'Prix populaires'),
+		'all_items'                  => __( 'Tous les prix'),
+        'parent_item'                => __( 'Prix parent'),
+        'parent_item_colon'        	 => __( 'Prix parent'),
+        'view_item'                  => __( 'Voir les prix'),
+		'edit_item'                  => __( 'Editer un prix'),
+		'update_item'                => __( 'Mettre à jour un prix'),
+		'add_new_item'               => __( 'Ajouter un nouveau prix'),
+		'new_item_name'              => __( 'Nom du nouveau prix'),
+        'separate_items_with_commas' => __( 'Séparer les pri axvec une virgule'),
+        'no_terms'	                 => __( 'Aucun prix'),
+		'add_or_remove_items'        => __( 'Ajouter ou supprimer un prix'),
+		'choose_from_most_used'      => __( 'Choisir parmi les prix les plus utilisés'),
+		'not_found'                  => __( 'Pas de prix trouvés'),
+        'items_list_navigation'	     => __( 'Navigation de la liste des prix'),
+        'items_list'	             => __( 'Liste des prix'),
+        'most_used'	                 => __( 'Plus utilisés'),
+        'back_to_items'	             => __( '&larr; Revenir aux prix'),
+		'menu_name'                  => __( 'Prix')
+	);
+
+	$args_prix = array(
+            'label'               => __( 'Prix'),
+            'description'         => __( 'Prix'),
+            'labels'              => $labels_prix,
+            'supports'            => array( 'title', 'editor','link', 'author' ),
+            'hierarchical'        => true,
+            'public'              => true,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'show_in_admin_bar'   => true,
+            'show_in_nav_menus'   => true,
+            'show_admin_column'   => true,
+            'can_export'          => true,
+            'has_archive'         => true,
+            'exclude_from_search' => false,
+            'publicly_queryable'  => true,
+            'query_var'           => true,
+            'rewrite'             => array( 'slug' => 'prix' ),
+	);
+    register_taxonomy( 'prix', 'automobiles', $args_prix );
+
+
     add_action( 'contextual_help', array($this, 'my_contextual_help'), 10, 3 );
     add_filter( 'post_updated_messages', array($this, 'my_updated_messages') );
     add_action('pre_get_posts',array($this, 'wpc_cpt_in_home'));
     add_action('pre_get_posts',array($this, 'wpc_cpt_in_search'));
+    add_action('pre_get_posts',array($this, 'wpc_cpt_in_archive'));
     }
     
     public function my_updated_messages( $messages ) {
@@ -455,7 +568,7 @@
     public function wpc_cpt_in_home($query) {
         if (! is_admin() && $query->is_main_query()) {
             if ($query->is_home) {
-                $query->set('post_type', array('post', 'automobiles'));
+                $query->set('post_type', array('automobiles'));
             }
         }
     }
@@ -463,11 +576,19 @@
     public function wpc_cpt_in_search($query) {
         if (! is_admin() && $query->is_main_query()) {
             if ($query->is_search) {
-                $query->set('post_type', array('post', 'automobiles'));
+                $query->set('post_type', array('automobiles'));
             }
         }
     }
 
+    public function wpc_cpt_in_archive($query) {
+        if (! is_admin() && $query->is_main_query()) {
+            if ($query->is_archive) {
+                $query->set('post_type', array('automobiles'));
+            }
+        }
+    }
+    
 
- }
+}
  new Pneus_Plugin();
