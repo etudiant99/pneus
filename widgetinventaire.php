@@ -11,7 +11,115 @@ class Inventaire_Widget extends WP_Widget
 			)
 		);
         add_action("wp_footer", array($this, 'voitures_results'));
-	}
+        wp_enqueue_script( 'pneus_handle', plugin_dir_url( __FILE__ ) . 'ajax.js', array( 'jquery' ) );
+        wp_localize_script( 'pneus_handle', 'the_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+        add_action( 'wp_ajax_the_ajax_hook', array($this, 'the_action_function' ));
+        add_action( 'wp_ajax_nopriv_the_ajax_hook', array($this, 'the_action_function' ));
+    }
+    public function the_action_function(){
+        global $wpdb;
+        $annee = $_POST['annee'];
+        $marque = $_POST['marque'];
+        $modele = $_POST['modele'];
+        $type = $_POST['type'];
+        $option = $_POST['option'];
+        $typeAffiche = true;
+        $optionAffiche = true;
+        
+        $resultatsannees = $wpdb->get_results($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inv_annee ORDER BY annee DESC", ‘foo’ )) ;
+        $resultatsmarques = $wpdb->get_results($wpdb->prepare("SELECT  DISTINCT marque FROM {$wpdb->prefix}inventaire where annee='$annee' ORDER BY marque", ‘foo’ )) ;
+        $resultatsmodeles = $wpdb->get_results($wpdb->prepare("SELECT  DISTINCT modele FROM {$wpdb->prefix}inventaire where annee='$annee' and marque='$marque' ORDER BY modele", ‘foo’ )) ;
+        $resultatstypes = $wpdb->get_results($wpdb->prepare("SELECT  DISTINCT letype FROM {$wpdb->prefix}inventaire where annee='$annee' and marque='$marque' and modele='$modele' ORDER BY letype", ‘foo’ )) ;
+        $resultatsoption = $wpdb->get_results($wpdb->prepare("SELECT  DISTINCT options FROM {$wpdb->prefix}inventaire where annee='$annee' and marque='$marque' and modele='$modele' and letype='$type' ORDER BY options", ‘foo’ )) ;
+   
+        if (isset($marque) and !isset($modele)){
+            $resultatsmodeles = $wpdb->get_results($wpdb->prepare("SELECT  DISTINCT modele FROM {$wpdb->prefix}inventaire where annee='$annee' and marque='$marque' ORDER BY modele", ‘foo’ )) ;
+            $modele = $resultatsmodeles[0]->modele;
+        }
+        if (isset($marque) and isset($modele) and !isset($type)){
+            $resultatstypes = $wpdb->get_results($wpdb->prepare("SELECT  DISTINCT letype FROM {$wpdb->prefix}inventaire where annee='$annee' and marque='$marque' and modele='$modele' ORDER BY letype", ‘foo’ )) ;
+            $type = $resultatstypes[0]->letype;
+            $resultatspneu = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}inventaire where annee='$annee' and marque='$marque' and modele='$modele'", ‘foo’ )) ;
+        }
+        if (isset($marque) and isset($modele) and isset($type) and !isset($option)){
+            $resultatsoption = $wpdb->get_results($wpdb->prepare("SELECT  DISTINCT options FROM {$wpdb->prefix}inventaire where annee='$annee' and marque='$marque' and modele='$modele' and letype='$type' ORDER BY options", ‘foo’ )) ;
+            $option = $resultatsoption[0]->options;
+            $resultatspneu = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}inventaire where annee='$annee' and marque='$marque' and modele='$modele' and letype='$type'", ‘foo’ )) ;
+        }
+        if (isset($marque) and isset($modele) and isset($type) and isset($option)){
+            $resultatspneu = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}inventaire where annee='$annee' and marque='$marque' and modele='$modele' and letype='$type' and options='$option'", ‘foo’ )) ;
+        }
+     
+        echo '<form id="theForm">';
+        echo '<select  id="annee" name="annee" onchange="submit_me();">';
+                    foreach ($resultatsannees as &$value) {
+                        if (($_POST['annee']) && $_POST['annee']== $value->annee)
+                            $selected = "selected";
+                        else
+                            $selected = "";
+                        echo '<option '.$selected.'>'; echo $value->annee; echo '</option>';
+                    }
+                echo '</select><br />';
+        echo '<select id="marque" name="marque" onchange="submit_me();">';
+                echo '<option value="Toutes">Marque</option>';
+            
+                    foreach ($resultatsmarques as &$value) {
+                        if (($_POST['marque']) && $_POST['marque']== $value->marque)
+                            $selected = "selected";
+                        else
+                            $selected = "";
+                        echo '<option '.$selected.'>'; echo $value->marque; echo '</option>';
+                    }
+                echo '</select>';
+        echo '<select id="modele" name="modele" onchange="submit_me();">';
+            $modeleAffiche = false;
+            echo '<option value="Toutes">Modèle</option>';
+                    foreach ($resultatsmodeles as &$value) {
+                        if (($_POST['modele']) && $_POST['modele']== $value->modele){
+                            $selected = "selected";
+                            $modeleAffiche = true;    
+                        }
+                        else
+                            $selected = "";
+                        echo '<option '.$selected.'>'; echo $value->modele; echo '</option>';
+                    }
+                echo '</select>';
+        if (($resultatstypes != null) and ($resultatstypes[0]->letype != '') and ($resultatstypes[0]->letype != null)) {
+            echo '<select  id="type" name="type" onchange="submit_me();" >';
+                echo '<option value="Toutes">Type</option>';
+                $typeAffiche = false;
+                    foreach ($resultatstypes as &$value) {
+                        if (($_POST['type']) && $_POST['type']== $value->letype){
+                            $selected = "selected";
+                            $typeAffiche = true;
+                        }
+                        else
+                            $selected = "";
+                        echo '<option '.$selected.'>'; echo $value->letype; echo '</option>';
+                    }
+                echo '</select>';
+        }
+        if (($resultatsoption != null) and ($resultatsoption[0]->options != '') and ($resultatsoption[0]->options != null) and $typeAffiche != false) {
+            echo '<select  id="option" name="option" onchange="submit_me();" >';
+                echo '<option value="Toutes">Options</option>';
+                $optionAffiche = false;    
+                    foreach ($resultatsoption as &$value) {
+                        if (($_POST['option']) && $_POST['option']== $value->options){
+                            $selected = "selected";
+                            $optionAffiche = true;
+                        }
+                        else
+                            $selected = "";
+                        echo '<option '.$selected.'>'; echo $value->options; echo '</option>';
+                    }
+                echo '</select>';
+        }
+        if ($resultatspneu != null and $modeleAffiche == true and $typeAffiche != false and $optionAffiche != false)
+            echo '<input type="text" value="pneu: '.$resultatspneu->pneu.'" readonly>';
+        echo '<input name="action" type="hidden" value="the_ajax_hook" />&nbsp; <!-- this puts the action the_ajax_hook into the serialized form -->';
+        echo '</form>';
+        die();
+    }
     /**
      * La fonction affiche un formulaire demandant le titre,
      * lorsque nous sélectionnant le widget pour l'afficher.
@@ -73,12 +181,10 @@ class Inventaire_Widget extends WP_Widget
         if ($resultats == null)
             echo '<h5>Base de données vide !</h5>';
         else{?>
-            <form method="post">
-                <p>
-                <label>Année :</label>
-                <select  id="annee" name="annee" >
-                    <option value="Toutes">Toutes</option><?php
-                    // Faites défiler les options et ajoutez-les à la liste déroulante
+            
+            <form id="theForm">
+                <select  id="annee" name="annee" onchange="submit_me();" >
+                    <option value="Toutes">Année</option><?php
                     foreach ($resultatsannees as &$value) {
                         if (($_POST['annee']) && $_POST['annee']== $value->annee)
                             $selected = "selected";
@@ -86,28 +192,18 @@ class Inventaire_Widget extends WP_Widget
                             $selected = "";
                         echo '<option '.$selected.'>'.$value->annee.'</option>';
                     }?>
+                </select><br />
+                <select id="marque" disabled="disabled">
+                    <option value="Toutes">Marque</option>
+                </select><br />
+                <select id="modele" disabled="disabled">
+                    <option value="Toutes">Modèle</option>
                 </select>
-                </p>
-                <p>
-                <label>Marque :</label><?php
-                if ($_POST['marque'])
-                    $valeurmarque = $_POST['marque'];
-                else
-                    $valeurmarque = "";?>
-                <input type="text" required="required" id="marque" name="marque" value="<?php echo $valeurmarque ?>" />
-                </p>
-                <p>
-                <label>Modèle :</label><?php
-                if ($_POST['modele'])
-                    $valeurmodele = $_POST['modele'];
-                else
-                    $valeurmodele = "";?>
-                <input type="text" id="modele" name="modele" value="<?php echo $valeurmodele ?>" />
-                </p>
-                <div>
-                    <input type="submit" name="recherche" value="Recherche" />
-                </div>
-            </form><?php
+
+                <div id="response_area"></div>
+                <input name="action" type="hidden" value="the_ajax_hook" />&nbsp; <!-- this puts the action the_ajax_hook into the serialized form -->
+            </form>
+            <?php
         }
         // WordPress core after_widget hook (toujours inclure)
         echo $after_widget;
