@@ -4,7 +4,7 @@ class Inventaire_Widget extends WP_Widget
 	public function __construct() {
 		parent::__construct(
 			'Inventaire',
-			__( 'inventaire', 'text_domain' ),
+			__('inventary', 'pneus'),
 			array(
 				'customize_selective_refresh' => true,
                 'description' => 'Inventaire des différents pneus.',
@@ -61,7 +61,7 @@ class Inventaire_Widget extends WP_Widget
                     }
                 echo '</select><br />';
         echo '<select id="marque" name="marque" onchange="submit_me();">';
-                echo '<option value="Toutes">Marque</option>';
+                echo '<option value="Toutes">'.__( 'Brand','pneus' ).'</option>';
             
                     foreach ($resultatsmarques as &$value) {
                         if (($_POST['marque']) && $_POST['marque']== $value->marque)
@@ -73,7 +73,7 @@ class Inventaire_Widget extends WP_Widget
                 echo '</select>';
         echo '<select id="modele" name="modele" onchange="submit_me();">';
             $modeleAffiche = false;
-            echo '<option value="Toutes">Modèle</option>';
+            echo '<option value="Toutes">'.__( 'Model','pneus' ).'</option>';
                     foreach ($resultatsmodeles as &$value) {
                         if (($_POST['modele']) && $_POST['modele']== $value->modele){
                             $selected = "selected";
@@ -86,7 +86,7 @@ class Inventaire_Widget extends WP_Widget
                 echo '</select>';
         if (($resultatstypes != null) and ($resultatstypes[0]->letype != '') and ($resultatstypes[0]->letype != null)) {
             echo '<select  id="type" name="type" onchange="submit_me();" >';
-                echo '<option value="Toutes">Type</option>';
+                echo '<option value="Toutes">'.__( 'Type','pneus' ).'</option>';
                 $typeAffiche = false;
                     foreach ($resultatstypes as &$value) {
                         if (($_POST['type']) && $_POST['type']== $value->letype){
@@ -101,7 +101,7 @@ class Inventaire_Widget extends WP_Widget
         }
         if (($resultatsoption != null) and ($resultatsoption[0]->options != '') and ($resultatsoption[0]->options != null) and $typeAffiche != false) {
             echo '<select  id="option" name="option" onchange="submit_me();" >';
-                echo '<option value="Toutes">Options</option>';
+                echo '<option value="Toutes">'.__( 'Option','pneus' ).'</option>';
                 $optionAffiche = false;    
                     foreach ($resultatsoption as &$value) {
                         if (($_POST['option']) && $_POST['option']== $value->options){
@@ -115,7 +115,7 @@ class Inventaire_Widget extends WP_Widget
                 echo '</select>';
         }
         if ($resultatspneu != null and $modeleAffiche == true and $typeAffiche != false and $optionAffiche != false)
-            echo '<input type="text" value="pneu: '.$resultatspneu->pneu.'" readonly>';
+            echo '<input type="text" value="'.__( 'tire: ','pneus' ).$resultatspneu->pneu.'" readonly>';
         echo '<input name="action" type="hidden" value="the_ajax_hook" />&nbsp; <!-- this puts the action the_ajax_hook into the serialized form -->';
         echo '</form>';
         die();
@@ -135,7 +135,7 @@ class Inventaire_Widget extends WP_Widget
         extract( wp_parse_args( ( array ) $instance, $defaults ) ); ?>
         
         <p>
-        <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Titre du Widget', 'text_domain' ); ?></label>
+        <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e('Title of Widget', 'pneus'); ?></label>
 		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 	   </p>
 
@@ -179,12 +179,12 @@ class Inventaire_Widget extends WP_Widget
             echo $before_title . $title . $after_title;
 
         if ($resultats == null)
-            echo '<h5>Base de données vide !</h5>';
+            echo '<h5>'.__('Empty database !', 'pneus').'</h5>';
         else{?>
             
             <form id="theForm">
                 <select  id="annee" name="annee" onchange="submit_me();" >
-                    <option value="Toutes">Année</option><?php
+                    <option value="Toutes"><?php _e( 'Year','pneus' ); ?></option><?php
                     foreach ($resultatsannees as &$value) {
                         if (($_POST['annee']) && $_POST['annee']== $value->annee)
                             $selected = "selected";
@@ -194,15 +194,14 @@ class Inventaire_Widget extends WP_Widget
                     }?>
                 </select><br />
                 <select id="marque" disabled="disabled">
-                    <option value="Toutes">Marque</option>
+                    <option value="Toutes"><?php _e( 'Brand','pneus' ); ?></option>
                 </select><br />
                 <select id="modele" disabled="disabled">
-                    <option value="Toutes">Modèle</option>
+                    <option value="Toutes"><?php _e( 'Model','pneus' ); ?></option>
                 </select>
 
-                <div id="response_area"></div>
                 <input name="action" type="hidden" value="the_ajax_hook" />&nbsp; <!-- this puts the action the_ajax_hook into the serialized form -->
-            </form>
+            </form><br />
             <?php
         }
         // WordPress core after_widget hook (toujours inclure)
@@ -244,7 +243,7 @@ class Inventaire_Widget extends WP_Widget
             $max = sizeof($allItems);?>
             
             <div id="box-widget-inventaire">
-                <h1 style="padding-left: 10px;">Résultat de la recherche</h1><?php                    
+                <h1 style="padding-left: 10px;"><?php _e('Result of the research', 'pneus') ?></h1><?php                   
                 // Ecriture du résultat trouvé
                 if (sizeof($allItems) > 0){?>
                     <div id="resultat">

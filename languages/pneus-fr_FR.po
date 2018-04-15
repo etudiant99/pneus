@@ -1,0 +1,984 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pneus\n"
+"POT-Creation-Date: 2018-04-15 16:14-0500\n"
+"PO-Revision-Date: 2018-04-15 16:39-0500\n"
+"Last-Translator: Denis Boucher <etudiant@vif.ca>\n"
+"Language-Team: Denis Boucher <etudiant@vif.ca>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.1\n"
+"X-Poedit-Basepath: ..\\\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_x\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: inventaire.php:73 pneus.php:54 pneus.php:55 pneus.php:72 pneus.php:73
+msgid "Cars"
+msgstr "Automobiles"
+
+#: inventaire.php:73
+msgid "visualization"
+msgstr "Visualisation"
+
+#: inventaire.php:74
+msgid "Resume"
+msgstr "Résumé"
+
+#: inventaire.php:74
+msgid "Resum"
+msgstr "Résumé"
+
+#: inventaire.php:75
+msgid "Historic models"
+msgstr "Historique modèles"
+
+#: inventaire.php:76
+msgid "Historic tires"
+msgstr "Historique pneus"
+
+#: inventaire.php:77 inventaire.php:78 inventaire.php:238 inventaire.php:392
+#: inventaire.php:403 inventaire.php:414 inventaire.php:428 inventaire.php:439
+#: inventaire.php:450 pneus.php:59
+msgid "Add"
+msgstr "Ajouter"
+
+#: inventaire.php:77
+msgid "Adds"
+msgstr "Ajouts"
+
+#: inventaire.php:78 inventaire.php:383
+msgid "Various additions"
+msgstr "Ajouts divers"
+
+#: inventaire.php:90 inventaire.php:129 inventaire.php:164 inventaire.php:192
+#: inventaire.php:265 pneus.php:125 pneus.php:129 widgetinventaire.php:64
+#: widgetinventaire.php:197
+msgid "Brand"
+msgstr "Marque"
+
+#: inventaire.php:91 inventaire.php:130 inventaire.php:165 inventaire.php:193
+#: pneus.php:179 widgetinventaire.php:76 widgetinventaire.php:200
+msgid "Model"
+msgstr "Modèle"
+
+#: inventaire.php:92 inventaire.php:134 inventaire.php:167 inventaire.php:190
+#: inventaire.php:323 pneus.php:377
+msgid "Tire"
+msgstr "Pneu"
+
+#: inventaire.php:131 inventaire.php:166 inventaire.php:191
+#: widgetinventaire.php:187
+msgid "Year"
+msgstr "Année"
+
+#: inventaire.php:132 inventaire.php:194 inventaire.php:299 pneus.php:254
+#: widgetinventaire.php:89
+msgid "Type"
+msgstr "Type"
+
+#: inventaire.php:133 pneus.php:303 widgetinventaire.php:104
+msgid "Option"
+msgstr "Option"
+
+#: inventaire.php:195
+msgid "Total"
+msgstr "Total"
+
+#: inventaire.php:244
+msgid "Edit"
+msgstr "Modifier"
+
+#: inventaire.php:262
+msgid "Brand : "
+msgstr "Marque :"
+
+#: inventaire.php:274
+msgid "Model : "
+msgstr "Modèle :"
+
+#: inventaire.php:285
+msgid "Year : "
+msgstr "Année :"
+
+#: inventaire.php:296
+msgid "Type : "
+msgstr "Type :"
+
+#: inventaire.php:308
+msgid "Option :"
+msgstr "Option :"
+
+#: inventaire.php:311 pneus.php:302 pneus.php:323 pneus.php:327 pneus.php:328
+#: widgetpneus.php:86
+msgid "Options"
+msgstr "Options"
+
+#: inventaire.php:320 inventaire.php:447
+msgid "Tire :"
+msgstr "Pneu :"
+
+#: inventaire.php:389
+msgid "Brand :"
+msgstr "Marque :"
+
+#: inventaire.php:400
+msgid "Model :"
+msgstr "Modèle :"
+
+#: inventaire.php:411
+msgid "Year :"
+msgstr "Année :"
+
+#: inventaire.php:425
+msgid "Type :"
+msgstr "Type :"
+
+#: inventaire.php:436
+msgid "Options :"
+msgstr "Options :"
+
+#: pneus.php:33
+msgid "Tire Inventory"
+msgstr "Inventaire de pneus"
+
+#: pneus.php:40
+msgid "Welcome to the plugin home page"
+msgstr "Bienvenue sur la page d'accueil du plugin"
+
+#: pneus.php:42
+msgid "This plugin adds an \"inventory\" table."
+msgstr "Ce plugin ajoute un tableau \"inventaire\"."
+
+#: pneus.php:43
+msgid "She then adds the fields \"mark\" and \"model\"."
+msgstr "Elle ajoute ensuite les champs \"marque\" et \"modèle\"."
+
+#: pneus.php:44
+msgid ""
+"Subsequently, you will be able to add data to this table, then allow a "
+"search."
+msgstr ""
+"Par la suite, vous pourrez ajouter des données à cette table, puis autoriser "
+"une recherche."
+
+#: pneus.php:52
+msgid "Automobiles"
+msgstr "Automobiles"
+
+#: pneus.php:53
+msgid "Car"
+msgstr "Automobile"
+
+#: pneus.php:56
+msgid "Parent Item:"
+msgstr "Item parent"
+
+#: pneus.php:57
+msgid "All cars"
+msgstr "Toutes les automobiles"
+
+#: pneus.php:58
+msgid "Add a new car"
+msgstr "Ajouter une nouvelle automobile"
+
+#: pneus.php:60
+msgid "New car"
+msgstr "Nouvelle automobile"
+
+#: pneus.php:61
+msgid "Edit a car"
+msgstr "Editer une nouvelle automobile"
+
+#: pneus.php:62
+msgid "Edit an automobile"
+msgstr "Modifier une automobile"
+
+#: pneus.php:63
+msgid "See automobiles"
+msgstr "Voir les automobiles"
+
+#: pneus.php:64
+msgid "Search a car"
+msgstr "Chercher une automobile"
+
+#: pneus.php:65
+msgid "Not found"
+msgstr "Non trouvé"
+
+#: pneus.php:66
+msgid "Not found in trash"
+msgstr "Non trouvé dans la corbeille"
+
+#: pneus.php:104
+msgid "Marques"
+msgstr ""
+
+#: pneus.php:105
+msgid "Marque"
+msgstr ""
+
+#: pneus.php:106
+msgid "Find a brand"
+msgstr "Trouver une marque"
+
+#: pneus.php:107
+msgid "Popular brands"
+msgstr "Marques populaires"
+
+#: pneus.php:108
+msgid "All brands"
+msgstr "Toutes les marques"
+
+#: pneus.php:109 pneus.php:110
+msgid "Parent brand"
+msgstr "marque parente"
+
+#: pneus.php:111
+msgid "See brands"
+msgstr "Voir les automobiles"
+
+#: pneus.php:112
+msgid "Edit brand"
+msgstr "Editer une nouvelle marque"
+
+#: pneus.php:113
+msgid "Update brand"
+msgstr "Mettre à jour une marque"
+
+#: pneus.php:114
+msgid "Add a new brand"
+msgstr "Ajouter une nouvelle marque"
+
+#: pneus.php:115
+msgid "Value of the new brand"
+msgstr "Valeur de la nouvelle marque"
+
+#: pneus.php:116
+msgid "Separate the marks with a comma"
+msgstr "Séparer les prix avec une virgule"
+
+#: pneus.php:117
+msgid "Add or remove brands"
+msgstr "Ajouter ou retirer des marques"
+
+#: pneus.php:118 pneus.php:167
+msgid "Choose from the most used"
+msgstr "Choisir parmi la plus utilisée"
+
+#: pneus.php:119
+msgid "No mark found."
+msgstr "Marque non trouvée"
+
+#: pneus.php:120
+msgid "No brand"
+msgstr "Aucune marque"
+
+#: pneus.php:121
+msgid "Navigation of the list of brands"
+msgstr "Navigation à travers la liste des marques"
+
+#: pneus.php:122
+msgid "List of brands"
+msgstr "Liste des marques"
+
+#: pneus.php:123 pneus.php:172 pneus.php:222 pneus.php:272 pneus.php:321
+#: pneus.php:370 pneus.php:419
+msgid "More used"
+msgstr "plus utilisées"
+
+#: pneus.php:124
+msgid "Return to brands"
+msgstr "Retourner aux marques"
+
+#: pneus.php:130
+msgid "Automotive Brands"
+msgstr "Marques automobiles"
+
+#: pneus.php:153
+msgid "Modèles"
+msgstr ""
+
+#: pneus.php:154
+msgid "Modèle"
+msgstr ""
+
+#: pneus.php:155
+msgid "Find a model"
+msgstr "Trouver un modèle"
+
+#: pneus.php:156
+msgid "Popular models"
+msgstr "Modèles populaires"
+
+#: pneus.php:157
+msgid "All Models"
+msgstr "Tous les modèles"
+
+#: pneus.php:158 pneus.php:159
+msgid "Parent model"
+msgstr "modèle parent"
+
+#: pneus.php:160
+msgid "See models"
+msgstr "Voir les modèles"
+
+#: pneus.php:161
+msgid "Edit a model"
+msgstr "Modifier un modèle"
+
+#: pneus.php:162
+msgid "Update a model"
+msgstr "Mettre à jour un modèle"
+
+#: pneus.php:163
+msgid "Add a new model"
+msgstr "Ajouter un nouveau modèle"
+
+#: pneus.php:164
+msgid "Name of the new model"
+msgstr "Nom du nouveau modèle"
+
+#: pneus.php:165
+msgid "Separate models with a comma"
+msgstr "Séparer les modèles avec une virgule"
+
+#: pneus.php:166
+msgid "Add or remove a model"
+msgstr "Ajouter ou retirer des modèles"
+
+#: pneus.php:168
+msgid "No models found"
+msgstr "Aucun modèle trouvé"
+
+#: pneus.php:169
+msgid "No model"
+msgstr "pas de modèles"
+
+#: pneus.php:170
+msgid "Model list navigation"
+msgstr "Navigation dans la liste des modèles"
+
+#: pneus.php:171
+msgid "List of models"
+msgstr "Liste des modèles"
+
+#: pneus.php:173
+msgid "Back to models"
+msgstr "Retour aux modèles"
+
+#: pneus.php:174 pneus.php:178 widgetpneus.php:83
+msgid "Models"
+msgstr "Modèles"
+
+#: pneus.php:203
+msgid "Années"
+msgstr ""
+
+#: pneus.php:204
+msgid "Année"
+msgstr ""
+
+#: pneus.php:205
+msgid "Search a year"
+msgstr "Chercher une année"
+
+#: pneus.php:206
+msgid "Popular years"
+msgstr "Années populaires"
+
+#: pneus.php:207
+msgid "All years"
+msgstr "Toutes les années"
+
+#: pneus.php:208 pneus.php:209
+msgid "Parent year"
+msgstr "Année parente"
+
+#: pneus.php:210
+msgid "See the years"
+msgstr "Voir les années"
+
+#: pneus.php:211
+msgid "Edit a year"
+msgstr "Editer une année"
+
+#: pneus.php:212
+msgid "Update a year"
+msgstr "Mettre à jour une année"
+
+#: pneus.php:213
+msgid "Add a new year"
+msgstr "Ajouter une nouvelle année"
+
+#: pneus.php:214
+msgid "Name of the new year"
+msgstr "Valeur de la nouvelle année"
+
+#: pneus.php:215
+msgid "Separate years with a comma"
+msgstr "Séparer les années avec une virgule"
+
+#: pneus.php:216
+msgid "Add or delete a year"
+msgstr "Ajouter ou effacer une année"
+
+#: pneus.php:217
+msgid "Choose from the most used years"
+msgstr "Choisir parmi les années les plus utilisées"
+
+#: pneus.php:218
+msgid "No year found"
+msgstr "Aucune année trouvées"
+
+#: pneus.php:219
+msgid "No year"
+msgstr "Aucune année"
+
+#: pneus.php:220
+msgid "Navigation of the list of years"
+msgstr "Navigation à travers la liste des années"
+
+#: pneus.php:221
+msgid "List of years"
+msgstr "Liste des années"
+
+#: pneus.php:223
+msgid "Return to years"
+msgstr "Retourner aux années"
+
+#: pneus.php:224 pneus.php:228 pneus.php:229 widgetpneus.php:84
+msgid "Years"
+msgstr "Années"
+
+#: pneus.php:253 pneus.php:274 pneus.php:278 pneus.php:279 widgetpneus.php:85
+msgid "Types"
+msgstr "Types"
+
+#: pneus.php:255
+msgid "Find a type"
+msgstr "Trouver un type"
+
+#: pneus.php:256
+msgid "Popular types"
+msgstr "Types populaires"
+
+#: pneus.php:257
+msgid "All types"
+msgstr "Tous les types"
+
+#: pneus.php:258 pneus.php:259
+msgid "Parent type"
+msgstr "Type parent"
+
+#: pneus.php:260
+msgid "See types"
+msgstr "Voir les types"
+
+#: pneus.php:261
+msgid "Edit a type"
+msgstr "Editer un type"
+
+#: pneus.php:262
+msgid "Update a type"
+msgstr "Mettre à jour un type"
+
+#: pneus.php:263
+msgid "Add a new type"
+msgstr "Ajouter un nouveau type"
+
+#: pneus.php:264
+msgid "Name of the new type"
+msgstr "Nom du nouveau type"
+
+#: pneus.php:265
+msgid "Separate types with a comma"
+msgstr "Séparer les types avec une virgule"
+
+#: pneus.php:266
+msgid "Add or remove a type"
+msgstr "Ajouter ou retirer un prix"
+
+#: pneus.php:267
+msgid "Choose from the most used types"
+msgstr "Choisir parmi les types les plus utilisés"
+
+#: pneus.php:268
+msgid "No type found"
+msgstr "Aucun types trouvés"
+
+#: pneus.php:269
+msgid "No type"
+msgstr "Aucun type"
+
+#: pneus.php:270
+msgid "Navigation of the list of types"
+msgstr "Navigation à travers la liste des types"
+
+#: pneus.php:271
+msgid "List of types"
+msgstr "Liste des types"
+
+#: pneus.php:273
+msgid "Return to types"
+msgstr "Retourner aux types"
+
+#: pneus.php:304
+msgid "Search an option"
+msgstr "Chercher une option"
+
+#: pneus.php:305
+msgid "Popular options"
+msgstr "Options populaires"
+
+#: pneus.php:306
+msgid "All options"
+msgstr "Toutes les options"
+
+#: pneus.php:307 pneus.php:308
+msgid "Parent option"
+msgstr "Option parente"
+
+#: pneus.php:309
+msgid "See options"
+msgstr "Voir les options"
+
+#: pneus.php:310
+msgid "Edit an option"
+msgstr "Editer une option"
+
+#: pneus.php:311
+msgid "Update an option"
+msgstr "Mettre à jour une option"
+
+#: pneus.php:312
+msgid "Add a new option"
+msgstr "Ajouter une nouvelle option"
+
+#: pneus.php:313
+msgid "Name of the new option"
+msgstr "Valeur de la nouvelle option"
+
+#: pneus.php:314
+msgid "Separate options with a comma"
+msgstr "Séparer les options avec une virgule"
+
+#: pneus.php:315
+msgid "Add or remove an option"
+msgstr "Ajouter ou retirer des options"
+
+#: pneus.php:316
+msgid "Choose from the most used options"
+msgstr "Choisir parmi les options les plus utilisées"
+
+#: pneus.php:317
+msgid "No options found"
+msgstr "Aucune option trouvée"
+
+#: pneus.php:318
+msgid "No option"
+msgstr "Aucune option"
+
+#: pneus.php:319
+msgid "Navigation of the list of options"
+msgstr "Navigation à travers la liste des options"
+
+#: pneus.php:320
+msgid "List of options"
+msgstr "Liste des options"
+
+#: pneus.php:322
+msgid "Return to options"
+msgstr "Retourner aux options"
+
+#: pneus.php:351
+msgid "Pneus"
+msgstr ""
+
+#: pneus.php:352
+msgid "Pneu"
+msgstr ""
+
+#: pneus.php:353
+msgid "Find a tire"
+msgstr "Trouver un pneu"
+
+#: pneus.php:354
+msgid "Popular tires"
+msgstr "Pneus populaires"
+
+#: pneus.php:355
+msgid "All tires"
+msgstr "Tous les pneus"
+
+#: pneus.php:356 pneus.php:357
+msgid "Parent tire"
+msgstr "Pneu parent"
+
+#: pneus.php:358
+msgid "See the tires"
+msgstr "Voir les pneus"
+
+#: pneus.php:359
+msgid "Edit a tire"
+msgstr "Editer un pneu"
+
+#: pneus.php:360
+msgid "Update a tire"
+msgstr "Mettre à jour un pneu"
+
+#: pneus.php:361
+msgid "Add a new tire"
+msgstr "Ajouter un nouveau pneu"
+
+#: pneus.php:362
+msgid "Name of the new tire"
+msgstr "Nom du nouveau pneu"
+
+#: pneus.php:363
+msgid "Separate the tires with a comma"
+msgstr "Séparer les pneus avec une virgule"
+
+#: pneus.php:364
+msgid "No tires"
+msgstr "Aucun pneu"
+
+#: pneus.php:365
+msgid "Add or remove a tire"
+msgstr "Ajouter ou retirer un pneu"
+
+#: pneus.php:366
+msgid "Choose from the most used tires"
+msgstr "Choisir parmi les pneus les plus utilisés"
+
+#: pneus.php:367
+msgid "No tires found"
+msgstr "Aucun pneu trouvé"
+
+#: pneus.php:368
+msgid "Navigation of the list of tires"
+msgstr "Navigation à travers la liste des pneus"
+
+#: pneus.php:369
+msgid "List of tires"
+msgstr "Liste des pneus"
+
+#: pneus.php:371
+msgid "Return to the tires"
+msgstr "Retourner aux pneus"
+
+#: pneus.php:372 pneus.php:376
+msgid "Tires"
+msgstr "Pneus"
+
+#: pneus.php:400 pneus.php:401 pneus.php:421 pneus.php:425 pneus.php:426
+msgid "Price"
+msgstr "Prix"
+
+#: pneus.php:402
+msgid "Search a price"
+msgstr "Chercher un prix"
+
+#: pneus.php:403
+msgid "Popular prices"
+msgstr "Prix populaires"
+
+#: pneus.php:404
+msgid "All prices"
+msgstr "Tous les prix"
+
+#: pneus.php:405 pneus.php:406
+msgid "Parent price"
+msgstr "Prix parent"
+
+#: pneus.php:407
+msgid "See prices"
+msgstr "Voir les prix"
+
+#: pneus.php:408
+msgid "Edit price"
+msgstr "Editer un prix"
+
+#: pneus.php:409
+msgid "Update a price"
+msgstr "Mettre à jour un prix"
+
+#: pneus.php:410
+msgid "Add a new price"
+msgstr "Ajouter un nouveau prix"
+
+#: pneus.php:411
+msgid "Amount of new price"
+msgstr "Montant du nouveau prix"
+
+#: pneus.php:412
+msgid "Separate prices with a comma"
+msgstr "Séparer les prix avec une virgule"
+
+#: pneus.php:413
+msgid "No price"
+msgstr "Aucun prix"
+
+#: pneus.php:414
+msgid "Add or remove a price"
+msgstr "Ajouter ou retirer des prix"
+
+#: pneus.php:415
+msgid "Choose from the most used prices"
+msgstr "Choisir parmi les prix les plus utilisés"
+
+#: pneus.php:416
+msgid "No prices found"
+msgstr "Aucun prix trouvé"
+
+#: pneus.php:417
+msgid "Navigation of the price list"
+msgstr "Navigation à travers la liste des prix"
+
+#: pneus.php:418
+msgid "List of prices"
+msgstr "Liste des prix"
+
+#: pneus.php:420
+msgid "Return to prices"
+msgstr "Retourner aux prix"
+
+#: pneus.php:459
+#, php-format
+msgid "updated car <a href=\"%s\"> See the automobile </a>"
+msgstr "voiture mise à jour <a href=\"%s\"> Voir l'automobile </a>"
+
+#: pneus.php:460
+msgid "Custom field updated."
+msgstr "Custom field mis à jour"
+
+#: pneus.php:461
+msgid "Custom field deleted."
+msgstr "Custom field suprimé."
+
+#: pneus.php:462
+msgid "Automobile updated."
+msgstr "Automobiles mises à jour"
+
+#: pneus.php:463
+#, php-format
+msgid "Automobile restored to revision of %s"
+msgstr "Automobile restaurée à la révision de %s"
+
+#: pneus.php:464
+#, php-format
+msgid "Posted Automotive <a href=\"%s\"> View Car </a>"
+msgstr "<a href=\"%s\"> Afficher la voiture </a>"
+
+#: pneus.php:465
+msgid "Registered automobile"
+msgstr "Automobile enregistrée"
+
+#: pneus.php:466
+#, php-format
+msgid ""
+"Automotive Submission <a target=\"_blank\" href=\"%s\"> Automotive Overview "
+"</a>"
+msgstr ""
+"Soumission automobile <a target=\"_blank\" href=\"%s\"> Présentation "
+"automobile </a>"
+
+#: pneus.php:467
+#, php-format
+msgid ""
+"Automobile planned for: <strong>%1$ s </ strong>. <a target=\"_blank\" href="
+"\"%2$s\"> Auto Overview </a>"
+msgstr ""
+"Automobile prévue pour: <strong>%1$ s</ strong>. <a target=\"_blank\" href="
+"\"%2$s\"> Présentation automatique </a>"
+
+#: pneus.php:468
+#, php-format
+msgid ""
+"Updated car version <a target=\"_blank\" href=\"%s\"> Auto Overview </a>"
+msgstr ""
+"Version de voiture mise à jour <a target=\"_blank\" href=\"%s\"> "
+"Présentation automatique </a>"
+
+#: pneus.php:482
+msgid "Overview"
+msgstr "Vue d’ensemble"
+
+#: pneus.php:484
+msgid ""
+"This screen gives access to all your cars. You can customize the display of "
+"this screen according to your workflow."
+msgstr ""
+"Cet écran donne accès à toutes vos voitures. Vous pouvez personnaliser "
+"l'affichage de cet écran en fonction de votre flux de travail."
+
+#: pneus.php:490
+msgid ""
+"You can customize the display of the content of this screen in several ways:"
+msgstr ""
+"Vous pouvez personnaliser l'affichage du contenu de cet écran de plusieurs "
+"façons:"
+
+#: pneus.php:492
+msgid ""
+"You can hide/display columns based on your needs and decide how many posts "
+"to list per screen using the Screen Options tab."
+msgstr ""
+"Vous pouvez masquer l'afficher des colonnes en fonction de vos besoins et "
+"décider du nombre de publications à afficher par écran à l'aide de l'onglet "
+"Options d'écran."
+
+#: pneus.php:493
+msgid ""
+"You can filter the list of posts by post status using the text links above "
+"the posts list to only show posts with that status. The default view is to "
+"show all posts."
+msgstr ""
+"Vous pouvez filtrer la liste des publications par statut en utilisant les "
+"liens de texte au-dessus de la liste des publications pour afficher "
+"uniquement les articles ayant ce statut. L'affichage par défaut consiste à "
+"afficher tous les messages."
+
+#: pneus.php:494
+msgid ""
+"You can view posts in a simple title list or with an excerpt using the "
+"Screen Options tab."
+msgstr ""
+"Vous pouvez afficher les publications dans une liste de titres simple ou "
+"avec un extrait à l'aide de l'onglet Options de l'écran."
+
+#: pneus.php:495 pneus.php:496
+msgid ""
+"You can refine the list to show only posts in a specific category or from a "
+"specific month by using the dropdown menus above the posts list. Click the "
+"Filter button after making your selection. You also can refine the list by "
+"clicking on the post author, category or tag in the posts list."
+msgstr ""
+"Vous pouvez affiner la liste pour afficher uniquement les publications d'une "
+"catégorie spécifique ou d'un mois spécifique en utilisant les menus "
+"déroulants au-dessus de la liste des publications. Cliquez sur le bouton "
+"Filtrer après avoir effectué votre sélection. Vous pouvez également affiner "
+"la liste en cliquant sur l'auteur de la publication, la catégorie ou "
+"l'étiquette dans la liste des publications."
+
+#: pneus.php:501
+msgid "Available Actions"
+msgstr "Actions disponibles"
+
+#: pneus.php:503
+msgid ""
+"Hovering over a row in the posts list will display action links that allow "
+"you to manage your post. You can perform the following actions:"
+msgstr ""
+"Survoler une rangée dans la liste des messages affichera des liens d'action "
+"qui vous permettent de gérer votre publication. Vous pouvez effectuer les "
+"actions suivantes:"
+
+#: pneus.php:505
+msgid ""
+"<strong>Edit</strong> takes you to the editing screen for that post. You can "
+"also reach that screen by clicking on the post title."
+msgstr ""
+"<strong> Modifier </ strong> vous permet d'accéder à l'écran d'édition de ce "
+"message. Vous pouvez également accéder à cet écran en cliquant sur le titre "
+"du message."
+
+#: pneus.php:506
+msgid ""
+"<strong>Quick Edit</strong> provides inline access to the metadata of your "
+"post, allowing you to update post details without leaving this screen."
+msgstr ""
+"<strong> Modification rapide </ strong> permet d'accéder en ligne aux "
+"métadonnées de votre publication, ce qui vous permet de mettre à jour les "
+"détails de la publication sans quitter cet écran."
+
+#: pneus.php:507
+msgid ""
+"<strong>Trash</strong> removes your post from this list and places it in the "
+"trash, from which you can permanently delete it."
+msgstr ""
+"<strong> Corbeille </ strong> supprime votre message de cette liste et le "
+"place dans la corbeille à partir de laquelle vous pouvez le supprimer "
+"définitivement."
+
+#: pneus.php:508
+msgid ""
+"<strong>Preview</strong> will show you what your draft post will look like "
+"if you publish it. View will take you to your live site to view the post. "
+"Which link is available depends on your post&#8217;s status."
+msgstr ""
+"<strong> Aperçu </ strong> vous montrera à quoi ressemblera votre brouillon "
+"si vous le publiez. La vue vous amène à votre site en direct pour voir le "
+"message. Le lien disponible dépend de l'état de votre publication."
+
+#: pneus.php:513
+msgid "Bulk Actions"
+msgstr "Actions en vrac"
+
+#: pneus.php:515
+msgid ""
+"You can also edit or move multiple posts to the trash at once. Select the "
+"posts you want to act on using the checkboxes, then select the action you "
+"want to take from the Bulk Actions menu and click Apply."
+msgstr ""
+"Vous pouvez également modifier ou déplacer plusieurs messages dans la "
+"corbeille à la fois. Sélectionnez les messages sur lesquels vous souhaitez "
+"agir en utilisant les cases à cocher, puis sélectionnez l'action que vous "
+"voulez effectuer dans le menu Actions en masse et cliquez sur Appliquer."
+
+#: pneus.php:516
+msgid ""
+"When using Bulk Edit, you can change the metadata (categories, author, etc.) "
+"for all selected posts at once. To remove a post from the grouping, just "
+"click the x next to its name in the Bulk Edit area that appears."
+msgstr ""
+"Lorsque vous utilisez Bulk Edit, vous pouvez modifier les métadonnées "
+"(catégories, auteur, etc.) pour tous les posts sélectionnés en même temps. "
+"Pour supprimer un message du groupe, cliquez simplement sur le x à côté de "
+"son nom dans la zone Modification en bloc qui s'affiche."
+
+#: widgetinventaire.php:7
+msgid "inventary"
+msgstr "inventaire"
+
+#: widgetinventaire.php:118
+msgid "tire: "
+msgstr "pneu: "
+
+#: widgetinventaire.php:138
+msgid "Title of Widget"
+msgstr "Titre du Widget"
+
+#: widgetinventaire.php:182
+msgid "Empty database !"
+msgstr "Base de données vide !"
+
+#: widgetinventaire.php:246 widgetpneus.php:78
+msgid "Result of the research"
+msgstr "Résultats de la recherche"
+
+#: widgetpneus.php:44
+msgid "Search"
+msgstr "Recherche"
+
+#: widgetpneus.php:55
+msgid "Title:"
+msgstr "Titre"
+
+#: widgetpneus.php:82
+msgid "Brands"
+msgstr "Marques"
+
+#, fuzzy
+#~ msgid "Ca"
+#~ msgstr "Ajouter une nouvelle automobile"
+
+#, fuzzy
+#~ msgid "Empty !"
+#~ msgstr "Base de données vide !"
+
+#~ msgid "A brief description of the Plugin"
+#~ msgstr "Une brève description du plugin"

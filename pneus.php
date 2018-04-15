@@ -1,10 +1,13 @@
 <?php
 /**
- * Plugin Name: Pneus
- * Description: Classification de pneus
- * Version: 1.3
- * Author: Denis Boucher
- */
+* Plugin Name: Pneus
+* Description: A brief description of the Plugin
+* Version: 1.3
+* Author: Denis Boucher
+* Text Domain: pneus
+* Domain Path: /languages/
+*/
+ 
  class Pneus_Plugin
  {
     public function __construct(){
@@ -20,24 +23,25 @@
         wp_register_style( 'pneus', plugins_url( 'pneus/mon.css' ) );
         wp_register_style('bootstrap', 'http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' );
         wp_enqueue_style( 'pneus' );
+        load_plugin_textdomain( 'pneus', false, basename( dirname( __FILE__ ) ) . '/languages' );
         //wp_enqueue_style( 'bootstrap' );
     }
     
     public function add_admin_menu()
     {
         // 'toplevel_page_pneus'
-        add_menu_page('Inventaire de pneus', 'Pneu plugin', 'manage_options', 'pneus', array($this, 'menu_html'));
+        add_menu_page( __( 'Tire Inventory','pneus'), 'Pneu plugin', 'manage_options', 'pneus', array($this, 'menu_html'));
     }
     
     public function menu_html()
     {
         ?>
         <h1><?php echo get_admin_page_title(); ?></h1>
-        <p>Bienvenue sur la page d'accueil du plugin</p>
+        <p><?php _e( 'Welcome to the plugin home page','pneus' ); ?></p>
         <br />
-        <p>Ce plugin ajoute une table "inventaire".<br />
-        Elle y ajoute ensuite les champs "marque" et "modele".<br />
-        Par la suite, il vous sera possible d'ajouter des données à cette table, pour permettre ensuite une recherche.</p>
+        <p><?php _e( 'This plugin adds an "inventory" table.','pneus' ); ?><br />
+        <?php _e( 'She then adds the fields "mark" and "model".','pneus' ); ?><br />
+        <?php _e( 'Subsequently, you will be able to add data to this table, then allow a search.','pneus' ); ?></p>
         <?php
     }
     
@@ -45,28 +49,28 @@
     {
         // On rentre les différentes dénominations de notre custom post type qui seront affichées dans l'administration
         $labels = array(
-		  'name'                => _x( 'Automobiles', 'Post Type General Name'),
-		  'singular_name'       => _x( 'Automobile', 'Post Type Singular Name'),
-		  'menu_name'           => __( 'Automobiles'),
-          'name_admin_bar'      => __( 'Automobiles'),
-          'parent_item_colon'   => __( 'Item parent:'),
-		  'all_items'           => __( 'Toutes les automobiles'),
-          'add_new_item'        => __( 'Ajouter une nouvelle automobile'),
-          'add_new'             => __( 'Ajouter'),
-          'new_item'            => __( 'Nouvelle automobile'),
-          'edit_item'           => __( 'Editer une automobile'),
-          'update_item'         => __( 'Modifier une automobile'),
-		  'view_item'           => __( 'Voir les automobiles'),
-		  'search_items'        => __( 'Rechercher une automobile'),
-		  'not_found'           => __( 'Non trouvée'),
-		  'not_found_in_trash'  => __( 'Non trouvée dans la corbeille')
+		  'name'                => _x('Automobiles', 'Post Type General Name','pneus'),
+		  'singular_name'       => _x('Car', 'Post Type Singular Name','pneus'),
+		  'menu_name'           => __('Cars','pneus'),
+          'name_admin_bar'      => __('Cars','pneus'),
+          'parent_item_colon'   => __('Parent Item:','pneus'),
+		  'all_items'           => __('All cars','pneus'),
+          'add_new_item'        => __('Add a new car','pneus'),
+          'add_new'             => __('Add','pneus'),
+          'new_item'            => __( 'New car','pneus'),
+          'edit_item'           => __( 'Edit a car','pneus'),
+          'update_item'         => __( 'Edit an automobile','pneus'),
+		  'view_item'           => __( 'See automobiles','pneus'),
+		  'search_items'        => __( 'Search a car','pneus'),
+		  'not_found'           => __( 'Not found','pneus'),
+		  'not_found_in_trash'  => __( 'Not found in trash','pneus')
 	   );
 	
 	   // On peut définir ici d'autres options pour notre custom post type
 	
 	   $args = array(
-		'label'               => __( 'Automobiles'),
-		'description'         => __( 'Automobiles'),
+		'label'               => __('Cars','pneus'),
+		'description'         => __('Cars','pneus'),
 		'labels'              => $labels,
         'supports'            => array( 'title', 'editor','link', 'author' ),
         'taxonomies'          => array('property_type'),
@@ -97,33 +101,33 @@
         
         // On déclare ici les différentes dénominations de notre taxonomie qui seront affichées et utilisées dans l'administration de WordPress
         $labels_marque = array(
-		'name'              			=> _x( 'Marques', 'taxonomy general name'),
-		'singular_name'     			=> _x( 'Marque', 'taxonomy singular name'),
-		'search_items'      			=> __( 'Chercher une marque'),
-        'popular_items'                 => __( 'Marques populaires'),
-		'all_items'        				=> __( 'Toutes les marques'),
-        'parent_item'        			=> __( 'Marque parente'),
-        'parent_item_colon'        		=> __( 'Marque parente'),
-        'view_item'                     => __( 'Voir les marques'),
-		'edit_item'         			=> __( 'Editer la marque'),
-		'update_item'       			=> __( 'Mettre à jour la marque'),
-		'add_new_item'     				=> __( 'Ajouter une nouvelle marque'),
-		'new_item_name'     			=> __( 'Valeur de la nouvelle marque'),
-		'separate_items_with_commas'	=> __( 'Séparer les marques avec une virgule'),
-        'add_or_remove_items'	        => __( 'Ajouter ou supprimer des marques'),
-        'choose_from_most_used'	        => __( 'Choisir parmi les plus utilisées'),
-        'not_found'	                    => __( 'Aucune marque trouvée.'),
-        'no_terms'	                    => __( 'Aucune marque'),
-        'items_list_navigation'	        => __( 'Navigation de la liste des marques'),
-        'items_list'	                => __( 'Liste des marques'),
-        'most_used'	                    => __( 'Plus utilisées'),
-        'back_to_items'	                => __( '&larr; Revenir aux marques'),
-		'menu_name'                     => __( 'Marque')
+		'name'              			=> __( 'Marques', 'taxonomy general name','pneus'),
+		'singular_name'     			=> __( 'Marque', 'taxonomy singular name','pneus'),
+		'search_items'      			=> __( 'Find a brand','pneus'),
+        'popular_items'                 => __( 'Popular brands','pneus'),
+		'all_items'        				=> __( 'All brands','pneus'),
+        'parent_item'        			=> __( 'Parent brand','pneus'),
+        'parent_item_colon'        		=> __( 'Parent brand','pneus'),
+        'view_item'                     => __( 'See brands','pneus'),
+		'edit_item'         			=> __( 'Edit brand','pneus'),
+		'update_item'       			=> __( 'Update brand','pneus'),
+		'add_new_item'     				=> __( 'Add a new brand','pneus'),
+		'new_item_name'     			=> __( 'Value of the new brand','pneus'),
+		'separate_items_with_commas'	=> __( 'Separate the marks with a comma','pneus'),
+        'add_or_remove_items'	        => __( 'Add or remove brands','pneus'),
+        'choose_from_most_used'	        => __( 'Choose from the most used','pneus'),
+        'not_found'	                    => __( 'No mark found.','pneus'),
+        'no_terms'	                    => __( 'No brand','pneus'),
+        'items_list_navigation'	        => __( 'Navigation of the list of brands','pneus'),
+        'items_list'	                => __( 'List of brands','pneus'),
+        'most_used'	                    => __( 'More used','pneus'),
+        'back_to_items'	                => __( 'Return to brands','pneus'),
+		'menu_name'                     => __( 'Brand','pneus')
         );
         
         $args_marque = array(
-            'label'               => __( 'Marque'),
-            'description'         => __( 'Marques automobiles'),
+            'label'               => __( 'Brand','pneus'),
+            'description'         => __( 'Automotive Brands','pneus'),
             'labels'              => $labels_marque,
             'supports'            => array( 'title', 'editor','link', 'author' ),
             'hierarchical'        => true,
@@ -146,33 +150,33 @@
 	// Taxonomie Modèles
 	
 	$labels_modeles = array(
-		'name'                       => _x( 'Modèles', 'taxonomy general name'),
-		'singular_name'              => _x( 'Modèle', 'taxonomy singular name'),
-		'search_items'               => __( 'Rechercher un modèle'),
-		'popular_items'              => __( 'Modèles populaires'),
-		'all_items'                  => __( 'Tous les modèles'),
-        'parent_item'                => __( 'Modèle parent'),
-        'parent_item_colon'        	 => __( 'Modèle parent'),
-        'view_item'                  => __( 'Voir les modèles'),
-		'edit_item'                  => __( 'Editer un modèle'),
-		'update_item'                => __( 'Mettre à jour un modèle'),
-		'add_new_item'               => __( 'Ajouter un nouveau modèle'),
-		'new_item_name'              => __( 'Nom du nouveau modèle'),
-		'separate_items_with_commas' => __( 'Séparer les modèles avec une virgule'),
-		'add_or_remove_items'        => __( 'Ajouter ou supprimer un modèle'),
-		'choose_from_most_used'      => __( 'Choisir parmi les plus utilisés'),
-		'not_found'                  => __( 'Pas de modèles trouvés'),
-        'no_terms'	                 => __( 'Aucun modèle'),
-        'items_list_navigation'	     => __( 'Navigation de la liste des modèles'),
-        'items_list'	             => __( 'Liste des modèles'),
-        'most_used'	                 => __( 'Plus utilisés'),
-        'back_to_items'	             => __( '&larr; Revenir aux modèles'),
-		'menu_name'                  => __( 'Modèles')
+		'name'                       => __( 'Modèles', 'taxonomy general name','pneus'),
+		'singular_name'              => __( 'Modèle', 'taxonomy singular name','pneus'),
+		'search_items'               => __( 'Find a model','pneus'),
+		'popular_items'              => __( 'Popular models','pneus'),
+		'all_items'                  => __( 'All Models','pneus'),
+        'parent_item'                => __( 'Parent model','pneus'),
+        'parent_item_colon'        	 => __( 'Parent model','pneus'),
+        'view_item'                  => __( 'See models','pneus'),
+		'edit_item'                  => __( 'Edit a model','pneus'),
+		'update_item'                => __( 'Update a model','pneus'),
+		'add_new_item'               => __( 'Add a new model','pneus'),
+		'new_item_name'              => __( 'Name of the new model','pneus'),
+		'separate_items_with_commas' => __( 'Separate models with a comma','pneus'),
+		'add_or_remove_items'        => __( 'Add or remove a model','pneus'),
+		'choose_from_most_used'      => __( 'Choose from the most used','pneus'),
+		'not_found'                  => __( 'No models found','pneus'),
+        'no_terms'	                 => __( 'No model','pneus'),
+        'items_list_navigation'	     => __( 'Model list navigation','pneus'),
+        'items_list'	             => __( 'List of models','pneus'),
+        'most_used'	                 => __( 'More used','pneus'),
+        'back_to_items'	             => __( 'Back to models','pneus'),
+		'menu_name'                  => __( 'Models','pneus')
 	);
 
 	$args_modeles = array(
-            'label'               => __( 'Modèles'),
-            'description'         => __( 'Modèles'),
+            'label'               => __('Models','pneus'),
+            'description'         => __('Model','pneus'),
             'labels'              => $labels_modeles,
             'supports'            => array( 'title', 'editor','link', 'author' ),
             'hierarchical'        => true,
@@ -196,33 +200,33 @@
 
 	$labels_annees = array(
 
-		'name'                       => _x( 'Années', 'taxonomy general name'),
-		'singular_name'              => _x( 'Année', 'taxonomy singular name'),
-		'search_items'               => __( 'Rechercher une année'),
-		'popular_items'              => __( 'Années populaires'),
-		'all_items'                  => __( 'Toutes les années'),
-        'parent_item'                => __( 'Année parente'),
-        'parent_item_colon'        	 => __( 'Année parente'),
-        'view_item'                  => __( 'Voir les années'),
-		'edit_item'                  => __( 'Editer une année'),
-		'update_item'                => __( 'Mettre à jour une année'),
-		'add_new_item'               => __( 'Ajouter une nouvelle année'),
-		'new_item_name'              => __( 'Nom de la nouvelle année'),
-        'separate_items_with_commas' => __( 'Séparer les années avec une virgule'),
-		'add_or_remove_items'        => __( 'Ajouter ou supprimer une année'),
-		'choose_from_most_used'      => __( 'Choisir parmi les années les plus utilisées'),
-		'not_found'                  => __( 'Pas d\' année trouvées'),
-        'no_terms'	                 => __( 'Aucune année'),
-        'items_list_navigation'	     => __( 'Navigation de la liste des années'),
-        'items_list'	             => __( 'Liste des années'),
-        'most_used'	                 => __( 'Plus utilisées'),
-        'back_to_items'	             => __( '&larr; Revenir aux années'),
-		'menu_name'                  => __( 'Années')
+		'name'                       => __( 'Années', 'taxonomy general name','pneus'),
+		'singular_name'              => __( 'Année', 'taxonomy singular name','pneus'),
+		'search_items'               => __( 'Search a year','pneus'),
+		'popular_items'              => __( 'Popular years','pneus'),
+		'all_items'                  => __( 'All years','pneus'),
+        'parent_item'                => __( 'Parent year','pneus'),
+        'parent_item_colon'        	 => __( 'Parent year','pneus'),
+        'view_item'                  => __( 'See the years','pneus'),
+		'edit_item'                  => __( 'Edit a year','pneus'),
+		'update_item'                => __( 'Update a year','pneus'),
+		'add_new_item'               => __( 'Add a new year','pneus'),
+		'new_item_name'              => __( 'Name of the new year','pneus'),
+        'separate_items_with_commas' => __( 'Separate years with a comma','pneus'),
+		'add_or_remove_items'        => __( 'Add or delete a year','pneus'),
+		'choose_from_most_used'      => __( 'Choose from the most used years','pneus'),
+		'not_found'                  => __( 'No year found','pneus'),
+        'no_terms'	                 => __( 'No year','pneus'),
+        'items_list_navigation'	     => __( 'Navigation of the list of years','pneus'),
+        'items_list'	             => __( 'List of years','pneus'),
+        'most_used'	                 => __( 'More used','pneus'),
+        'back_to_items'	             => __( 'Return to years','pneus'),
+		'menu_name'                  => __( 'Years','pneus')
 	);
 
 	$args_annees = array(
-            'label'               => __( 'Années'),
-            'description'         => __( 'Années'),
+            'label'               => __( 'Years','pneus'),
+            'description'         => __( 'Years','pneus'),
             'labels'              => $labels_annees,
             'supports'            => array( 'title', 'editor','link', 'author' ),
             'hierarchical'        => true,
@@ -246,33 +250,33 @@
 
 	$labels_types = array(
 
-		'name'                       => _x( 'Types', 'taxonomy general name'),
-		'singular_name'              => _x( 'Type', 'taxonomy singular name'),
-		'search_items'               => __( 'Rechercher un type'),
-		'popular_items'              => __( 'Types populaires'),
-		'all_items'                  => __( 'Tous les types'),
-        'parent_item'                => __( 'Type parent'),
-        'parent_item_colon'        	 => __( 'Type parent'),
-        'view_item'                  => __( 'Voir les types'),
-		'edit_item'                  => __( 'Editer un type'),
-		'update_item'                => __( 'Mettre à jour un type'),
-		'add_new_item'               => __( 'Ajouter un nouveau type'),
-		'new_item_name'              => __( 'Nom du nouveau type'),
-        'separate_items_with_commas' => __( 'Séparer les types avec une virgule'),
-		'add_or_remove_items'        => __( 'Ajouter ou supprimer un type'),
-		'choose_from_most_used'      => __( 'Choisir parmi les types les plus utilisés'),
-		'not_found'                  => __( 'Pas de type trouvés'),
-        'no_terms'	                 => __( 'Aucun type'),
-        'items_list_navigation'	     => __( 'Navigation de la liste des types'),
-        'items_list'	             => __( 'Liste des types'),
-        'most_used'	                 => __( 'Plus utilisés'),
-        'back_to_items'	             => __( '&larr; Revenir aux types'),
-		'menu_name'                  => __( 'Types')
+		'name'                       => _x( 'Types', 'taxonomy general name','pneus'),
+		'singular_name'              => _x( 'Type', 'taxonomy singular name','pneus'),
+		'search_items'               => __( 'Find a type','pneus'),
+		'popular_items'              => __( 'Popular types','pneus'),
+		'all_items'                  => __( 'All types','pneus','pneus'),
+        'parent_item'                => __( 'Parent type','pneus'),
+        'parent_item_colon'        	 => __( 'Parent type','pneus'),
+        'view_item'                  => __( 'See types','pneus'),
+		'edit_item'                  => __( 'Edit a type','pneus'),
+		'update_item'                => __( 'Update a type','pneus'),
+		'add_new_item'               => __( 'Add a new type','pneus'),
+		'new_item_name'              => __( 'Name of the new type','pneus'),
+        'separate_items_with_commas' => __( 'Separate types with a comma','pneus'),
+		'add_or_remove_items'        => __( 'Add or remove a type','pneus'),
+		'choose_from_most_used'      => __( 'Choose from the most used types','pneus'),
+		'not_found'                  => __( 'No type found','pneus'),
+        'no_terms'	                 => __( 'No type','pneus'),
+        'items_list_navigation'	     => __( 'Navigation of the list of types','pneus'),
+        'items_list'	             => __( 'List of types','pneus'),
+        'most_used'	                 => __( 'More used','pneus'),
+        'back_to_items'	             => __( 'Return to types','pneus'),
+		'menu_name'                  => __( 'Types','pneus')
 	);
 
 	$args_types = array(
-            'label'               => __( 'Types'),
-            'description'         => __( 'Types'),
+            'label'               => __( 'Types','pneus'),
+            'description'         => __( 'Types','pneus'),
             'labels'              => $labels_types,
             'supports'            => array( 'title', 'editor','link', 'author' ),
             'hierarchical'        => true,
@@ -295,33 +299,33 @@
 	// Options
 
 	$labels_options = array(
-		'name'                       => _x( 'Options', 'taxonomy general name'),
-		'singular_name'              => _x( 'Option', 'taxonomy singular name'),
-		'search_items'               => __( 'Rechercher une option'),
-		'popular_items'              => __( 'Options populaires'),
-		'all_items'                  => __( 'Toutes les options'),
-        'parent_item'                => __( 'Option parente'),
-        'parent_item_colon'        	 => __( 'Option parente'),
-        'view_item'                  => __( 'Voir les options'),
-		'edit_item'                  => __( 'Editer une option'),
-		'update_item'                => __( 'Mettre à jour une option'),
-		'add_new_item'               => __( 'Ajouter une nouvelle option'),
-		'new_item_name'              => __( 'Nom de la nouvelle option'),
-        'separate_items_with_commas' => __( 'Séparer les options avec une virgule'),
-		'add_or_remove_items'        => __( 'Ajouter ou supprimer une option'),
-		'choose_from_most_used'      => __( 'Choisir parmi les options les plus utilisées'),
-		'not_found'                  => __( 'Pas d\'options trouvées'),
-        'no_terms'	                 => __( 'Aucune option'),
-        'items_list_navigation'	     => __( 'Navigation de la liste des options'),
-        'items_list'	             => __( 'Liste des options'),
-        'most_used'	                 => __( 'Plus utilisées'),
-        'back_to_items'	             => __( '&larr; Revenir aux options'),
-		'menu_name'                  => __( 'Options')
+		'name'                       => _x( 'Options', 'taxonomy general name','pneus'),
+		'singular_name'              => _x( 'Option', 'taxonomy singular name','pneus'),
+		'search_items'               => __( 'Search an option','pneus'),
+		'popular_items'              => __( 'Popular options','pneus'),
+		'all_items'                  => __( 'All options','pneus'),
+        'parent_item'                => __( 'Parent option','pneus'),
+        'parent_item_colon'        	 => __( 'Parent option','pneus'),
+        'view_item'                  => __( 'See options','pneus'),
+		'edit_item'                  => __( 'Edit an option','pneus'),
+		'update_item'                => __( 'Update an option','pneus'),
+		'add_new_item'               => __( 'Add a new option','pneus'),
+		'new_item_name'              => __( 'Name of the new option','pneus'),
+        'separate_items_with_commas' => __( 'Separate options with a comma','pneus'),
+		'add_or_remove_items'        => __( 'Add or remove an option','pneus'),
+		'choose_from_most_used'      => __( 'Choose from the most used options','pneus'),
+		'not_found'                  => __( 'No options found','pneus'),
+        'no_terms'	                 => __( 'No option','pneus'),
+        'items_list_navigation'	     => __( 'Navigation of the list of options','pneus'),
+        'items_list'	             => __( 'List of options','pneus'),
+        'most_used'	                 => __( 'More used','pneus'),
+        'back_to_items'	             => __( 'Return to options','pneus'),
+		'menu_name'                  => __( 'Options','pneus')
 	);
 
 	$args_options = array(
-            'label'               => __( 'Options'),
-            'description'         => __( 'Options'),
+            'label'               => __( 'Options','pneus'),
+            'description'         => __( 'Options','pneus'),
             'labels'              => $labels_options,
             'supports'            => array( 'title', 'editor','link', 'author' ),
             'hierarchical'        => true,
@@ -344,33 +348,33 @@
 	// Pneus
 
 	$labels_pneus = array(
-		'name'                       => _x( 'Pneus', 'taxonomy general name'),
-		'singular_name'              => _x( 'Pneu', 'taxonomy singular name'),
-		'search_items'               => __( 'Rechercher un pneu'),
-		'popular_items'              => __( 'Pneus populaires'),
-		'all_items'                  => __( 'Tous les pneus'),
-        'parent_item'                => __( 'Pneu parent'),
-        'parent_item_colon'        	 => __( 'Pneu parent'),
-        'view_item'                  => __( 'Voir les pneus'),
-		'edit_item'                  => __( 'Editer un pneu'),
-		'update_item'                => __( 'Mettre à jour un pneu'),
-		'add_new_item'               => __( 'Ajouter un nouveau pneu'),
-		'new_item_name'              => __( 'Nom du nouveau pneu'),
-        'separate_items_with_commas' => __( 'Séparer les pneus avec une virgule'),
-        'no_terms'	                 => __( 'Aucun pneu'),
-		'add_or_remove_items'        => __( 'Ajouter ou supprimer un pneu'),
-		'choose_from_most_used'      => __( 'Choisir parmi les pneus les plus utilisés'),
-		'not_found'                  => __( 'Pas de pneus trouvés'),
-        'items_list_navigation'	     => __( 'Navigation de la liste des pneus'),
-        'items_list'	             => __( 'Liste des pneus'),
-        'most_used'	                 => __( 'Plus utilisés'),
-        'back_to_items'	             => __( '&larr; Revenir aux pneus'),
-		'menu_name'                  => __( 'Pneus')
+		'name'                       => __( 'Pneus', 'taxonomy general name','pneus'),
+		'singular_name'              => __( 'Pneu', 'taxonomy singular name','pneus'),
+		'search_items'               => __( 'Find a tire','pneus'),
+		'popular_items'              => __( 'Popular tires','pneus'),
+		'all_items'                  => __( 'All tires','pneus','pneus'),
+        'parent_item'                => __( 'Parent tire','pneus'),
+        'parent_item_colon'        	 => __( 'Parent tire','pneus'),
+        'view_item'                  => __( 'See the tires','pneus'),
+		'edit_item'                  => __( 'Edit a tire','pneus'),
+		'update_item'                => __( 'Update a tire', 'pneus'),
+		'add_new_item'               => __( 'Add a new tire','pneus'),
+		'new_item_name'              => __( 'Name of the new tire','pneus'),
+        'separate_items_with_commas' => __( 'Separate the tires with a comma','pneus'),
+        'no_terms'	                 => __( 'No tires','pneus'),
+		'add_or_remove_items'        => __( 'Add or remove a tire','pneus'),
+		'choose_from_most_used'      => __( 'Choose from the most used tires','pneus'),
+		'not_found'                  => __( 'No tires found','pneus'),
+        'items_list_navigation'	     => __( 'Navigation of the list of tires','pneus'),
+        'items_list'	             => __( 'List of tires','pneus'),
+        'most_used'	                 => __( 'More used','pneus'),
+        'back_to_items'	             => __( 'Return to the tires','pneus'),
+		'menu_name'                  => __( 'Tires','pneus')
 	);
 
 	$args_pneus = array(
-            'label'               => __( 'Pneus'),
-            'description'         => __( 'Pneus'),
+            'label'               => __('Tires','pneus'),
+            'description'         => __('Tire','pneus'),
             'labels'              => $labels_pneus,
             'supports'            => array( 'title', 'editor','link', 'author' ),
             'hierarchical'        => true,
@@ -385,7 +389,7 @@
             'exclude_from_search' => false,
             'publicly_queryable'  => true,
             'query_var'           => true,
-            'rewrite'             => array( 'slug' => 'pneus' ),
+            'rewrite'             => array( 'slug' => 'spneus' ),
 	);
 
 	register_taxonomy( 'pneus', 'automobiles', $args_pneus );
@@ -393,34 +397,35 @@
     	// Prix
 
 	$labels_p = array(
-		'name'                       => _x( '_price', 'taxonomy general name'),
-		'singular_name'              => _x( 'Prix', 'taxonomy singular name'),
-		'search_items'               => __( 'Rechercher un prix'),
-		'popular_items'              => __( 'Prix populaires'),
-		'all_items'                  => __( 'Tous les prix'),
-        'parent_item'                => __( 'Prix parent'),
-        'parent_item_colon'        	 => __( 'Prix parent'),
-        'view_item'                  => __( 'Voir les prix'),
-		'edit_item'                  => __( 'Editer un prix'),
-		'update_item'                => __( 'Mettre à jour un prix'),
-		'add_new_item'               => __( 'Ajouter un nouveau prix'),
-		'new_item_name'              => __( 'Nom du nouveau prix'),
-        'separate_items_with_commas' => __( 'Séparer les pri axvec une virgule'),
-        'no_terms'	                 => __( 'Aucun prix'),
-		'add_or_remove_items'        => __( 'Ajouter ou supprimer un prix'),
-		'choose_from_most_used'      => __( 'Choisir parmi les prix les plus utilisés'),
-		'not_found'                  => __( 'Pas de prix trouvés'),
-        'items_list_navigation'	     => __( 'Navigation de la liste des prix'),
-        'items_list'	             => __( 'Liste des prix'),
-        'most_used'	                 => __( 'Plus utilisés'),
-        'back_to_items'	             => __( '&larr; Revenir aux prix'),
-		'menu_name'                  => __( 'Prix')
+		'name'                       => _x( 'Price', 'taxonomy general name','pneus'),
+		'singular_name'              => _x( 'Price', 'taxonomy singular name','pneus'),
+		'search_items'               => __( 'Search a price','pneus'),
+		'popular_items'              => __( 'Popular prices','pneus'),
+		'all_items'                  => __( 'All prices','pneus'),
+        'parent_item'        		 => __( 'Parent price','pneus'),
+        'parent_item_colon'        	 => __( 'Parent price','pneus'),
+        'view_item'                  => __( 'See prices','pneus'),
+		'edit_item'                  => __( 'Edit price','pneus'),
+		'update_item'                => __( 'Update a price','pneus'),
+		'add_new_item'               => __( 'Add a new price','pneus'),
+		'new_item_name'              => __( 'Amount of new price','pneus'),
+        'separate_items_with_commas' => __( 'Separate prices with a comma','pneus'),
+        'no_terms'	                 => __( 'No price','pneus'),
+		'add_or_remove_items'        => __( 'Add or remove a price','pneus'),
+		'choose_from_most_used'      => __( 'Choose from the most used prices','pneus'),
+		'not_found'                  => __( 'No prices found','pneus'),
+        'items_list_navigation'	     => __( 'Navigation of the price list','pneus'),
+        'items_list'	             => __( 'List of prices','pneus'),
+        'most_used'	                 => __( 'More used','pneus'),
+        'back_to_items'	             => __( 'Return to prices','pneus'),
+		'menu_name'                  => __( 'Price','pneus')
 	);
 
 	$args_prix = array(
-            'label'               => __( 'Prix'),
-            'description'         => __( 'Prix'),
+            'label'               => __( 'Price','pneus'),
+            'description'         => __( 'Price','pneus'),
             'labels'              => $labels_prix,
+            'type'                => 'numeric',
             'supports'            => array( 'title', 'editor','link', 'author' ),
             'hierarchical'        => true,
             'public'              => true,
@@ -451,16 +456,16 @@
         global $post, $post_ID;
         $messages['automobiles'] = array(
             0 => '', 
-            1 => sprintf( __('automobile mis à jour <a href="%s">Voir l\'automobile</a>'), esc_url( get_permalink($post_ID) ) ),
-            2 => __('Champ personnalisé mis à jour.'),
-            3 => __('Champ personnalisé supprimé.'),
-            4 => __('Automobile mis à jour.'),
-            5 => isset($_GET['revision']) ? sprintf( __('Automobile restauré à la révision de %s'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-            6 => sprintf( __('Automobile publiée <a href="%s">Voir l\'automobile</a>'), esc_url( get_permalink($post_ID) ) ),
-            7 => __('Automobile enregistrée'),
-            8 => sprintf( __('Automobile soumise <a target="_blank" href="%s">Aperçu de l\'automobile</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
-            9 => sprintf( __('Automobile prévue pour: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Aperçu de l\'automobile</a>'), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post_ID) ) ),
-            10 => sprintf( __('Version de l\'automobile mise à jour <a target="_blank" href="%s">Aperçu de l\'automobile</a>'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
+            1 => sprintf( __('updated car <a href="%s"> See the automobile </a>','pneus'), esc_url( get_permalink($post_ID) ) ),
+            2 => __('Custom field updated.','pneus'),
+            3 => __('Custom field deleted.','pneus'),
+            4 => __('Automobile updated.','pneus'),
+            5 => isset($_GET['revision']) ? sprintf( __('Automobile restored to revision of %s','pneus'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+            6 => sprintf( __('Posted Automotive <a href="%s"> View Car </a>','pneus'), esc_url( get_permalink($post_ID) ) ),
+            7 => __('Registered automobile','pneus'),
+            8 => sprintf( __('Automotive Submission <a target="_blank" href="%s"> Automotive Overview </a>','pneus'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
+            9 => sprintf( __('Automobile planned for: <strong>%1$ s </ strong>. <a target="_blank" href="%2$s"> Auto Overview </a>','pneus'), date_i18n(( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink($post_ID) ) ),
+            10 => sprintf( __('Updated car version <a target="_blank" href="%s"> Auto Overview </a>','pneus'), esc_url( add_query_arg( 'preview', 'true', get_permalink($post_ID) ) ) ),
         );
         
         return $messages;
@@ -474,21 +479,21 @@
     if ( 'edit-automobiles' == $screen->id ){
         $screen->add_help_tab( array(
             'id'		=> 'overview',
-            'title'		=> __('Vue d\'ensemble'),
+            'title'		=> __('Overview','pneus'),
             'content'	=>
-                '<p>' . __('Cet écran donne accès à toutes vos automobiles. Vous pouvez personnaliser l\'affichage de cet écran en fonction de votre flux de travail. ').'</p>'
+                '<p>' . __('This screen gives access to all your cars. You can customize the display of this screen according to your workflow.','pneus').'</p>'
         ) );
         $screen->add_help_tab( array(
             'id' => 'screen-content',
             'title' => 'Contenu de l\'écran',
             'content' =>
-                '<p>' . __('Vous pouvez personnaliser l\'affichage du contenu de cet écran de plusieurs façons: ').'</p>'.
+                '<p>' . __('You can customize the display of the content of this screen in several ways:','pneus').'</p>'.
                     '<ul>' .
-                        '<li>' . __('You can hide/display columns based on your needs and decide how many posts to list per screen using the Screen Options tab.') . '</li>'.
-                        '<li>' .  __( 'You can filter the list of posts by post status using the text links above the posts list to only show posts with that status. The default view is to show all posts.' ) . '</li>'.
-                        '<li>' .  __('You can view posts in a simple title list or with an excerpt using the Screen Options tab.') . '</li>'.
-                        '<li>' .  __('You can refine the list to show only posts in a specific category or from a specific month by using the dropdown menus above the posts list. Click the Filter button after making your selection. You also can refine the list by clicking on the post author, category or tag in the posts list.').  '</li>'.
-                        '<li>' . __('You can refine the list to show only posts in a specific category or from a specific month by using the dropdown menus above the posts list. Click the Filter button after making your selection. You also can refine the list by clicking on the post author, category or tag in the posts list.') . '</li>' .
+                        '<li>' . __('You can hide/display columns based on your needs and decide how many posts to list per screen using the Screen Options tab.','pneus') . '</li>'.
+                        '<li>' .  __( 'You can filter the list of posts by post status using the text links above the posts list to only show posts with that status. The default view is to show all posts.','pneus' ) . '</li>'.
+                        '<li>' .  __('You can view posts in a simple title list or with an excerpt using the Screen Options tab.','pneus') . '</li>'.
+                        '<li>' .  __('You can refine the list to show only posts in a specific category or from a specific month by using the dropdown menus above the posts list. Click the Filter button after making your selection. You also can refine the list by clicking on the post author, category or tag in the posts list.','pneus').  '</li>'.
+                        '<li>' . __('You can refine the list to show only posts in a specific category or from a specific month by using the dropdown menus above the posts list. Click the Filter button after making your selection. You also can refine the list by clicking on the post author, category or tag in the posts list.','pneus') . '</li>' .
                     '</ul>'
         ) );
         $screen->add_help_tab( array(
@@ -500,15 +505,15 @@
                         '<li>' . __('<strong>Edit</strong> takes you to the editing screen for that post. You can also reach that screen by clicking on the post title.') . '</li>' .
                         '<li>' . __('<strong>Quick Edit</strong> provides inline access to the metadata of your post, allowing you to update post details without leaving this screen.') . '</li>' .
                         '<li>' . __('<strong>Trash</strong> removes your post from this list and places it in the trash, from which you can permanently delete it.') . '</li>' .
-                        '<li>' . __('<strong>Preview</strong> will show you what your draft post will look like if you publish it. View will take you to your live site to view the post. Which link is available depends on your post&#8217;s status.') . '</li>' .
+                        '<li>' . __('<strong>Preview</strong> will show you what your draft post will look like if you publish it. View will take you to your live site to view the post. Which link is available depends on your post&#8217;s status.','pneus') . '</li>' .
                     '</ul>'
         ) );
         $screen->add_help_tab( array(
             'id'		=> 'bulk-actions',
             'title'		=> __('Bulk Actions'),
             'content'	=>
-                '<p>' . __('You can also edit or move multiple posts to the trash at once. Select the posts you want to act on using the checkboxes, then select the action you want to take from the Bulk Actions menu and click Apply.') . '</p>' .
-				'<p>' . __('When using Bulk Edit, you can change the metadata (categories, author, etc.) for all selected posts at once. To remove a post from the grouping, just click the x next to its name in the Bulk Edit area that appears.') . '</p>'
+                '<p>' . __('You can also edit or move multiple posts to the trash at once. Select the posts you want to act on using the checkboxes, then select the action you want to take from the Bulk Actions menu and click Apply.','pneus') . '</p>' .
+				'<p>' . __('When using Bulk Edit, you can change the metadata (categories, author, etc.) for all selected posts at once. To remove a post from the grouping, just click the x next to its name in the Bulk Edit area that appears.','pneus') . '</p>'
         ) );
     }elseif ( 'automobiles' == $screen->id ) {
         $screen->add_help_tab( array(

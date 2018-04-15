@@ -30,7 +30,6 @@ class Pneus_Widget extends WP_Widget
         else{?>
             <form method="post">
                 <p>
-                <label>Pneu :</label>
                 <select  id="pneu" name="pneu" style="width:100%;margin-top:0px;margin-bottom: 10px"><?php
                     foreach ($resultats as &$value) {
                         if (($_POST['pneu']) && $_POST['pneu']== $value->pneu)
@@ -42,7 +41,7 @@ class Pneus_Widget extends WP_Widget
                 </select>
                 </p>
                 <div>
-                    <input type="submit" value="Recherche" />
+                    <input type="submit" value="<?php _e( 'Search','pneus' ); ?>" />
                 </div>
             </form><?php
         }
@@ -53,7 +52,7 @@ class Pneus_Widget extends WP_Widget
     {
         $title = isset($instance['title']) ? $instance['title'] : '';?>
         <p>
-            <label id="titre_widget" for="<?php echo $this->get_field_name( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+            <label id="titre_widget" for="<?php echo $this->get_field_name( 'title' ); ?>"><?php _e( 'Title:','pneus' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo  $title; ?>" />
         </p><?php
     }
@@ -76,15 +75,15 @@ class Pneus_Widget extends WP_Widget
             $allItems = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}inventaire WHERE pneu = '$pneu' order by annee,marque,modele,letype,options");?>
             
             <div id="box-container">
-                <h1 style="padding-left: 10px;">Résultat de la recherche</h1><?php
+                <h1 style="padding-left: 10px;"><?php _e('Result of the research', 'pneus') ?></h1><?php
                 // Ecriture du résultat trouvé
                 if (count($allItems) > 0)?>
                     <div id="resultat">
-                        <span id="titre_marque">Marque</span>
-                        <span id="titre_modele">Modèle</span>
-                        <span id="titre_annee">Année</span>
-                        <span id="titre_type">Type</span>
-                        <span id="titre_options">Options</span><?php
+                        <span id="titre_marque"><?php _e('Brands', 'pneus') ?></span>
+                        <span id="titre_modele"><?php _e('Models', 'pneus') ?></span>
+                        <span id="titre_annee"><?php _e('Years', 'pneus') ?></span>
+                        <span id="titre_type"><?php _e('Types', 'pneus') ?></span>
+                        <span id="titre_options"><?php _e('Options', 'pneus') ?></span><?php
                         foreach ($allItems as $singleItem){
                             $result++; ?>
                             <article>

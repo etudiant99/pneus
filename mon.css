@@ -165,9 +165,8 @@ article {
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: white;
-    position: fixed;
     overflow: auto;
-    max-height: 500px;
+    max-height: 400px;
     width: 465px;
     border: 3px solid black;
     margin-left: 15px;
@@ -181,9 +180,8 @@ article {
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: white;
-    position: fixed;
     overflow: auto;
-    max-height: 500px;
+    max-height: 400px;
     width: 960px;
     border: 3px solid black;
     margin-left: 15px;
@@ -197,9 +195,8 @@ article {
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: white;
-    position: fixed;
     overflow: auto;
-    max-height: 500px;
+    max-height: 400px;
     width: 910px;
     border: 3px solid black;
     margin-left: 15px;
@@ -213,9 +210,8 @@ article {
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: white;
-    position: fixed;
     overflow: auto;
-    max-height: 500px;
+    max-height: 400px;
     width: 400px;
     border: 3px solid black;
     margin-left: 15px;

@@ -70,12 +70,12 @@ class Inventaire{
     public function add_admin_menu()
     {
         
-        add_submenu_page('pneus', 'Automobiles', 'Visualisation', 'manage_options', 'automobiles', array($this, 'sousmenu_automobiles'));
-        add_submenu_page('pneus', 'Résumé', 'Résumé', 'manage_options', 'resume', array($this, 'sousmenu_resume'));
-        add_submenu_page('pneus', 'Historique modèles', 'Historique modèles', 'manage_options', 'modeles', array($this, 'sousmenu_modeles'));
-        add_submenu_page('pneus', 'Historique pneus', 'Historique pneus', 'manage_options', 'hist_pneus', array($this, 'sousmenu_pneus'));
-        add_submenu_page('pneus', 'Ajouter', 'Ajouts', 'manage_options', 'ajout', array($this, 'sousmenu_ajouter'));
-        add_submenu_page('pneus', 'Ajouter', 'Ajouts divers', 'manage_options', 'ajout_divers', array($this, 'sousmenu_ajout_divers'));
+        add_submenu_page('pneus', __( 'Cars','pneus'), __( 'visualization','pneus'), 'manage_options', 'automobiles', array($this, 'sousmenu_automobiles'));
+        add_submenu_page('pneus', __( 'Resume','pneus'), __( 'Resum','pneus'), 'manage_options', 'resume', array($this, 'sousmenu_resume'));
+        add_submenu_page('pneus', __( 'Historic models','pneus'), __( 'Historic models','pneus'), 'manage_options', 'modeles', array($this, 'sousmenu_modeles'));
+        add_submenu_page('pneus', __( 'Historic tires','pneus'), __( 'Historic tires','pneus'), 'manage_options', 'hist_pneus', array($this, 'sousmenu_pneus'));
+        add_submenu_page('pneus', __( 'Add','pneus'), __( 'Adds','pneus'), 'manage_options', 'ajout', array($this, 'sousmenu_ajouter'));
+        add_submenu_page('pneus', __( 'Add','pneus'),__( 'Various additions','pneus') , 'manage_options', 'ajout_divers', array($this, 'sousmenu_ajout_divers'));
     }
     
     public function sousmenu_resume()
@@ -87,9 +87,9 @@ class Inventaire{
         <h1><?php echo get_admin_page_title(); ?></h1>
         <!-- Affichage des titres avec debut de la boîte -->
         <div id="titrelisteresume">
-            <span id="titre_marque">Marque</span>
-            <span id="titre_modele2">Modèle</span>
-            <span id="titre_pneu">Pneu</span><br />
+            <span id="titre_marque"><?php _e( 'Brand','pneus' ); ?></span>
+            <span id="titre_modele2"><?php _e( 'Model','pneus' ); ?></span>
+            <span id="titre_pneu"><?php _e( 'Tire','pneus' ); ?></span><br />
         </div>
             
         <!-- Affichage du contenu -->
@@ -126,12 +126,12 @@ class Inventaire{
         <h1><?php echo get_admin_page_title(); ?></h1>
         <!-- Affichage des titres avec debut de la boîte -->
         <div id="titrelistecomplete">
-            <span id="titre_marque">Marque</span>
-            <span id="titre_modele2">Modèle</span>
-            <span id="titre_annee">Année</span>
-            <span id="titre_type">Type</span>
-            <span id="titre_options">Options</span>
-            <span id="titre_pneu">Pneu</span><br />
+            <span id="titre_marque"><?php _e( 'Brand','pneus' ); ?></span>
+            <span id="titre_modele2"><?php _e( 'Model','pneus' ); ?></span>
+            <span id="titre_annee"><?php _e( 'Year','pneus' ); ?></span>
+            <span id="titre_type"><?php _e( 'Type','pneus' ); ?></span>
+            <span id="titre_options"><?php _e( 'Option','pneus' ); ?></span>
+            <span id="titre_pneu"><?php _e( 'Tire','pneus' ); ?></span><br />
         </div>
         <div id="listecomplete"><?php
             
@@ -161,10 +161,10 @@ class Inventaire{
         
         ?><h1><?php echo get_admin_page_title(); ?></h1>
           <div id="titrelistemodeles">
-            <span id="titre_marque">Marque</span>
-            <span id="titre_modele2">Modèle</span>
-            <span id="titre_annee">Année</span>
-            <span id="titre_pneu">Pneu</span>
+            <span id="titre_marque"><?php _e( 'Brand','pneus' ); ?></span>
+            <span id="titre_modele2"><?php _e( 'Model','pneus' ); ?></span>
+            <span id="titre_annee"><?php _e( 'Year','pneus' ); ?></span>
+            <span id="titre_pneu"><?php _e( 'Tire','pneus' ); ?></span>
           </div>
           <div id="listemodeles"><?php
             foreach ($voitures as $singleItem){?>
@@ -187,13 +187,12 @@ class Inventaire{
         
         ?><h1><?php echo get_admin_page_title(); ?></h1>
           <div id="titrelistepneus">
-            <span id="titre_pneu">Pneu</span>
-            <span id="titre_annee">Année</span>
-            <span id="titre_marque">Marque</span>
-            <span id="titre_modele2">Modèle</span>
-            <span id="titre_type">Type</span>
-            <span id="titre_options">Options</span>
-            <span id="titre_letotal">Total</span>
+            <span id="titre_pneu"><?php _e( 'Tire','pneus' ); ?></span>
+            <span id="titre_annee"><?php _e( 'Year','pneus' ); ?></span>
+            <span id="titre_marque"><?php _e( 'Brand','pneus' ); ?></span>
+            <span id="titre_modele2"><?php _e( 'Model','pneus' ); ?></span>
+            <span id="titre_type"><?php _e( 'Type','pneus' ); ?></span>
+            <span id="titre_options"><?php _e( 'Total','pneus' ); ?></span>
           </div>
           <div id="listepneus"><?php
             foreach ($pneus as $singleItem){?>
@@ -236,13 +235,13 @@ class Inventaire{
             $letype = '';
             $options = '';
             $pneu = '';
-            $titre_bouton = 'Ajouter';
+            $titre_bouton = __( 'Add','pneus' );
         
         // On s'occupe ici de la modification (avec un id retourné par un GET)
         // Nous pourons ainsi aller chercher la valeur de chacun des champs nécessaires
         if (isset($_GET['id'])){
             $id = $_GET['id'];
-            $titre_bouton = 'Modifier';
+            $titre_bouton = __( 'Edit','pneus' );
             $row = $wpdb->get_row($wpdb->prepare("SELECT  * FROM {$wpdb->prefix}inventaire WHERE id='$id'", ‘foo’ ));
             $marque = $row->marque;
             $modele = $row->modele;
@@ -260,10 +259,10 @@ class Inventaire{
             <form action="" method="post" name="Marque">
                 <input type="hidden" name="id" value="<?php echo $id ?>" />
                 <p>
-                <label class="exemple" for="marque">Marque :</label>
+                <label class="exemple" for="marque"><?php _e( 'Brand : ','pneus' ); ?></label>
                 <!-- Les options pour la marque -->
                 <select id="monselect" name="pneus_marque">
-                    <option value="">Marque</option>
+                    <option value=""><?php _e( 'Brand','pneus' ); ?></option>
                     <?php
                     foreach ($lesmarques as $item){
                         ?><option  <?php if($item->marque == $marque){echo 'selected="selected"';} ?> value="<?php echo $item->marque; ?>"><?php echo $item->marque; ?></option><?php
@@ -272,7 +271,7 @@ class Inventaire{
                 </select>
                 </p>
                 <p>
-                <label class="exemple" for="modele">Modèle :</label>
+                <label class="exemple" for="modele"><?php _e( 'Model : ','pneus' ); ?></label>
                 <!-- Les options pour le modèle -->
                 <select id="monselect" name="pneus_modele">
                     <?php
@@ -283,7 +282,7 @@ class Inventaire{
                 </select>
                 </p>
                 <p>
-                <label class="exemple" for="annee">Année :</label>
+                <label class="exemple" for="annee"><?php _e( 'Year : ','pneus' ); ?></label>
                 <!-- Les options pour l'année -->
                 <select id="monselect" name="annee">
                     <?php
@@ -294,10 +293,10 @@ class Inventaire{
                 </select>
                 </p>
                 <p>
-                <label class="exemple" for="type">Type :</label>
+                <label class="exemple" for="type"><?php _e( 'Type : ','pneus' ); ?></label>
                 <!-- Les options pour le type, qui peut avoir une valeur nulle -->
                 <select id="monselect" name="letype">
-                    <option value="">Type</option>
+                    <option value=""><?php _e( 'Type','pneus' ); ?></option>
                     <?php
                     foreach ($lestypes as $item){
                         ?><option  <?php if($item->type == $letype){echo 'selected="selected"';} ?> value="<?php echo $item->type; ?>"><?php echo $item->type; ?></option><?php
@@ -306,10 +305,10 @@ class Inventaire{
                 </select>
                 </p>
                 <p>
-                <label class="exemple" for="type">Oprions :</label>
+                <label class="exemple" for="type"><?php _e( 'Option :','pneus' ); ?></label>
                 <!-- Les options pour les options du véhicule, qui peut avoir une valeur nulle -->
                 <select id="monselect" name="options">
-                    <option value="">Options</option>
+                    <option value=""><?php _e( 'Options','pneus' ); ?></option>
                     <?php
                     foreach ($lesoptions as $item){
                         ?><option  <?php if($item->options == $options){echo 'selected="selected"';} ?> value="<?php echo $item->options; ?>"><?php echo $item->options; ?></option><?php
@@ -318,10 +317,10 @@ class Inventaire{
                 </select>
                 </p>
                 <p>
-                <label class="exemple" for="pneu">Pneu :</label>
+                <label class="exemple" for="pneu"><?php _e( 'Tire :','pneus' ); ?></label>
                 <!-- Les options pour le pneu, qui peut avoir une valeur nulle -->
                 <select id="monselect" name="pneu">
-                    <option value="">Pneu</option>
+                    <option value=""><?php _e( 'Tire','pneus' ); ?></option>
                     <?php
                     foreach ($lespneus as $item){
                         ?><option  <?php if($item->pneu == $pneu){echo 'selected="selected"';} ?> value="<?php echo $item->pneu; ?>"><?php echo $item->pneu; ?></option><?php
@@ -381,16 +380,16 @@ class Inventaire{
                 $wpdb->insert("{$wpdb->prefix}inv_pneus", array('pneu' => $nouveau_pneu));
         }
         ?>
-        <h1><?php echo 'Ajouts divers' ?></h1><br />
+        <h1><?php _e('Various additions', 'pneus') ?></h1><br />
         <div class="monrow">
             <div class="moncol-sm-3">
                 <div class="ajouts">
                     <form method="post">
                         <p>
-                            <label class="exemple" for="marque"><h3>Marque :</h3></label>
+                            <label class="exemple" for="marque"><h3><?php _e('Brand :', 'pneus') ?></h3></label>
                             <input id="pneus_marque" name="marqueChoix" type="text" required="required" />
                         </p>
-                    <input type="submit" name="Ajouter" value="Ajouter" style="background-color: lightblue;" />
+                    <input type="submit" name="Ajouter" value="<?php _e('Add', 'pneus') ?>" style="background-color: lightblue;" />
                     </form>
                 </div>
             </div>
@@ -398,10 +397,10 @@ class Inventaire{
                 <div class="ajouts">
                     <form method="post">
                         <p>
-                            <label class="exemple" for="modele"><h3>Modèle :</h3></label>
+                            <label class="exemple" for="modele"><h3><?php _e('Model :', 'pneus') ?></h3></label>
                             <input id="pneus_modele" name="modeleChoix" type="text" required="required" />
                         </p>
-                    <input type="submit" name="Ajouter" value="Ajouter" style="background-color: lightblue;" />
+                    <input type="submit" name="Ajouter" value="<?php _e('Add', 'pneus') ?>" style="background-color: lightblue;" />
                     </form>
                 </div>
             </div>
@@ -409,10 +408,10 @@ class Inventaire{
                 <div class="ajouts">
                     <form method="post">
                         <p>
-                            <label class="exemple" for="annee"><h3>Année :</h3></label>
+                            <label class="exemple" for="annee"><h3><?php _e('Year :', 'pneus') ?></h3></label>
                             <input id="annee" name="anneeChoix" type="text" required="required" />
                         </p>
-                        <input type="submit" name="Ajouter" value="Ajouter" style="background-color: lightblue;" />
+                        <input type="submit" name="Ajouter" value="<?php _e('Add', 'pneus') ?>" style="background-color: lightblue;" />
                     </form>
                 </div>
             </div>
@@ -423,10 +422,10 @@ class Inventaire{
                 <div class="ajouts">
                     <form method="post">
                         <p>
-                            <label class="exemple" for="type"><h3>Type :</h3></label>
+                            <label class="exemple" for="type"><h3><?php _e('Type :', 'pneus') ?></h3></label>
                             <input id="type" name="typeChoix" type="text" required="required" />
                         </p>
-                        <input type="submit" name="Ajouter" value="Ajouter" style="background-color: lightblue;" />
+                        <input type="submit" name="Ajouter" value="<?php _e('Add', 'pneus') ?>" style="background-color: lightblue;" />
                     </form>
                 </div>
             </div>
@@ -434,10 +433,10 @@ class Inventaire{
                 <div class="ajouts">
                     <form method="post">
                         <p>
-                            <label class="exemple" for="type"><h3>Options :</h3></label>
+                            <label class="exemple" for="type"><h3><?php _e('Options :', 'pneus') ?></h3></label>
                             <input id="type" name="optionsChoix" type="text" required="required" />
                         </p>
-                        <input type="submit" name="Ajouter" value="Ajouter" style="background-color: lightblue;" />
+                        <input type="submit" name="Ajouter" value="<?php _e('Add', 'pneus') ?>" style="background-color: lightblue;" />
                     </form>
                 </div>
             </div>
@@ -445,10 +444,10 @@ class Inventaire{
                 <div class="ajouts">
                     <form method="post">
                         <p>
-                            <label class="exemple" for="type"><h3>Pneu :</h3></label>
+                            <label class="exemple" for="type"><h3><?php _e('Tire :', 'pneus') ?></h3></label>
                             <input id="type" name="pneuChoix" type="text" required="required" />
                         </p>
-                        <input type="submit" name="Ajouter" value="Ajouter" style="background-color: lightblue;" />
+                        <input type="submit" name="Ajouter" value="<?php _e('Add', 'pneus') ?>" style="background-color: lightblue;" />
                     </form>
                 </div>
             </div>
